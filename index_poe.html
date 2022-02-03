@@ -1,0 +1,1390 @@
+<!-- Copyleft emeria / emeria -->
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset="UTF-8">
+        <title>Path of Exile Cheat Sheet by emeria</title>
+        <style>
+
+/* ----- Buttons ----- */
+    button
+    {
+        height   : 16px;
+        font-size: 12px;
+        line-height: 0;  /* hack to center text vertical */
+    }
+
+    .collapsed
+    {
+        height    : 0px;
+        max-height: 0px;
+        display   : none;
+    }
+
+    .collapse
+    {
+        align  : right;
+/*
+        display: inline-block;
+*/
+        float  : right;
+    }
+
+    .in
+    {
+        display       : inline-block;
+        vertical-align: 8px;
+    }
+
+    .out
+    {
+        height     : 30px;
+        line-height: 30px;
+    }
+
+    .rejuvs
+    {
+        content: url("pics/rejuv.png");
+    }
+
+    .rejuvf
+    {
+        content: url("pics/full_rejuv.png");
+    }
+
+/* ----- Breaks ----- */
+
+     hr.one
+     {
+        height       : 1px;
+        margin       :  0;
+        padding      :  0;
+     }
+
+/* ----- Background Colors ----- */
+
+    .r11
+    {
+        background-color: #100;
+    }
+
+    .r22
+    {
+        background-color: #200;
+    }
+
+    .g11
+    {
+        background-color: #010;
+    }
+
+    .g22
+    {
+        background-color: #020;
+    }
+
+    .b11
+    {
+        background-color: #112;
+    }
+
+    .b22
+    {
+        background-color: #114;
+    }
+
+    .k11
+    {
+        background-color: #111;
+    }
+
+    .k22
+    {
+        background-color: #222;
+    }
+
+    /* Act II alvl */
+    .y11
+    {
+        background-color: #320; /* CFB997 542; */
+    }
+
+    .y22
+    {
+        background-color: #431; /* F4E4B7 653; */
+    }
+
+
+/* ----- padding ----- */
+
+    /* Resist spacer */
+    .padd
+    {
+        color           : #FFF;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Spacer before Essences */
+    .padd5
+    {
+        padding-left: 5px;
+    }
+
+    /* Section indent */
+    .padd15
+    {
+        padding-left: 15px;
+    }
+
+/* ----- Spans ----- */
+
+    /* Area Levels */
+    span.alvl83 { color: #0F0; }
+    span.alvl84 { color: #08F; } /* 08F or F80 */
+    span.alvl85 { color: #F00; }
+
+    /* Layout -- Left / Center / Right */
+    /* span.r is reserved for red which is fine for right */
+    span.l { color: #4CF; } /* FF8 08F */
+    span.c { color: #0F0; }
+
+
+    /* Crushing Blow */
+    span.cb
+    {
+        color: #F84;
+    }
+
+    /* Can't Be Frozen */
+    span.cbf
+    {
+        color      : #46F;
+        font-weight: bold;
+    }
+
+    /* Deadly Strike */
+    span.ds
+    {
+        color: #FAF;
+    }
+
+    /* Damage Reduction */
+    span.dr
+    {
+        background-color: #0AA;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Essences */
+    span.twisted   { color: #485fb7; }
+    span.charged   { color: #c8a054; }
+    span.burning   { color: #b74a35; }
+    span.festering { color: #00a054; }
+
+    /* Farm Boss */
+    span.farm
+    {
+        color: #4EF;
+    }
+
+    /* Faster Block Rate */
+    span.fbr
+    {
+        background-color: #F00;
+        color           : #FFF;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Faster Cast Rate */
+    span.fcr
+    {
+        color: #4CF; /* 08F */
+    }
+
+    /* Faster Hit Recovery */
+    span.fhr
+    {
+        background-color: #08F; /* 23A */
+        color           : #FFF;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Gold Find */
+    span.gold
+    {
+        color: yellow;
+    }
+
+    /* Increased Attack Speed */
+    span.ias
+    {
+        color: #4F8;
+    }
+
+    /* Ignores Target's Defense */
+    span.idr
+    {
+        color: #4EF;
+    }
+
+    /* Getting Magic Items */
+    span.mf
+    {
+        color: #A2F;
+        font-weight: bold;
+    }
+
+    /* Level Requirement */
+    span.n
+    {
+        color: #08F;
+    }
+
+    span.note
+    {
+        color     : #FF8; /* FF8 FFB Softer yellow */
+        font-style: italic;
+    }
+
+    span.noterune
+    {
+        color: #FFF;
+    }
+
+    /* Open Wounds */
+    span.ow
+    {
+        color: #F44;
+    }
+
+    /* Resist All */
+    span.resa
+    {
+        /* 800 080 00C */
+        /* #b55d59, #6e79b9, #f2e8a0, #57cf49 */
+        background-image: linear-gradient(to right, #80423f, #4c5380, #807a54, #36802d);
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Cold Resist % */
+    span.resc
+    {
+        background-color: #6e79b9;
+        color           : #FFF;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Fire Resist % */
+    span.resf
+    {
+        background-color: #b55d59;
+        color           : #FFF;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Physical Resist % */
+    span.resh
+    {
+        background-color: #b8a886;
+        color           : #FFF;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Lightning Resist % */
+    span.resl
+    {
+        background-color: #f2e8a0;
+        color           : #000;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Magic Resist % */
+    span.resm
+    {
+        background-color: #c1893f;
+        color           : #FFF;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Poison Resist % */
+    span.resp
+    {
+        background-color: #57cf49;
+        color           : #FFF;
+        padding-left    : 2px;
+        padding-right   : 2px;
+    }
+
+    /* Inverse */
+    span.rev
+    {
+        background-color: #FFF;
+        color           : #000;
+    }
+
+    span.rot90
+    {
+        display  : inline-block;
+        vertical-align:text-bottom;
+        transform: rotate(90deg);
+    }
+
+    span.rune
+    {
+        color: orange;
+    }
+
+    /* +# to skills */
+    span.skill
+    {
+        background-image: linear-gradient(to right, #08F, #008);
+    }
+
+/* Rune Upgrades */
+    /* The 'x' in number of runes needed for upgraded: 3x */
+    span.x
+    {
+        color: #0FF;
+    }
+
+    /* The '#' of runes needed for upgraded: #x */
+    span.y
+    {
+        color: #FF8;
+    }
+
+
+/* Item Types */
+    span.norm
+    {
+        color: #fff;
+    }
+
+    span.magic
+    {
+        color: #46F;
+    }
+
+    span.rare
+    {
+        color: #d8b864;
+    }
+
+    span.unq
+    {
+        color: #948064;
+    }
+
+/* ----- Span Borders for Selected/Unselected ----- */
+
+    /* Header Runes */
+    span.sel
+    {
+        background-color: #666;
+        border          : 1px solid #08F;
+        color           : orange;
+    }
+
+    /* Header Runeword Selected */
+    span.rws
+    {
+        background-color: #666;
+        border          : 1px solid #F00;
+        color           : #FFF;
+    }
+
+    /* Header Runeword Selected */
+    span.rwu
+    {
+        background-color: #000;
+        color           : #FF8; /* FF8 FFB Softer yellow */
+    }
+
+    span.unsel
+    {
+        background-color: #000;
+        border          : 1px solid #000;
+        color           : orange;
+    }
+
+/* ---------- Table ---------- */
+
+    .debug
+    {
+        border: 1px dotted cyan;
+    }
+
+    .column1
+    {
+        min-width: 730px; /* for mobile */
+    }
+
+    .column2
+    {
+        margin-left: 35px;
+    }
+
+    /* Extracted from runetip */
+    .desk-runes2
+    {
+        width: 505px;
+    }
+
+    .pre
+    {
+        white-space: pre;
+    }
+
+table.head
+{
+    border-collapse: collapse;
+    margin         : 0;
+    padding        : 0;
+    text-align     : left;
+    table-layout   : fixed; /* iOS */
+}
+
+th
+{
+    color      : #FF8; /* FF8 FFB Softer yellow */
+    white-space: pre;
+}
+
+table, tr
+{
+    margin         : 0;
+    padding        : 0;
+    margin-block   : 0;
+    border-spacing : 0;
+    border-collapse: collapse;
+}
+
+td
+{
+    margin : 0;
+    padding: 0;
+}
+
+/* Top and Bottom line colors */
+    tr.rt
+    {
+        border-top   : 1px solid #F88;
+        margin-top   : 1px;
+    }
+
+    tr.rb
+    {
+        border-bottom: 1px solid #F88;
+        margin-bottom: 1px;
+    }
+
+    tr.gt
+    {
+        border-top   : 1px solid #8F8;
+        margin-top   : 1px;
+    }
+
+    tr.gb
+    {
+        border-bottom: 1px solid #8F8;
+        margin-bottom: 1px;
+    }
+
+    tr.bt
+    {
+        border-top   : 1px solid #08F;
+        margin-top   : 1px;
+    }
+
+    tr.bb
+    {
+        border-bottom: 1px solid #08F;
+        margin-bottom: 1px;
+    }
+
+    tr.kt
+    {
+        border-top   : 1px solid #FFF;
+        margin-top   : 1px;
+    }
+
+    tr.kb
+    {
+        border-bottom: 1px solid #FFF;
+        margin-bottom: 1px;
+    }
+
+    tr.yt
+    {
+        border-top   : 1px solid #FF8; /* softer yellow */
+        margin-top   : 1px;
+    }
+
+    tr.yb
+    {
+        border-bottom: 1px solid #FF8; /* softer yellow */
+        margin-bottom: 1px;
+    }
+
+    tr.raret
+    {
+        border-top   : 1px solid #d8b864;
+        margin-top   : 1px;
+    }
+
+    tr.rareb
+    {
+        border-bottom: 1px solid #d8b864;
+        margin-bottom: 1px;
+    }
+
+    tr.unqt
+    {
+        border-top   : 1px solid #948064; /* A59263; */
+        margin-top   : 1px;
+    }
+
+    tr.unqb
+    {
+        border-bottom: 1px solid #948064;
+        margin-bottom: 1px;
+    }
+
+/* Table Header */
+    span.r { color: #F88; }
+    span.g { color: #8F8; }
+    span.b { color: #4CF; }
+
+    .vatop
+    {
+        vertical-align: top;
+    }
+
+/* ---------- Tool Tips ---------- */
+.runetip
+{
+    display       : inline-block;
+    position      : relative;
+    height        : 30px;
+    white-space   : pre;
+}
+
+.runetip:hover
+{
+    background-color: #888;
+    color           : #000;
+    cursor          : pointer;
+}
+
+    .runetip .runehelp1
+    {
+        background-color: #123;
+        border          : 1px solid #08F;
+        border-radius   : 4px;
+        color           : #ddd;
+        font-family     : sans-serif;
+        font-size       : 14px;
+        padding         : 5px 0;
+        position        : absolute;
+        text-align      : center;
+        visibility      : hidden;
+        width           : 280px; /* Ist */
+        white-space     : normal; /* runetip has pre */
+        z-index         : 1;
+    }
+
+    .runetip .runehelp2
+    {
+        background-color: #123;
+        border          : 1px solid #08F;
+        border-radius   : 4px;
+        color           : #ddd;
+        font-family     : sans-serif;
+        font-size       : 14px;
+        padding         : 5px 0;
+        position        : absolute;
+        text-align      : center;
+        visibility      : hidden;
+        width           : 280px; /* Ist */
+        white-space     : normal; /* runetip has pre */
+        z-index         : 1;
+    }
+
+    .runetip .runehelp3
+    {
+        background-color: #123;
+        border          : 1px solid #08F;
+        border-radius   : 4px;
+        color           : #ddd;
+        font-family     : sans-serif;
+        font-size       : 14px;
+        padding         : 5px 0;
+        position        : absolute;
+        text-align      : center;
+        visibility      : hidden;
+        width           : 400px; /* 85 alvl header instructions */
+        white-space     : normal; /* runetip has pre */
+        z-index         : 1;
+    }
+
+.runetip .gemtext
+{
+    background-color: #123;
+    border          : 1px solid #08F;
+    border-radius   : 4px;
+    color           : #ddd;
+    font-family     : sans-serif;
+    font-size       : 14px;
+    padding         : 5px 0;
+    position        : absolute;
+    text-align      : center;
+    visibility      : hidden;
+    width           : 280px; /* Ist */
+    white-space     : pre; /* see .gemhelp and gemtext */
+    z-index         : 1;
+}
+
+    /* Column 1 */
+    .runetip:hover .runehelp1
+    {
+        cursor    : pointer;
+        left      : 185px; /* Single Column:  32,  185 */
+        top       : 32px;  /* Multi  column: -32, -285 */
+        visibility: visible;
+    }
+
+    /* Column 2 */
+    .runetip:hover .runehelp2
+    {
+        cursor    : pointer;
+        left      : -285px; /* Single Column: 32,  185 */
+        top       :    0px; /* Multi  column:  0, -285 */
+        visibility: visible;
+    }
+
+    .runetip:hover .runehelp3
+    {
+        cursor    : pointer;
+        left      : 185px; /* Single Column:  32,  185 */
+        top       : 32px;  /* Multi  column: -32, -285 */
+        visibility: visible;
+    }
+
+.runetip:hover .gemtext
+{
+    cursor    : pointer;
+    left      : -285px; /* Single Column: 32,  185 */
+    top       :    0px; /* Multi  column:  0, -285 */
+    visibility: visible;
+}
+
+.runetype
+{
+    color      : #fff;
+    font-weight: bold;
+}
+
+.tool
+{
+    border          : 1px solid skyblue;
+    border-radius   : 4px;
+    color           : #fff;
+    font-family     : sans-serif;
+    font-size       : 14px;
+    margin          : 0px;
+    padding         : 32px 0px 32px 0px;
+    position        : absolute;
+    text-align      : center;
+    visibility      : hidden;
+    width           : 500px;  /* 1300 - 800 */
+    z-index         : 1;
+}
+
+.ttr
+{
+    background-color: #312;
+}
+
+.ttg
+{
+    background-color: #132;
+}
+
+.ttb
+{
+    background-color: #123;
+}
+
+.ttk
+{
+    background-color: #222;
+}
+
+.tooltip
+{
+    cursor        : pointer;
+    display       : inline-block;
+    height        : 16px;
+    position      : relative;
+    vertical-align: middle;
+    white-space   : pre;
+}
+
+.tooltip:hover
+{
+    background-color: #880; /* FF0 pure yellow; toned down for night time CC0, tweaked for highlighting runes */
+    color           : #000;
+    cursor          : pointer;
+}
+
+    /* Desktop column3 */
+    .tooltip:hover .ttr
+    {
+        cursor    : pointer;
+        visibility: visible;
+        top       : 0px;
+        left      : 900px;
+    }
+
+    .tooltip:hover .ttg
+    {
+        cursor    : pointer;
+        visibility: visible;
+        top       : 0px;
+        left      : 900px;
+    }
+
+    .tooltip:hover .ttb
+    {
+        cursor    : pointer;
+        visibility: visible;
+        top       : 0px;
+        left      : 900px;
+    }
+
+    .tooltip:hover .ttk
+    {
+        cursor    : pointer;
+        visibility: visible;
+        top       : 0px;
+        left      : 900px;
+    }
+
+/* ----- Device ----- */
+
+    .ios-hidden
+    {
+        display: block;
+    }
+
+    .ios-visible
+    {
+        display: none;
+    }
+
+/* iPhone Plus -- is screen width <= 767px */
+@media screen and (max-width: 991.98px)
+{
+    .ios-hidden
+    {
+        display: none;
+    }
+
+    .ios-runes1
+    {
+        width: 550px; /* 600 Too wide */
+    }
+
+    .ios-visible
+    {
+        display: block;
+    }
+
+    /* Spacer between FCR/FHR/FBR and Runes */
+    .column2
+    {
+        margin-left: 55px;
+    }
+
+    /* Single Column */
+    .runetip
+    {
+        width         : 740px; /* auto, 615, also see: ios-runes  */
+    }
+
+    .runetip:hover .gemtext
+    {
+        left      : 185px; /* Single Column:  32,  185 */
+        top       : 32px;  /* Multi  column: -32, -285 */
+    }
+
+    .tooltip:hover .ttr
+    {
+        left      : 250px;
+        top       : 28px;
+    }
+
+    .tooltip:hover .ttg
+    {
+        left      : 250px;
+        top       : 28px;
+    }
+
+    .tooltip:hover .ttb
+    {
+        left      : 250px;
+        top       : 28px;
+    }
+
+    .tooltip:hover .ttk
+    {
+        left      : 250px;
+        top       : 28px;
+    }
+}
+
+/* ----- General ----- */
+
+    a:visited
+    {
+        color          : #0F0;
+/*      text-decoration: none; */
+    }
+
+    a:link
+    {
+        color          : #FFF; /* 8F8 */
+/*      text-decoration: none; */
+        font-weight    : bold
+    }
+
+    /* Runeword description: type (Shields, etc) */
+    b
+    {
+        color: #FF8; /* Softer yellow */
+    }
+
+    body
+    {
+        -webkit-text-size-adjust: none; /* stop iOS from resizing th even though font size is specified */
+        color           : #fff;
+        background-color: #000;
+        font-family     : Consolas, Menlo, Monaco, Lucida Console, monospace;
+        font-size       : 16px;
+        width           : 1300px; /* Obediance */
+        max-width       : 1300px;
+    /*
+        overflow-x      : hidden;
+    */
+        overflow-y      : scroll;
+    }
+
+    div.c
+    {
+        display       : inline-block;
+        vertical-align: middle;
+    }
+
+/* ----- Images ----- */
+    img
+    {
+        margin:  0px;
+        padding: 0px;
+    }
+
+    img.blank30x30
+    {
+        content   : url('data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==');
+        width     : 30px;
+        height    : 30px;
+        margin    :  0px;
+        padding   :  0px;
+        visibility: hidden; /* FF needs this other it will render an outline box */
+    }
+
+    /* Stupid FF bug img content in css doesn't work with img */
+    div.wp
+    {
+        content: url('pics/wp.png');
+        width  : 16px;
+        height : 16px;
+        alt    : 'Waypoint';
+    }
+
+pre
+{
+    font-family: Consolas, Menlo, Monaco, Lucida Console, monospace;
+    font-size  : 16px;
+    margin     : 0px;
+}
+
+.ruler
+{
+    background-color: #222;
+    border          : 0.5px dotted skyblue;
+    border-radius   : 0px;
+    color           : #F00;
+    margin          : 0px;
+    padding         : 0px 0px;
+    position        : absolute;
+    top             : 0px;
+    height          : 3700px;
+    width           : 0px;
+    z-index         : 1;
+}
+        </style>
+        <script>
+"use strict"; // Stupid hack to turn on type safety
+
+// string: rune name
+// int   : min clev for rune
+
+    //  &check;  \u2713  Check Mark
+    //  &#x2610; \u2610  Ballot Box
+    //  &#x2611; \u2611  Ballot Box with Check
+    const FACE     = [ '-', '+' ], // Button collapse faces
+          FAVS     = [ '\u2610', '\u2611' ],
+          COLLAPSE = [ 'Collapse', 'Expand' ];
+
+// Globals
+    var gaAvailableRunes    = [], // saved
+        gaFavoriteRuneWords = [], // saved
+        gaRuneWordManifest  = [],
+
+        gaRuneWordLevel  = [],
+        gaRuneWordNames  = [],
+        gaRuneWordRunes  = [], // array of runes
+        gaRuneWordMats   = [], // array of strings
+        gaRuneWordSocks  = [],
+        gaRuneWordSuper  = [],
+        gaRuneWordType   = [],
+        gaRuneWordVer    = [],
+
+        gaSortByLevel    = [],
+        gaSortByMats1    = [],
+        gaSortByMats2    = [],
+        gaSortByMats3    = [],
+        gaSortByMats4    = [],
+        gaSortByMats5    = [],
+        gaSortByMats6    = [],
+        gaSortByNames    = [],
+        gaSortByOwned    = [], // Sort runewords by runes owned
+        gaSortBySockets  = [],
+        gaSortBySuperior = [],
+        gaSortByType     = [],
+        gaSortByVersion  = [];
+
+    var gaRuneOrder =
+    [
+        null,
+        gaSortByMats1,
+        gaSortByMats2,
+        gaSortByMats3,
+        gaSortByMats4,
+        gaSortByMats5,
+        gaSortByMats6
+    ];
+
+function commaWrap( text, max )
+{
+    var result = text, sol = 0, next = 0, fits, width, lines = 1;
+
+    // comma-wrap
+    if (text.length > max)
+    {
+        result = '';
+        lines  = 0;
+
+        while (next >= 0)
+        {
+            fits = next;
+            next = text.indexOf( ',', next );
+
+            if (next < 0)
+            {
+                width = (text.length - sol);
+
+                // Handle edge case of overflow on last line
+                if (width >= max)
+                {
+                    result += text.substr( sol, fits-sol ) + '\n';
+                    sol     = fits+1;
+                    lines++;
+                }
+
+                result += text.substr( sol );
+                lines++;
+                break;
+            }
+
+            width = (next - sol);
+            next++;
+
+            if (width >= max)
+            {
+                result += text.substr( sol, fits-sol ) + '\n';
+                sol     = fits+1;
+                lines++;
+            }
+        }
+    }
+
+    if (lines < 2) result += '\n';
+    if (lines < 3) result += '\n';
+    if (lines < 4) result += '\n';
+
+    return result;
+}
+
+
+// Optional: width
+// Optional: character to pad left with, such as '0'; will default to space
+function padLeft( text, width, c )
+{
+    if( !width ) return "";
+    if( !c ) c = ' ';
+    return ("" + new Array( width ).join( c ) + text).slice( -width );
+}
+
+function initTableCollapseMinWidth()
+{
+    var div, divs = document.getElementsByTagName( 'div' ), ndivs = divs.length,
+        dv, cs, parent, th, tr, tb, ta,
+        rows, row, width = 0, minWidth;
+
+    for( div = 0; div < ndivs; div++ )
+    {
+        dv = divs[div];
+        cs = dv.getAttribute( 'class' );
+        if (cs && cs.indexOf( 'collapse' ) >= 0)
+        {
+            th = dv.parentElement; // header
+            tr = th.parentElement; // row
+            tb = tr.parentElement; // body
+            ta = tb.parentElement; // table
+
+            // Can't used minWidth since it may not be set
+            //     ta.style.width = ta.style.minWidth;
+            minWidth = 0;
+            rows = ta.getElementsByTagName( 'tr' );
+            for( row = 0; row < rows.length; row++ )
+            {
+                width = parseInt( getComputedStyle( rows[row] ).width );
+                if (width && (minWidth < width))
+                    minWidth = width;
+            }
+            var px = (minWidth) + 'px';
+            ta.style.width    = px;
+            ta.style.minWidth = px;
+        }
+    }
+}
+    // Secondary sort by Name
+
+    gaSortByLevel.sort( (prev,next) =>
+        {
+            if    (gaRuneWordLevel[ prev ] <              gaRuneWordLevel[ next ]) return -1;
+            if    (gaRuneWordLevel[ prev ] >              gaRuneWordLevel[ next ]) return +1;
+            return gaRuneWordNames[ prev ].localeCompare( gaRuneWordNames[ next ] );
+        }
+    );
+
+    gaSortByNames.sort( (prev,next) =>
+        {
+            return gaRuneWordNames[ prev ].localeCompare( gaRuneWordNames[ next ] );
+        }
+    );
+
+    //  0       8       16     23    29    35
+    // "Dol   + Eld   + Hel  + Ist + Tir + Vex  "
+    gaSortByMats1.sort( (prev,next) => { cmp = gaRuneWordMats[ prev ].substr( 0).localeCompare( gaRuneWordMats[ next ].substr( 0) );           return cmp;                                                                                            ; } );
+    gaSortByMats2.sort( (prev,next) => { cmp = gaRuneWordMats[ prev ].substr( 8).localeCompare( gaRuneWordMats[ next ].substr( 8) ); if( cmp ) return cmp; return gaRuneWordMats[ prev ].substr( 0).localeCompare( gaRuneWordMats[ next ].substr( 0) ); } );
+    gaSortByMats3.sort( (prev,next) => { cmp = gaRuneWordMats[ prev ].substr(16).localeCompare( gaRuneWordMats[ next ].substr(16) ); if( cmp ) return cmp; return gaRuneWordMats[ prev ].substr( 0).localeCompare( gaRuneWordMats[ next ].substr( 0) ); } );
+    gaSortByMats4.sort( (prev,next) => { cmp = gaRuneWordMats[ prev ].substr(23).localeCompare( gaRuneWordMats[ next ].substr(23) ); if( cmp ) return cmp; return gaRuneWordMats[ prev ].substr( 0).localeCompare( gaRuneWordMats[ next ].substr( 0) ); } );
+    gaSortByMats5.sort( (prev,next) => { cmp = gaRuneWordMats[ prev ].substr(29).localeCompare( gaRuneWordMats[ next ].substr(29) ); if( cmp ) return cmp; return gaRuneWordMats[ prev ].substr( 0).localeCompare( gaRuneWordMats[ next ].substr( 0) ); } );
+    gaSortByMats6.sort( (prev,next) => { cmp = gaRuneWordMats[ prev ].substr(35).localeCompare( gaRuneWordMats[ next ].substr(35) ); if( cmp ) return cmp; return gaRuneWordMats[ prev ].substr( 0).localeCompare( gaRuneWordMats[ next ].substr( 0) ); } );
+
+    gaSortBySockets.sort( (prev,next) =>
+        {
+            if    (gaRuneWordSocks[ prev ] <              gaRuneWordSocks[ next ]) return -1;
+            if    (gaRuneWordSocks[ prev ] >              gaRuneWordSocks[ next ]) return +1;
+            return gaRuneWordNames[ prev ].localeCompare( gaRuneWordNames[ next ] );
+        }
+    );
+
+    gaSortBySuperior.sort( (prev,next) =>
+        {
+            if    (gaRuneWordSuper[ prev ] >              gaRuneWordSuper[ next ]) return -1; // intentional
+            if    (gaRuneWordSuper[ prev ] <              gaRuneWordSuper[ next ]) return +1; // intentional
+            return gaRuneWordNames[ prev ].localeCompare( gaRuneWordNames[ next ] );
+        }
+    );
+
+    gaSortByType.sort( (prev,next) =>
+        {
+            var cmp = gaRuneWordType [ prev ].localeCompare( gaRuneWordType [ next ] ); if (cmp) return cmp;
+            return    gaRuneWordNames[ prev ].localeCompare( gaRuneWordNames[ next ] );
+        }
+    );
+
+    // gaSortByVersion -- nothing to do since sort by version is the default runeword table order
+
+/*
+    https://stackoverflow.com/questions/6850164/get-the-device-width-in-javascript
+*/
+function getScreenSize()
+{
+    var resolutions =
+    {
+        '(min-width: 1200px)'                          : 'xl',
+        '(min-width: 992px) and (max-width: 1199.98px)': 'lg',
+        '(min-width: 768px) and (max-width: 991.98px)' : 'md',
+        '(min-width: 576px) and (max-width: 767.98px)' : 'sm',
+                               '(max-width: 575.98px)' : 'xs'
+    };
+
+    for (let size in resolutions)
+        if (window.matchMedia(size).matches)
+            return resolutions[size];
+
+    return null;
+}
+
+function onCollapse( button, table )
+{
+    button.collapsed = (!!!button.collapsed)|0;
+    button.name = button.collapsed;
+
+    if (table === undefined)
+        table = button.value;
+
+    setCollapseTable( table, button.collapsed, button );
+}
+
+function onCollapseAll( button )
+{
+    button.collapsed = (!!!button.collapsed)|0;
+    button.textContent = COLLAPSE[ button.collapsed ];
+
+    var ibutton, buttons = document.getElementsByTagName( 'button' ), nbuttons = buttons.length, buttonTableCollapse, buttonTableReference;
+
+    for( ibutton = 0; ibutton < nbuttons; ibutton++ )
+    {
+        // Does this button refer to a table that can be collapsed?
+        buttonTableCollapse  = buttons[ ibutton ];
+        buttonTableReference = buttonTableCollapse.value;
+
+        if ((buttonTableReference !== undefined) && buttonTableReference.length)
+        {
+            buttonTableCollapse.collapsed = button.collapsed;
+            setCollapseTable( buttonTableReference, button.collapsed, buttonTableCollapse );
+        }
+    }
+}
+
+function onCollapseLoad()
+{
+}
+
+function onCollapseSave()
+{
+}
+
+function onColor( button )
+{
+    document.getElementById('content').style = '';
+
+    if( !button.disabled )
+    {
+        button.disabled = true;
+        document.getElementById( 'mono' ).disabled = false;
+    }
+}
+
+function onLoad()
+{
+    onResize();
+
+    // iOS touch / hover
+    document.addEventListener("touchstart", function() {},false);
+
+    var btn = document.getElementById( 'btn_collapse_sockitems' );
+        btn.collapsed = true;
+
+    // Sorting by Ladder really isn't useful any more
+    onSortRuneWordsByOwned();
+
+    initTableCollapseMinWidth();
+}
+
+function onMono( button )
+{
+    document.getElementById('content').style = 'filter:grayscale(100%);';
+
+    if( !button.disabled )
+    {
+        button.disabled = true;
+        document.getElementById( 'color' ).disabled = false;
+    }
+}
+
+function onResize()
+{
+    var dim = getScreenSize();
+    console.log( 'Dimension: ' + dim );
+    var debug = document.getElementById( 'screen-size' );
+    debug.innerText = dim;
+}
+
+function setCollapseTable( tableName, isCollapsed, button )
+{
+    var table = document.getElementById( tableName ),
+        rows  = table.getElementsByTagName( 'tr' ),
+        row   = 1;
+
+    button.textContent = FACE[ isCollapsed ];
+
+    for( row = 1; row < rows.length; row++ )
+    {
+        if( isCollapsed ) rows[row].classList.add   ( 'collapsed' );
+        else              rows[row].classList.remove( 'collapsed' );
+    }
+}
+
+// Update button state
+// NOTE: need to call updateManifest() after
+
+{
+    var btn = document.getElementById( 'fav' + recipe );
+        btn.innerText = FAVS[ isFavorite ];
+    gaFavoriteRuneWords[ recipe ] = isFavorite;
+
+    var r, rune, runes = gaRuneWordRunes[ recipe ],
+        delta = (isFavorite) ? +1 : -1;
+
+    // Add/Sub runes to manifest
+    for( rune = 0; rune < runes.length; rune++ )
+    {
+        r = runes[ rune ];
+        gaRuneWordManifest[ r ] = gaRuneWordManifest[ r ] + delta;
+    }
+
+    if( updateLocalStorage )
+        dataSave();
+}
+    // Inspired from: https://gist.github.com/danprince/05cb72052484355f3adc
+    function _addClasses( elem, classnames )
+    {
+        var userClasses = classnames.split( ' ' );
+        if( userClasses.length )
+            userClasses.forEach( classname =>
+                {
+                    var classes = elem.getAttribute( 'class' ).split( ' ' );
+                    var offset  = classes.indexOf( classname );
+                    if (offset < 0)
+                    {
+                        classes.push( classname );
+                        elem.setAttribute( 'class', classes.join( ' ' ) );
+                    }
+                }
+            );
+    }
+
+    // Inspired from: https://gist.github.com/danprince/05cb72052484355f3adc
+    function _removeClasses( elem, classnames )
+    {
+        var userClasses = classnames.split( ' ' );
+        if( userClasses.length )
+            userClasses.forEach( classname =>
+                {
+                    var classes = elem.getAttribute( 'class' ).split( ' ' );
+                    var offset  = classes.indexOf( classname );
+                    if (offset >= 0)
+                        classes.splice( offset, 1 );
+                    elem.setAttribute( 'class', classes.join( ' ' ) );
+                }
+            );
+    }
+
+
+        </script>
+    </head>
+<body onload='onLoad();' onresize='onResize();'><div id='content'>
+<br>
+<span style='font-size:18px;'><i>Path of Exile</i> <a href='https://github.com/Michaelangel007/d2_cheat_sheet'>Cheat Sheet</a></span>
+<span style='font-size:14px;'> by <i> Emeria</i></span><i><a href='https://www.reddit.com/user/emeria'>/u/emeria</a></i>
+
+<figure>
+<img alt='Betrayal Cheat Sheet' src='pics/betrayal_317.png' style='max-width:100%;'>
+<figcaption>https://www.reddit.com/r/pathofexile/comments/sjkqx9/317_updated_betrayal_cheat_sheet/</figcaption>
+</figure>
+
+<figure>
+    <img alt='Betrayal Cheat Sheet' src='pics/flasks_316.png' style='max-width:100%;'>
+    <figcaption>https://www.reddit.com/r/pathofexile/comments/qgb89f/316_flask_cheat_sheets/</figcaption>
+    </figure>
+<br>
+<hr>
+<b>3.17 Links:</b>
+<pre>
+    Map Progression Atlas Passives
+    * <a href='https://bit.ly/3on8bZr'>PoE Atlas Link</a> -- Grimro's initial Atlas tree for Map Progression and base map juice
+ 
+</pre>
+<hr>
+<pre>
+<b>Misc. Links:</b>
+    Wiki
+    * <a href='https://www.poewiki.net/wiki/Path_of_Exile_Wiki'>PoE Wiki</a> -- The updated wiki
+ 
+    Official Sites
+    * <a href='https://www.pathofexile.com/forum'>Path Of Exile Forums</a> -- Official Forums
+    * <a href='https://www.pathofexile.com/trade'>Path Of Exile Trade</a> -- Official Trade site
+  
+    Data Resources
+    * <a href='https://poe.ninja/'>PoE Ninja</a> -- Economic and build overview including live updates, historical data, and confidence indicators
+    * <a href='https://poe.ninja/builds'>PoE Ninja Builds</a> -- Build portion of PoE Ninja that allows a search of the highest level players (or streamers) builds
+    * <a href='https://www.poeprofit.com/'>PoE Profit</a> -- Real time snap shot of the profitability of most farmable encounters and strategies
+    * <a href='https://poedb.tw/us/'>PoE Db</a> -- Database of mechanics, enemies, skills, items, modifiers, etc.
+    * <a href='https://poelab.com'>PoE Lab</a> -- Daily guides for the Labyrinth
+    * <a href='https://hideoutshowcase.com/'>Hideout Showcase</a> -- Place to share and find hideouts for import/export
+
+    Online Utils
+    * <a href='https://www.filterblade.xyz/'>Filterblade.xyz</a> -- Item Filter generation and management
+    * <a href='https://poeplanner.com/'> Passive Tree Planner</a> -- Passive Tree Planner
+    * <a href='https://poeplanner.com/atlas-tree'>Atlas Passive Tree Planner</a> -- Atlas Passive Tree Planner
+    * <a href='https://github.com/benjaminjackman/looty'>Looty</a> -- Search your full stash through a better interface in Chrome   
+    * <a href='http://siveran.github.io/calc.html'>Vorici Chromatic Calculator</a> -- Calculate the optimal method of coloring your gear
+    * <a href='https://www.craftofexile.com/'>Craft Of Exile</a> -- Crafting calculator, simulation, emulation, and appraisal
+    * <a href='https://poe.mikelat.com/'>Aura Calculator</a> -- Calculator for reservation efficiency
+
+  Applications
+    * <a href='https://pathofbuilding.community/'>Path of Building</a> -- The Powerful build planner for PoE
+    * <a href='https://github.com/SnosMe/awakened-poe-trade'>Awakened PoE Trade</a> -- Trade Macro with lots of useful keybinds and in-game pricing  
+    * <a href='https://github.com/viktorgullmark/exilence-next'>Exilence Next</a> -- Calculate your characters net worth including inventory and stash tabs
+
+  Reddit
+    * <a href='https://www.reddit.com/r/pathofexile/'>reddit/pathofexile</a> -- Main reddit
+    * <a href='https://www.reddit.com/r/pathofexilebuilds'>reddit/pathofexilebuilds</a> -- Builds Reddit
+
+<b>Feedback:</b>
+    Please leave feedback in my reddit <a href="https://www.reddit.com/r/diablo2/comments/pmv4u3/my_poe_cheat_sheet/">thread</a> or create a <a href="https://github.com/Michaelangel007/d2_cheat_sheet/issues">new</a> GitHub issue.
+    You can find a roadmap / wishlist of features in the <a href="https://github.com/Michaelangel007/poe_cheat_sheet#wishlist">Readme</a>.
+
+Thanks:
+  * /u/MysticReddit (Michaelangel007)        for d2_cheat_sheet as the reference and inspiration for this cheat sheet.
+  * All of the developers of the various tools and sites that are included
+</pre>
+<span style='font-size:12px;'>Version 0.01, Last Updated Sat,Feb 3, 2022.</span>
+</div></body>
+</html>
