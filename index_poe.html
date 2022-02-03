@@ -956,44 +956,6 @@ pre
           FAVS     = [ '\u2610', '\u2611' ],
           COLLAPSE = [ 'Collapse', 'Expand' ];
 
-// Globals
-    var gaAvailableRunes    = [], // saved
-        gaFavoriteRuneWords = [], // saved
-        gaRuneWordManifest  = [],
-
-        gaRuneWordLevel  = [],
-        gaRuneWordNames  = [],
-        gaRuneWordRunes  = [], // array of runes
-        gaRuneWordMats   = [], // array of strings
-        gaRuneWordSocks  = [],
-        gaRuneWordSuper  = [],
-        gaRuneWordType   = [],
-        gaRuneWordVer    = [],
-
-        gaSortByLevel    = [],
-        gaSortByMats1    = [],
-        gaSortByMats2    = [],
-        gaSortByMats3    = [],
-        gaSortByMats4    = [],
-        gaSortByMats5    = [],
-        gaSortByMats6    = [],
-        gaSortByNames    = [],
-        gaSortByOwned    = [], // Sort runewords by runes owned
-        gaSortBySockets  = [],
-        gaSortBySuperior = [],
-        gaSortByType     = [],
-        gaSortByVersion  = [];
-
-    var gaRuneOrder =
-    [
-        null,
-        gaSortByMats1,
-        gaSortByMats2,
-        gaSortByMats3,
-        gaSortByMats4,
-        gaSortByMats5,
-        gaSortByMats6
-    ];
 
 function commaWrap( text, max )
 {
@@ -1056,89 +1018,6 @@ function padLeft( text, width, c )
     return ("" + new Array( width ).join( c ) + text).slice( -width );
 }
 
-function initTableCollapseMinWidth()
-{
-    var div, divs = document.getElementsByTagName( 'div' ), ndivs = divs.length,
-        dv, cs, parent, th, tr, tb, ta,
-        rows, row, width = 0, minWidth;
-
-    for( div = 0; div < ndivs; div++ )
-    {
-        dv = divs[div];
-        cs = dv.getAttribute( 'class' );
-        if (cs && cs.indexOf( 'collapse' ) >= 0)
-        {
-            th = dv.parentElement; // header
-            tr = th.parentElement; // row
-            tb = tr.parentElement; // body
-            ta = tb.parentElement; // table
-
-            // Can't used minWidth since it may not be set
-            //     ta.style.width = ta.style.minWidth;
-            minWidth = 0;
-            rows = ta.getElementsByTagName( 'tr' );
-            for( row = 0; row < rows.length; row++ )
-            {
-                width = parseInt( getComputedStyle( rows[row] ).width );
-                if (width && (minWidth < width))
-                    minWidth = width;
-            }
-            var px = (minWidth) + 'px';
-            ta.style.width    = px;
-            ta.style.minWidth = px;
-        }
-    }
-}
-    // Secondary sort by Name
-
-    gaSortByLevel.sort( (prev,next) =>
-        {
-            if    (gaRuneWordLevel[ prev ] <              gaRuneWordLevel[ next ]) return -1;
-            if    (gaRuneWordLevel[ prev ] >              gaRuneWordLevel[ next ]) return +1;
-            return gaRuneWordNames[ prev ].localeCompare( gaRuneWordNames[ next ] );
-        }
-    );
-
-    gaSortByNames.sort( (prev,next) =>
-        {
-            return gaRuneWordNames[ prev ].localeCompare( gaRuneWordNames[ next ] );
-        }
-    );
-
-    //  0       8       16     23    29    35
-    // "Dol   + Eld   + Hel  + Ist + Tir + Vex  "
-    gaSortByMats1.sort( (prev,next) => { cmp = gaRuneWordMats[ prev ].substr( 0).localeCompare( gaRuneWordMats[ next ].substr( 0) );           return cmp;                                                                                            ; } );
-    gaSortByMats2.sort( (prev,next) => { cmp = gaRuneWordMats[ prev ].substr( 8).localeCompare( gaRuneWordMats[ next ].substr( 8) ); if( cmp ) return cmp; return gaRuneWordMats[ prev ].substr( 0).localeCompare( gaRuneWordMats[ next ].substr( 0) ); } );
-    gaSortByMats3.sort( (prev,next) => { cmp = gaRuneWordMats[ prev ].substr(16).localeCompare( gaRuneWordMats[ next ].substr(16) ); if( cmp ) return cmp; return gaRuneWordMats[ prev ].substr( 0).localeCompare( gaRuneWordMats[ next ].substr( 0) ); } );
-    gaSortByMats4.sort( (prev,next) => { cmp = gaRuneWordMats[ prev ].substr(23).localeCompare( gaRuneWordMats[ next ].substr(23) ); if( cmp ) return cmp; return gaRuneWordMats[ prev ].substr( 0).localeCompare( gaRuneWordMats[ next ].substr( 0) ); } );
-    gaSortByMats5.sort( (prev,next) => { cmp = gaRuneWordMats[ prev ].substr(29).localeCompare( gaRuneWordMats[ next ].substr(29) ); if( cmp ) return cmp; return gaRuneWordMats[ prev ].substr( 0).localeCompare( gaRuneWordMats[ next ].substr( 0) ); } );
-    gaSortByMats6.sort( (prev,next) => { cmp = gaRuneWordMats[ prev ].substr(35).localeCompare( gaRuneWordMats[ next ].substr(35) ); if( cmp ) return cmp; return gaRuneWordMats[ prev ].substr( 0).localeCompare( gaRuneWordMats[ next ].substr( 0) ); } );
-
-    gaSortBySockets.sort( (prev,next) =>
-        {
-            if    (gaRuneWordSocks[ prev ] <              gaRuneWordSocks[ next ]) return -1;
-            if    (gaRuneWordSocks[ prev ] >              gaRuneWordSocks[ next ]) return +1;
-            return gaRuneWordNames[ prev ].localeCompare( gaRuneWordNames[ next ] );
-        }
-    );
-
-    gaSortBySuperior.sort( (prev,next) =>
-        {
-            if    (gaRuneWordSuper[ prev ] >              gaRuneWordSuper[ next ]) return -1; // intentional
-            if    (gaRuneWordSuper[ prev ] <              gaRuneWordSuper[ next ]) return +1; // intentional
-            return gaRuneWordNames[ prev ].localeCompare( gaRuneWordNames[ next ] );
-        }
-    );
-
-    gaSortByType.sort( (prev,next) =>
-        {
-            var cmp = gaRuneWordType [ prev ].localeCompare( gaRuneWordType [ next ] ); if (cmp) return cmp;
-            return    gaRuneWordNames[ prev ].localeCompare( gaRuneWordNames[ next ] );
-        }
-    );
-
-    // gaSortByVersion -- nothing to do since sort by version is the default runeword table order
-
 /*
     https://stackoverflow.com/questions/6850164/get-the-device-width-in-javascript
 */
@@ -1160,45 +1039,6 @@ function getScreenSize()
     return null;
 }
 
-function onCollapse( button, table )
-{
-    button.collapsed = (!!!button.collapsed)|0;
-    button.name = button.collapsed;
-
-    if (table === undefined)
-        table = button.value;
-
-    setCollapseTable( table, button.collapsed, button );
-}
-
-function onCollapseAll( button )
-{
-    button.collapsed = (!!!button.collapsed)|0;
-    button.textContent = COLLAPSE[ button.collapsed ];
-
-    var ibutton, buttons = document.getElementsByTagName( 'button' ), nbuttons = buttons.length, buttonTableCollapse, buttonTableReference;
-
-    for( ibutton = 0; ibutton < nbuttons; ibutton++ )
-    {
-        // Does this button refer to a table that can be collapsed?
-        buttonTableCollapse  = buttons[ ibutton ];
-        buttonTableReference = buttonTableCollapse.value;
-
-        if ((buttonTableReference !== undefined) && buttonTableReference.length)
-        {
-            buttonTableCollapse.collapsed = button.collapsed;
-            setCollapseTable( buttonTableReference, button.collapsed, buttonTableCollapse );
-        }
-    }
-}
-
-function onCollapseLoad()
-{
-}
-
-function onCollapseSave()
-{
-}
 
 function onColor( button )
 {
@@ -1246,75 +1086,7 @@ function onResize()
     debug.innerText = dim;
 }
 
-function setCollapseTable( tableName, isCollapsed, button )
-{
-    var table = document.getElementById( tableName ),
-        rows  = table.getElementsByTagName( 'tr' ),
-        row   = 1;
 
-    button.textContent = FACE[ isCollapsed ];
-
-    for( row = 1; row < rows.length; row++ )
-    {
-        if( isCollapsed ) rows[row].classList.add   ( 'collapsed' );
-        else              rows[row].classList.remove( 'collapsed' );
-    }
-}
-
-// Update button state
-// NOTE: need to call updateManifest() after
-
-{
-    var btn = document.getElementById( 'fav' + recipe );
-        btn.innerText = FAVS[ isFavorite ];
-    gaFavoriteRuneWords[ recipe ] = isFavorite;
-
-    var r, rune, runes = gaRuneWordRunes[ recipe ],
-        delta = (isFavorite) ? +1 : -1;
-
-    // Add/Sub runes to manifest
-    for( rune = 0; rune < runes.length; rune++ )
-    {
-        r = runes[ rune ];
-        gaRuneWordManifest[ r ] = gaRuneWordManifest[ r ] + delta;
-    }
-
-    if( updateLocalStorage )
-        dataSave();
-}
-    // Inspired from: https://gist.github.com/danprince/05cb72052484355f3adc
-    function _addClasses( elem, classnames )
-    {
-        var userClasses = classnames.split( ' ' );
-        if( userClasses.length )
-            userClasses.forEach( classname =>
-                {
-                    var classes = elem.getAttribute( 'class' ).split( ' ' );
-                    var offset  = classes.indexOf( classname );
-                    if (offset < 0)
-                    {
-                        classes.push( classname );
-                        elem.setAttribute( 'class', classes.join( ' ' ) );
-                    }
-                }
-            );
-    }
-
-    // Inspired from: https://gist.github.com/danprince/05cb72052484355f3adc
-    function _removeClasses( elem, classnames )
-    {
-        var userClasses = classnames.split( ' ' );
-        if( userClasses.length )
-            userClasses.forEach( classname =>
-                {
-                    var classes = elem.getAttribute( 'class' ).split( ' ' );
-                    var offset  = classes.indexOf( classname );
-                    if (offset >= 0)
-                        classes.splice( offset, 1 );
-                    elem.setAttribute( 'class', classes.join( ' ' ) );
-                }
-            );
-    }
 
 
         </script>
@@ -1398,7 +1170,7 @@ function setCollapseTable( tableName, isCollapsed, button )
     You can find a roadmap / wishlist of features in the <a href="https://github.com/emeria/poe_cheat_sheet/blob/main/index_poe.html#wishlist">Readme</a>.
 
 Thanks:
-  * /u/MysticReddit (Michaelangel007)        for d2_cheat_sheet as the reference and inspiration for this cheat sheet.
+  * /u/MysticReddit (Michaelangel007) for the d2_cheat_sheet as reference and inspiration for this cheat sheet.
   * All of the developers of the various tools and sites that are included
 </pre>
 <span style='font-size:12px;'>Version 1.00, Last Updated Thu, Feb 3, 2022.</span>
