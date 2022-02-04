@@ -942,6 +942,11 @@ pre
     width           : 0px;
     z-index         : 1;
 }
+
+/* figure > img:hover {
+  width: 500px;
+  height: 200px;
+} */
         </style>
         <script>
 "use strict"; // Stupid hack to turn on type safety
@@ -1087,7 +1092,9 @@ function onResize()
 }
 
 
-
+// $('.container').click(function(e){    
+//     $(this).toggleClass('active');
+// });
 
         </script>
     </head>
@@ -1095,9 +1102,25 @@ function onResize()
 <br>
 <span style='font-size:18px;'><i>Path of Exile</i> <a href='https://github.com/emeria/poe_cheat_sheet/blob/main/index_poe.html'>Cheat Sheet</a></span>
 <span style='font-size:14px;'> by <i> Emeria</i></span><i><a href='https://www.reddit.com/user/emeria'>/u/emeria</a></i>
-
+<script>
+    // Get the img object using its Id
+    img = document.getElementById("img1");
+    // Function to increase image size
+    function enlargeImg() {
+      // Set image size to 1.5 times original
+      img.style.transform = "scale(1.5)";
+      // Animation effect 
+      img.style.transition = "transform 0.25s ease";
+    }
+    // Function to reset image size
+    function resetImg() {
+      // Set image size to original
+      img.style.transform = "scale(1)";
+      img.style.transition = "transform 0.25s ease";
+    }
+  </script>
 <figure>
-<img alt='Betrayal Cheat Sheet' src='pics/betrayal_317.png' style='max-width:100%;'>
+<img alt='Betrayal Cheat Sheet' src='pics/betrayal_317.png' style='max-width:100%;' onclick="enlargeImg()">
 <figcaption><a href="https://www.reddit.com/r/pathofexile/comments/sjkqx9/317_updated_betrayal_cheat_sheet/" target="_blank">source</a></figcaption>
 </figure>
 
@@ -1131,7 +1154,7 @@ function onResize()
     * <a href='https://poelab.com' target="_blank">PoE Lab</a> -- Daily guides for the Labyrinth
     * <a href='https://hideoutshowcase.com/' target="_blank">Hideout Showcase</a> -- Place to share and find hideouts for import/export
     * <a href='https://www.poe-vault.com/' target="_blank">PoE Vault</a> -- Useful site of builds and mechanics explanations by Icy Veins
-    * <a href='https://docs.google.com/spreadsheets/d/1FZxcyqqLOHsQNc0FqSBUouTZy9MRU506K_7W2un1sr8/edit?usp=sharing'>PathOfMatth Casual Exile</a> -- PathOfMatth's Casual Exile series googledoc with leveling guides and tips
+    * <a href='https://docs.google.com/spreadsheets/d/1FZxcyqqLOHsQNc0FqSBUouTZy9MRU506K_7W2un1sr8/edit?usp=sharing' target="_blank">PathOfMatth Casual Exile</a> -- PathOfMatth's Casual Exile series googledoc with leveling guides and tips
 
    Online Utils
     * <a href='https://www.filterblade.xyz/' target="_blank">Filterblade.xyz</a> -- Item Filter generation and management
