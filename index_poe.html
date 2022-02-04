@@ -947,6 +947,14 @@ pre
   width: 500px;
   height: 200px;
 } */
+
+.container.active .image {
+  opacity: 0.3;
+}
+
+.container.active .middle {
+  opacity: 1;
+}
         </style>
         <script>
 "use strict"; // Stupid hack to turn on type safety
@@ -1120,7 +1128,7 @@ function onResize()
     }
   </script>
 <figure>
-<img alt='Betrayal Cheat Sheet' src='pics/betrayal_317.png' style='max-width:100%;' onclick="enlargeImg()">
+<img alt='Betrayal Cheat Sheet' src='pics/betrayal_317.png' style='max-width:100%;' onclick="enlargeImg()" class="overlay">
 <figcaption><a href="https://www.reddit.com/r/pathofexile/comments/sjkqx9/317_updated_betrayal_cheat_sheet/" target="_blank">source</a></figcaption>
 </figure>
 
@@ -1155,7 +1163,9 @@ function onResize()
     * <a href='https://hideoutshowcase.com/' target="_blank">Hideout Showcase</a> -- Place to share and find hideouts for import/export
     * <a href='https://www.poe-vault.com/' target="_blank">PoE Vault</a> -- Useful site of builds and mechanics explanations by Icy Veins
     * <a href='https://docs.google.com/spreadsheets/d/1FZxcyqqLOHsQNc0FqSBUouTZy9MRU506K_7W2un1sr8/edit?usp=sharing' target="_blank">PathOfMatth Casual Exile</a> -- PathOfMatth's Casual Exile series googledoc with leveling guides and tips
-
+    * <a href='https://www.youtube.com/watch?v=RZMN1y94yDc&list=PLbpExg9_Xax1jJW32BLRX4eYYZvxxzs83' target="_blank">PoE University</a> -- Zizaran teaches players about the game
+    * <a href='https://www.reddit.com/r/pathofexile/comments/ov64ff/lore_compilation_update_for_315/' target="_blank">Lore</a> -- Lore Compilation thread on reddit by u/justathetan
+  
    Online Utils
     * <a href='https://www.filterblade.xyz/' target="_blank">Filterblade.xyz</a> -- Item Filter generation and management
     * <a href='https://poeplanner.com/' target="_blank">Passive Tree Planner</a> -- Passive Tree Planner
@@ -1187,9 +1197,6 @@ function onResize()
     * <a href='https://www.youtube.com/watch?v=22x1OK8SVZQ&list=PLt2bSbvVk1x_q1a7LrWx-npSSpQZGyD3S' target="_blank">Baeclast</a> TarkeCat, Octavian, RaizQT, Nugiyen, Ziggydlive
     * <a href='https://www.youtube.com/watch?v=6Nw6U6I1hk8&list=PLr-FFkm5XN8zEpEwBlJElKroApMfPuWjF' target="_blank">Fated Connections</a> CatmasterOP
     * <a href='https://www.youtube.com/watch?v=n_tixVnFSBM&list=PLgAXQc1RgBil02S9QfgS-3uQdTr74nSWt' target="_blank">Baited Expectations</a> piebypie, KittenCatNoodle, Brittleknee, Velyna
-
-   PoE University
-   * <a href='https://www.youtube.com/watch?v=RZMN1y94yDc&list=PLbpExg9_Xax1jJW32BLRX4eYYZvxxzs83' target="_blank">PoE University</a> -- Zizaran teaches players about the game
 
 <b>Feedback:</b>
     Please leave feedback in my reddit <a href="https://www.reddit.com/r/pathofexile/comments/sjx6wi/poe_cheat_sheet_collection_of_links_and_cheat/" target="_blank">thread</a> or create a <a href="https://github.com/emeria/poe_cheat_sheet/issues">new</a> GitHub issue.
