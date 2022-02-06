@@ -441,7 +441,17 @@ function onResize()
     function on(event) {
       document.getElementById("overlay").style.display = "block";
       document.getElementById("overlay").getElementsByTagName('img')[0].src = event.src;//event.src; // 
-
+      console.log(event.dataset.enlargeHeight);
+      if (event.dataset.enlargeHeight != "") { 
+        document.getElementById("overlay").getElementsByTagName('img')[0].style.maxHeight = event.dataset.enlargeHeight; 
+        } else {
+            document.getElementById("overlay").getElementsByTagName('img')[0].style.maxHeight = "80%"
+        }
+      if (event.dataset.enlargeWidth != "") { 
+        document.getElementById("overlay").getElementsByTagName('img')[0].style.maxWidth = event.dataset.enlargeWidth; 
+        } else {
+            document.getElementById("overlay").getElementsByTagName('img')[0].style.maxWidth = "90%"
+        }
     }
     
     function off() {
@@ -456,12 +466,12 @@ function onResize()
 <div id="overlay" onclick="off()"><img src='' style='max-height:80%;max-width:90%;' onclick='on(this)' alt='' class='center'></img></div>
 
 <figure>
-<img alt='Betrayal Cheat Sheet' src='pics/betrayal_317.png' style='max-width:100%;' onclick="on(this)">
+<img alt='Betrayal Cheat Sheet' src='pics/betrayal_317.png' style='max-width:100%;' onclick="on(this)" data-enlarge-height="80%" data-enlarge-width="90%">
 <figcaption><a href="https://www.reddit.com/r/pathofexile/comments/sjkqx9/317_updated_betrayal_cheat_sheet/" target="_blank">source</a></figcaption>
 </figure>
 
 <figure>
-    <img alt='Archnemesis Recipes' src='pics/archnemesis recipes.png' style='max-width:100%;' onclick="on(this)">
+    <img alt='Archnemesis Recipes' src='pics/archnemesis recipes.png' style='max-width:100%;' onclick="on(this)" data-enlarge-height="90%" data-enlarge-width="100%">
     <figcaption><a href="https://www.reddit.com/r/pathofexile/comments/slx73t/update_i_made_an_archnemesis_recipe_cheatsheet/" target="_blank">source</a></figcaption>
     </figure>
 
