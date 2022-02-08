@@ -288,6 +288,43 @@ pre
   padding:5%;
 }
 
+/* tabbed view css*/
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
         </style>
         <script>
 "use strict"; // Stupid hack to turn on type safety
@@ -471,10 +508,38 @@ function onResize()
     <figcaption><a href="https://www.reddit.com/r/pathofexile/comments/sjkqx9/317_updated_betrayal_cheat_sheet/" target="_blank">source</a></figcaption>
 </figure>
 
+<!-- archnemesis recipe section-->
+<script>
+    function openCity(evt, cityName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+    </script>
+<!-- <div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'archnemesisbracket')">Archnemesis Cheatsheet</button>
+    <button class="tablinks" onclick="openCity(event, 'archnemesisweb')">MindMap View</button>
+</div>
+<div id="archnemesisbracket" class="tabcontent"> -->
+<figure>
+    <img alt='Archnemesis Recipes' src='pics/archnemesis recipes cheatsheet.png' style='max-width:100%;' onclick="on(this)" data-enlarge-height="90%" data-enlarge-width="95%">
+    <figcaption><a href="https://www.reddit.com/r/pathofexile/comments/smvzgw/archnemesis_recipes_and_rewards_cheat_sheet/" target="_blank">source</a></figcaption>
+</figure>
+<!-- </div> -->
+<!-- <div id="archnemesisweb" class="tabcontent">
 <figure>
     <img alt='Archnemesis Recipes' src='pics/archnemesis recipes.png' style='max-width:100%;' onclick="on(this)" data-enlarge-height="90%" data-enlarge-width="100%">
     <figcaption><a href="https://www.reddit.com/r/pathofexile/comments/slx73t/update_i_made_an_archnemesis_recipe_cheatsheet/" target="_blank">source</a></figcaption>
 </figure>
+</div> -->
 
 <figure>
     <img alt='Flask Cheat Sheet' src='pics/flasks_316.png' style='max-width:100%;' onclick="on(this)">
