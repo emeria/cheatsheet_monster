@@ -474,6 +474,9 @@ function onResize()
 <span style='font-size:18px;'><i>Path of Exile</i> <a href='https://github.com/emeria/poe_cheat_sheet/blob/main/index.html'>Cheat Sheet</a></span>
 <span style='font-size:14px;'> by <i> Emeria</i></span><i><a href='https://www.reddit.com/user/emeria'>/u/emeria</a></i>
 
+<!--Back to top button-->
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
 <!--Overlay swap logic-->
 <script>
     function on(event) {
@@ -497,83 +500,75 @@ function onResize()
       document.getElementById("overlay").getElementsByTagName('img')[0].src = "";
     }
 </script>
+
+<!--Nav bars-->
 <br/><br/>
 <a href="#MiscLinks">Home</a> | <a href="#3.17">3.17 Links</a> | <a href="#MiscLinks">Misc. Links</a> 
 <br/><br/>
+
+<!--Cheat sheet section-->
 <span style='font-size:14px;color:#DAD97A'> Click an Image to Enlarge</span>
 <div id="overlay" onclick="off()"><img src='' style='max-height:80%;max-width:90%;' onclick='on(this)' alt='' class='center'></img></div>
+<br/>
+<a href="#betrayal">Betrayal</a> | <a href="#archnemesis">Archnemesis</a> | <a href="#incursion">Incursion</a> | <a href="#317_vendor_recipe_challenge">3.17 VR Chlge.</a> | <a href="#heist">Heist</a> | <a href="#essences">Essences</a> | <a href="#strongbox">Strongbox</a> | <a href="#flask">Flask</a>
 
+<h3 id="betrayal"><b>Betrayal</b></h3>
 <figure>
     <img alt='Betrayal Cheat Sheet' src='pics/betrayal_317.png' style='max-width:100%;' onclick="on(this)" data-enlarge-height="80%" data-enlarge-width="90%">
     <figcaption><a href="https://www.reddit.com/r/pathofexile/comments/sjkqx9/317_updated_betrayal_cheat_sheet/" target="_blank">source</a></figcaption>
 </figure>
+<br/>
 
-<!-- archnemesis recipe section-->
-<script>
-    function openCity(evt, cityName) {
-      var i, tabcontent, tablinks;
-      tabcontent = document.getElementsByClassName("tabcontent");
-      for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-      }
-      tablinks = document.getElementsByClassName("tablinks");
-      for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-      }
-      document.getElementById(cityName).style.display = "block";
-      evt.currentTarget.className += " active";
-    }
-    </script>
-<!-- <div class="tab">
-    <button class="tablinks" onclick="openCity(event, 'archnemesisbracket')">Archnemesis Cheatsheet</button>
-    <button class="tablinks" onclick="openCity(event, 'archnemesisweb')">MindMap View</button>
-</div>
-<div id="archnemesisbracket" class="tabcontent"> -->
+<h3 id="archnemesis"><b>Archnemesis</b></h3>
 <figure>
     <img alt='Archnemesis Recipes' src='pics/archnemesis recipes cheatsheet.png' style='max-width:100%;' onclick="on(this)" data-enlarge-height="90%" data-enlarge-width="95%">
     <figcaption><a href="https://www.reddit.com/r/pathofexile/comments/smvzgw/archnemesis_recipes_and_rewards_cheat_sheet/" target="_blank">source</a></figcaption>
 </figure>
-<!-- </div> -->
-<!-- <div id="archnemesisweb" class="tabcontent">
-<figure>
-    <img alt='Archnemesis Recipes' src='pics/archnemesis recipes.png' style='max-width:100%;' onclick="on(this)" data-enlarge-height="90%" data-enlarge-width="100%">
-    <figcaption><a href="https://www.reddit.com/r/pathofexile/comments/slx73t/update_i_made_an_archnemesis_recipe_cheatsheet/" target="_blank">source</a></figcaption>
-</figure>
-</div> --> 
+<br/>
 
+<h3 id="incursion"><b>Incursion</b></h3>
 <figure>
     <img alt='Incursion' src='pics/incursion.png' style='max-width:100%;' onclick="on(this)">
     <figcaption><a href="https://www.reddit.com/r/pathofexile/comments/lpas2z/help_me_update_this_cheat_sheet/" target="_blank">source</a></figcaption>
 </figure>
+<br/>
 
+<h3 id="317_vendor_recipe_challenge"><b>Vendor Recipes (3.17 Challenge)</b></h3>
 <figure>
     <img alt='Vendor Recipe Challenges - 3.17' src='pics/317_challenge_recipes.png' style='max-width:100%;' onclick="on(this)">
     <figcaption><a href="https://www.reddit.com/r/pathofexile/comments/sn642o/league_challenges_vendor_recipes_guide_317/" target="_blank">source</a></figcaption>
 </figure>
+<br/>
 
+<h3 id="heist"><b>Heist</b></h3>
 <figure>
     <img alt='Heist' src='pics/heist.jpg' style='max-width:100%;' onclick="on(this)">
     <figcaption><a href="https://www.reddit.com/r/pathofexile/comments/jgec5u/heist_cheat_sheet_final_all_in_one_edition/" target="_blank">source</a></figcaption>
 </figure>
+<br/>
 
+<h3 id="essences"><b>Essences</b></h3>
 <figure>
     <img alt='Essences' src='pics/essences.png' style='max-width:100%;' onclick="on(this)">
     <figcaption><a href="https://www.reddit.com/r/pathofexile/comments/52onwd/guide_a_quick_referencevisual_guide_image_for/" target="_blank">source</a></figcaption>
 </figure>
+<br/>
 
+<h1 id="strongbox"><b>Strongboxes</b></h3>
 <figure>
     <img alt='Strongbox Rolling' src='pics/strongbox_cheatsheet_317_v2.png' style='max-width:100%;' onclick="on(this)">
     <figcaption><a href="https://www.reddit.com/r/pathofexile/comments/t0v86t/made_a_new_strongbox_cheatsheet_for_myself_maybe/" target="_blank">source</a></figcaption>
 </figure>
+<br/>
 
+<h3 id="flask"><b>Flask Affixes</b></h1>
 <figure>
     <img alt='Flask Cheat Sheet' src='pics/flasks_316.png' style='max-width:100%;' onclick="on(this)">
     <figcaption><a href="https://www.reddit.com/r/pathofexile/comments/qgb89f/316_flask_cheat_sheets/" target="_blank">source</a></figcaption>
 </figure>
+<br/>
 
-<br>
-
-<h2 id="previous-cheathsheets"><b>Previous Sheets</b></h2>
+<h3 id="previous-cheathsheets"><b>Previous Sheets</b></h3>
 <details>
 <summary>Archnemesis Recipes MindMap</summary>
 <figure>
