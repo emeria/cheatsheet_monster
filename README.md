@@ -10,9 +10,6 @@ Cheat Sheet combining various sheets and links into one place
  * Lots of handy links to utils, calculators, etc.!
 
 # Wishlist
- * Scroll to top
- * jump links
- * cheat sheet headers
  * updated heist sheet - huck xp and prophecy perception -> currency
  * more vendor recipes 
 
