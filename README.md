@@ -1,15 +1,20 @@
 # poe_cheat_sheet
 Cheat Sheet combining various sheets and links into one place
 
-# Diablo 2 Cheat Sheet
+# Poe cheat sheet
 
 * [Cheat Sheet](https://htmlpreview.github.io/?https://github.com/emeria/poe_cheat_sheet/blob/master/index.html)
 
 # QoL Features
- * Betrayal Cheet Sheet
+ * Cheat sheets
  * Lots of handy links to utils, calculators, etc.!
 
 # Wishlist
+ * Scroll to top
+ * jump links
+ * cheat sheet headers
+ * updated heist sheet - huck xp and prophecy perception -> currency
+ * more vendor recipes 
 
 # Not Doing
 
