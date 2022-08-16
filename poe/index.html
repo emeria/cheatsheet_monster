@@ -552,7 +552,27 @@ function onResize()
       document.getElementById("overlay").getElementsByTagName('img')[0].src = "";
     }
 </script>
+<!-- <script>
+    function RefreshCurrency() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.withCredentials = true;
+    xhttp.onreadystatechange = function() {
+         if (this.readyState == 4 && this.status == 200) {
+             alert(this.responseText);
+         }
+    };
+    xhttp.open("GET", "https://poe.ninja/api/data/CurrencyOverview?league=Sentinel&type=Currency&language=en&t="+Math.random(), true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+    xhttp.send();
 
+}
+RefreshCurrency();
+</script>
+
+<div id="currency">
+
+</div> -->
 <!--Nav bars-->
 <br/><br/>
 <a href="../">Home</a> | <a href="#cheatsheets">Cheatsheets</a>| <a href="#currentleague">3.18 Links</a> | <a href="#MiscLinks">Misc. Links | <a href="#PreviousLeagues">Previous Leagues</a> 
@@ -567,8 +587,8 @@ function onResize()
 
 <h3 id="betrayal"><b>Betrayal</b></h3>
 <figure>
-    <img alt='Betrayal Cheat Sheet SC Trade' src='pics/betrayal_318.png' style='max-width:100%;' onclick="on(this)" data-enlarge-height="80%" data-enlarge-width="90%">
-    <figcaption><a href="https://www.reddit.com/r/pathofexile/comments/ul3rm4/318_betrayal_sheet_for_max_profit_sc_trade/" target="_blank">source</a></figcaption>
+    <img alt='Betrayal Cheat Sheet SC Trade' src='pics/betrayal_319.png' style='max-width:100%;' onclick="on(this)" data-enlarge-height="80%" data-enlarge-width="90%">
+    <figcaption><a href="https://www.reddit.com/r/pathofexile/comments/wpp71o/319_updated_betrayal_cheatsheet/" target="_blank">source</a></figcaption>
 </figure>
 <br/>
 
@@ -637,7 +657,11 @@ function onResize()
 <br/>
 
 <details>
-<summary>Betrayal 3.17</summary>
+<summary>Betrayal Old</summary>
+<figure>
+    <img alt='Betrayal Cheat Sheet 318' src='pics/betrayal_318.png' style='max-width:100%;' onclick="on(this)" data-enlarge-height="80%" data-enlarge-width="90%">
+    <figcaption><a href="https://www.reddit.com/r/pathofexile/comments/ul3rm4/318_betrayal_sheet_for_max_profit_sc_trade/" target="_blank">source</a></figcaption>
+</figure>
 <figure>
     <img alt='Betrayal Cheat Sheet 317' src='pics/betrayal_317.png' style='max-width:100%;' onclick="on(this)" data-enlarge-height="80%" data-enlarge-width="90%">
     <figcaption><a href="https://www.reddit.com/r/pathofexile/comments/sjkqx9/317_updated_betrayal_cheat_sheet/" target="_blank">source</a></figcaption>
