@@ -355,6 +355,32 @@ pre
   background-color: #555;
 }
 
+
+/* Accordion sections  */
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #050505;
+}
+
 </style>
 <script>
 "use strict"; // Stupid hack to turn on type safety
@@ -501,9 +527,8 @@ function onResize()
     </head>
 
 
-    <body onload='onLoad();' onresize='onResize();'><div id='content'>
-
-
+    <body onload='onLoad();' onresize='onResize();'>
+    <div id='content'>
         <div class="header">
             <h1>Cheatsheet.Monster</h1>
             <p>Divines are the new Exalted.</p>
@@ -561,6 +586,7 @@ function onResize()
       document.getElementById("overlay").getElementsByTagName('img')[0].src = "";
     }
 </script>
+
 <!-- <script>
     function RefreshCurrency() {
     var xhttp = new XMLHttpRequest();
@@ -593,51 +619,89 @@ RefreshCurrency();
 <div id="overlay" onclick="off()"><img src='' style='max-height:80%;max-width:90%;' onclick='on(this)' alt='' class='center'></img></div>
 <br/>
 <a href="#betrayal">Betrayal</a> | <a href="#incursion">Incursion</a> | <a href="#heist">Heist</a> | <a href="#essences">Essences</a> | <a href="#strongbox">Strongbox</a> | <a href="#flask">Flask</a>
+<br/><br/>
 
-<h3 id="betrayal"><b>Betrayal</b></h3>
+<!--Betrayal-->
+<details open>
+    <summary class="collapsible" id="betrayal">Betrayal</summary>
 <figure>
     <img alt='Betrayal Cheat Sheet SC Trade' src='pics/betrayal_319_v2.png' style='max-width:100%;' onclick="on(this)" data-enlarge-height="80%" data-enlarge-width="90%">
     <figcaption><a href="https://www.reddit.com/r/pathofexile/comments/wpp71o/319_updated_betrayal_cheatsheet/" target="_blank">source</a></figcaption>
 </figure>
 <br/>
+</details>
+<br/>
 
-<h3 id="incursion"><b>Incursion</b></h3>
+<details open>
+    <summary class="collapsible" id="incursion">Incursion</summary>
+<!-- <h3 id="incursion"><b>Incursion</b></h3> -->
 <figure>
     <img alt='Incursion' src='pics/incursion.png' style='max-width:100%;' onclick="on(this)">
     <figcaption><a href="https://www.reddit.com/r/pathofexile/comments/lpas2z/help_me_update_this_cheat_sheet/" target="_blank">source</a></figcaption>
 </figure>
 <br/>
+</details>
+<br/>
 
-<h3 id="heist"><b>Heist</b></h3>
+<!-- <h3 id="heist"><b>Heist</b></h3> -->
+<details open>
+    <summary class="collapsible" id="heist">Heist</summary>
 <figure>
     <img alt='Heist' src='pics/heist.jpg' style='max-width:100%;' onclick="on(this)">
     <figcaption><a href="https://www.reddit.com/r/pathofexile/comments/jgec5u/heist_cheat_sheet_final_all_in_one_edition/" target="_blank">source</a></figcaption>
 </figure>
 <br/>
+</details>
+<br/>
 
-<h3 id="essences"><b>Essences</b></h3>
+<!-- <h3 id="essences"><b>Essences</b></h3> -->
+<details open>
+    <summary class="collapsible" id="essences">Essences</summary>
 <figure>
     <img alt='Essences' src='pics/essences.png' style='max-width:100%;' onclick="on(this)">
     <figcaption><a href="https://www.reddit.com/r/pathofexile/comments/52onwd/guide_a_quick_referencevisual_guide_image_for/" target="_blank">source</a></figcaption>
 </figure>
 <br/>
+</details>
+<br/>
 
-<h3 id="strongbox"><b>Strongboxes</b></h3>
+<!-- <h3 id="strongbox"><b>Strongboxes</b></h3> -->
+<details open>
+    <summary class="collapsible" id="strongbox">Strongbox</summary>
 <figure>
     <img alt='Strongbox Rolling' src='pics/strongbox_cheatsheet_317_v2.png' style='max-width:100%;' onclick="on(this)">
     <figcaption><a href="https://www.reddit.com/r/pathofexile/comments/t0v86t/made_a_new_strongbox_cheatsheet_for_myself_maybe/" target="_blank">source</a></figcaption>
 </figure>
 <br/>
+</details>
+<br/>
 
-<h3 id="flask"><b>Flask Affixes</b></h3>
+<!-- <h3 id="flask"><b>Flask Affixes</b></h3> -->
+<details open>
+    <summary class="collapsible" id="flask">Flask Affixes</summary>
 <figure>
     <img alt='Flask Cheat Sheet' src='pics/flasks_316.png' style='max-width:100%;' onclick="on(this)">
     <figcaption><a href="https://www.reddit.com/r/pathofexile/comments/qgb89f/316_flask_cheat_sheets/" target="_blank">source</a></figcaption>
 </figure>
 <br/>
+</details>
+<br/>
 
-<h3 id="previous-cheathsheets"><b>Previous Sheets</b></h3>
+<details>
+    <summary class="collapsible" id="leveling_map">Leveling</summary>
+    <b>Warning: Click to enlarge does not work with this image.</b>
+<figure>
+    <img alt='Leveling Map' src='pics/leveling_guide_319.png' style='max-width:100%;' onclick="on(this)" data-enlarge-height="80%" data-enlarge-width="90%">
+    <figcaption><a href="https://www.reddit.com/r/pathofexile/comments/wrjnsx/comment/ikt2g1q/?utm_source=share&utm_medium=web2x&context=3" target="_blank">source</a></figcaption>
+</figure>
+<br/>
+</details>
+<br/>
 
+
+<!--Previous Sheets For Historical Purposes-->
+<details>
+    <summary class="collapsible" id="previous-cheathsheets">Previous Sheets</summary>
 <details>
     <summary>Archnemesis Recipes</summary>
 <figure>
@@ -663,8 +727,6 @@ RefreshCurrency();
     <figcaption><a href="https://www.reddit.com/r/pathofexile/comments/slx73t/update_i_made_an_archnemesis_recipe_cheatsheet/" target="_blank">source</a></figcaption>
 </figure>
 </details>
-<br/>
-
 <details>
 <summary>Betrayal Old</summary>
 <figure>
@@ -678,26 +740,28 @@ RefreshCurrency();
 </details>
 <br/>
 
-
+</details>
+<br/>
 <hr>
 
-<h1 id="currentleague"><b>3.19 Links:</b></h1>
+<details open>
+    <summary class="collapsible" id="currentleague">3.19 Links</summary>
 <pre>
    Official
-    *  
     * <a href='https://www.pathofexile.com/kalandra' target="_blank">Kalandra page</a> -- Expansion page
     * <a href='https://www.pathofexile.com/forum/view-thread/3293287' target="_blank">Content Update 3.19.0 Patch Notes</a> -- patch notes
     * <a href='https://www.pathofexile.com/forum/view-thread/3293941' target="_blank"> 3.19.0 Gem Changes</a> -- gems
-    * 
+    
    Atlas Passive Trees
     * <a href='https://bit.ly/3on8bZr' target="_blank">Early League Map Prog</a> -- 3.19 Viable (same as 3.17,3.18) (<a href='https://www.youtube.com/watch?v=dIVZOU0-Oco'>video</a>)
-    * 
-    * 
  
 </pre>
+</details>
+<br/>
 <hr>
 
-<h1 id="MiscLinks"><b>Misc. Links:</b></h1>
+<details open>
+    <summary class="collapsible" id="MiscLinks">Misc. Links</summary>
 <pre>
    Wiki
     * <a href='https://www.poewiki.net/wiki/Path_of_Exile_Wiki' target="_blank">PoE Wiki</a> -- The updated wiki
@@ -730,7 +794,8 @@ RefreshCurrency();
     * <a href='https://grinding.zone/' target="_blank">Grinding Zone Link site</a> -- Links to many of the items on this page and more.
     * <a href='https://blight.raelys.com/' target="_blank">Blight Oil Tool</a> -- Calculator to look up and see available oil anointments for your oils
     * <a href='https://poe.re/' target="_blank">Search String Generator</a> -- Generate an in-game search string quickly
-  
+    * <a href='https://github.com/bnorick/labbie' target="_blank">Labbie</a> -- Check Lab prices
+
    Applications
     * <a href='https://pathofbuilding.community/' target="_blank">Path of Building</a> -- The Powerful build planner for PoE
     * <a href='https://github.com/SnosMe/awakened-poe-trade' target="_blank">Awakened PoE Trade</a> -- Trade Macro with lots of useful keybinds and in-game pricing  
@@ -749,8 +814,13 @@ RefreshCurrency();
     * <a href='https://www.youtube.com/watch?v=22x1OK8SVZQ&list=PLt2bSbvVk1x_q1a7LrWx-npSSpQZGyD3S' target="_blank">Baeclast</a> TarkeCat, Octavian, RaizQT, Nugiyen, Ziggydlive
     * <a href='https://www.youtube.com/watch?v=6Nw6U6I1hk8&list=PLr-FFkm5XN8zEpEwBlJElKroApMfPuWjF' target="_blank">Fated Connections</a> CatmasterOP
     * <a href='https://www.youtube.com/watch?v=n_tixVnFSBM&list=PLgAXQc1RgBil02S9QfgS-3uQdTr74nSWt' target="_blank">Baited Expectations</a> piebypie, KittenCatNoodle, Brittleknee, Velyna
+</pre>
+</details>
+<br/>
 
-<h1 id="PreviousLeagues"><b>Previous League:</b></h1>
+<details>
+    <summary class="collapsible" id="PreviousLeagues">Previous League</summary>
+<pre>
     3.18
     * <a href='https://www.pathofexile.com/forum/view-thread/3264788' target="_blank">Content Update 3.18.0 Patch Notes</a> -- patch notes
     * <a href='https://poedb.tw/us/Sentinel_league' target="_blank">Sentinel Items on PoE DB</a> -- Uniques, Items, Gems, Mods
@@ -763,8 +833,11 @@ RefreshCurrency();
     * <a href='https://poedb.tw/us/Archnemesis_league' target="_blank">Archnemesis Items on PoE DB</a> -- Uniques, Items, Gems, Mods
     * <a href='https://craniumviolence.github.io/' target="_blank">Archnemesis Combinations</a> -- Recipes for the Archnemesis Mechanic
     * <a href='https://www.reddit.com/r/pathofexile/comments/sokaoj/my_take_on_archnemesis_cheat_sheet_a_reward/' target="_blank">Archnemesis Reward Calculator</a> -- Calculate what is required to receive a desired reward
-
+</pre>
+</details>
+<br/>
 <b>Feedback:</b>
+<pre>
     Please leave feedback in my reddit <a href="https://www.reddit.com/r/pathofexile/comments/sjx6wi/poe_cheat_sheet_collection_of_links_and_cheat/" target="_blank">thread</a> or create a <a href="https://github.com/emeria/poe_cheat_sheet/issues">new</a> GitHub issue.
     You can find a roadmap / wishlist of features in the <a href="https://github.com/emeria/poe_cheat_sheet/blob/main/README.md#wishlist">Readme</a>.
 
@@ -775,5 +848,25 @@ Thanks:
 <span style='font-size:10px;'>CSS Debug: Screen Size:</span> <span id='screen-size'>?</span>, <span class='ios-hidden' >iOS-hidden</span> <span class='ios-visible'>iOS-visible</span>
 <span style='font-size:12px;'>Version 1.00, Last Updated Thu, Feb 3, 2022.</span>
 <span style='font-size:12px;'>Copyright © 2022 Cheatsheet Monster, CheatSheet.Monster</span>
-</div></body>
+    </div>
+
+<script>
+    //Collapsible Accordion Code
+    
+        // var coll = document.getElementsByClassName("collapsible");
+        // var i;
+        
+        // for (i = 0; i < coll.length; i++) {
+        //   coll[i].addEventListener("click", function() {
+        //     this.classList.toggle("active");
+        //     var content = this.nextElementSibling;
+        //     if (content.style.maxHeight){
+        //       content.style.maxHeight = null;
+        //     } else {
+        //       content.style.maxHeight = content.scrollHeight + "px";
+        //     } 
+        //   });
+        // }
+    </script>
+</body>
 </html>
