@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -27,6 +27,12 @@
     };
     var score1 = 0;
     var score2 = 0;
+    var shared = {
+      paddle1: paddle1,
+      paddle2: paddle2,
+      score1: score1,
+      score2: score2
+    };
 
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -84,7 +90,34 @@
     document.addEventListener("keydown", left);
     document.addEventListener("keydown", right);
 
-    setInterval(draw, 20);
+    // update shared variable
+    setInterval(function() {
+      shared.paddle1 = paddle1;
+      shared.paddle2 = paddle2;
+      shared.score1 = score1;
+      shared.score2 = score2;
+    }, 20);
+
+    // send shared variable to server
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/pong");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(JSON.stringify(shared));
+
+    // receive response from server
+    xhr.onload = function() {
+      if (xhr.status == 200) {
+        var response = JSON.parse(xhr.responseText);
+        if (response.score1 != null) {
+          score1 = response.score1;
+        }
+        if (response.score2 != null) {
+          score2 = response.score2;
+        }
+      } else {
+        console.log("Error: " + xhr.status);
+      }
+    };
   </script>
 </body>
 </html>
