@@ -54,6 +54,36 @@
       ball.y += ball.vy;
     }
 
+    // controls for player 1
+    function up() {
+      if (paddle1.y > 0) {
+        paddle1.y -= 10;
+      }
+    }
+    function down() {
+      if (paddle1.y < canvas.height - 20) {
+        paddle1.y += 10;
+      }
+    }
+
+    // controls for player 2
+    function left() {
+      if (paddle2.x > 0) {
+        paddle2.x -= 10;
+      }
+    }
+    function right() {
+      if (paddle2.x < canvas.width - 100) {
+        paddle2.x += 10;
+      }
+    }
+
+    // add event listeners
+    document.addEventListener("keydown", up);
+    document.addEventListener("keydown", down);
+    document.addEventListener("keydown", left);
+    document.addEventListener("keydown", right);
+
     setInterval(draw, 20);
   </script>
 </body>
