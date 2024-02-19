@@ -1,9 +1,5 @@
-# poe_cheat_sheet
+# cheatsheet monster
 Cheat Sheet combining various sheets and links into one place
-
-# Poe cheat sheet
-
-* [Cheat Sheet](https://htmlpreview.github.io/?https://github.com/emeria/poe_cheat_sheet/blob/master/index.html)
 
 # QoL Features
  * Cheat sheets
