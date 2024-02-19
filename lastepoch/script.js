@@ -55,41 +55,125 @@ Chapter 9 ,Do Desert Treasure in Radiant Dunes (bottom right of the area),
 Chapter 9 ,Go to Maj'Elka Sums and go to the top right basement for mainquest and left of that for the sidequest,
 Chapter 9 ,Go to the Chamber of Vessel to fight Maj'Essa,
 `;
-  
 
-  const rows = rawData.trim().split('\n').slice(1);
-  const data = rows.map(row => {
-      const [chapter, step, reward] = row.split(',').map(item => item.trim());
-      return { chapter, step, reward };
-  });
 
+const data = rawData.trim().split('\n').slice(1).map(row => {
+    // Split the row by commas, but ignore commas inside quotes
+    const regex = /(?:^|,)(\"(?:[^\"]+|\"\")*\"|[^,]*)/g;
+    let matches = [];
+    let match;
+    while (match = regex.exec(row)) {
+        matches.push(match[1]);
+    }
+
+    // Remove leading/trailing quotes and extra spaces
+    matches = matches.map(field => field.trim().replace(/^"|"$/g, '').trim());
+
+    // Assuming there are always 3 fields per row
+    if (matches.length === 3) {
+        const [chapter, step, rewardString] = matches;
+        const rewards = rewardString ? rewardString.split(',').map(r => r.trim()) : [];
+        return { chapter, step, rewards };
+    }
+    return null;
+}).filter(row => row !== null);
+
+//    console.log(data);
   return data;
 }
 
-function buildTableForChapter(chapterFilter, data) {
-  let tableContent = data
-      .filter(row => row.chapter === chapterFilter)
-      .map(row => `<tr><td>${row.chapter}</td><td>${row.step}</td><td>${row.reward}</td></tr>`)
-      .join('');
+const rewardIconMapping = {
+    "Passive": { src: "./pics/passive-icon.png", alt: "Passive Reward" },
+    "Idol": { src: "./pics/idol-icon.png", alt: "Idol Reward" },
+    "Gold": { src: "./pics/gold-icon.png", alt: "Gold Reward" },
+    "Mastery": { src: "./pics/mastery-icon.png", alt: "Mastery Reward" },
+    "Unique": { src: "./pics/unique-icon.png", alt: "Unique Reward" },
+    "Experience": { src: "./pics/experience-icon.png", alt: "Experience Reward" },
+};
 
-  return `<table>
-              <thead>
-                  <tr>
-                      <th>Chapter</th>
-                      <th>Step</th>
-                      <th>Reward</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  ${tableContent}
-              </tbody>
-          </table>`;
+function buildTableForChapter(chapterFilter, data) {
+    let tableContent = data
+        .filter(row => row.chapter === chapterFilter)
+        .map(row => {
+            const rewardIcons = row.rewards.map(rewardKey => {
+                const rewardInfo = rewardIconMapping[rewardKey];
+                return rewardInfo ? `<img src="${rewardInfo.src}" alt="${rewardInfo.alt}" class="reward-icon">` : '';
+            }).join(' ');
+
+            return `<tr><td>${row.chapter}</td><td>${row.step}</td><td>${rewardIcons}</td></tr>`;
+        })
+        .join('');
+
+    return `<table>
+                <thead>
+                    <tr>
+                        <th>Chapter</th>
+                        <th>Step</th>
+                        <th>Reward</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${tableContent}
+                </tbody>
+            </table>`;
 }
+
+
+// function buildTableForChapter(chapterFilter, data) {
+//     let tableContent = data
+//         .filter(row => row.chapter === chapterFilter)
+//         .map(row => {
+//             // Ensure reward is an array
+//             const rewards = Array.isArray(row.reward) ? row.reward : [row.reward];
+
+//             const rewardIcons = rewards.map(rewardKey => {
+//                 const iconPath = rewardIconMapping[rewardKey];
+//                 return iconPath ? `<img src="${iconPath}" alt="${rewardKey}" class="reward-icon">` : '';
+//             }).join(' ');
+
+//             return `<tr><td>${row.chapter}</td><td>${row.step}</td><td>${rewardIcons}</td></tr>`;
+//         })
+//         .join('');
+
+//     return `<table>
+//                 <thead>
+//                     <tr>
+//                         <th>Chapter</th>
+//                         <th>Step</th>
+//                         <th>Reward</th>
+//                     </tr>
+//                 </thead>
+//                 <tbody>
+//                     ${tableContent}
+//                 </tbody>
+//             </table>`;
+// }
+
+
+// function buildTableForChapter(chapterFilter, data) {
+//   let tableContent = data
+//       .filter(row => row.chapter === chapterFilter)
+//       .map(row => `<tr><td>${row.chapter}</td><td>${row.step}</td><td>${row.reward}</td></tr>`)
+//       .join('');
+
+//   return `<table>
+//               <thead>
+//                   <tr>
+//                       <th>Chapter</th>
+//                       <th>Step</th>
+//                       <th>Reward</th>
+//                   </tr>
+//               </thead>
+//               <tbody>
+//                   ${tableContent}
+//               </tbody>
+//           </table>`;
+// }
 
 document.addEventListener('DOMContentLoaded', function() {
   const data = fetchCsvData();
 
-  let chapterCount = 9;
+  let chapterCount = 2;
   for (let i = 1; i <= chapterCount; i++) {
       document.getElementById(`chapter${i}Section`).innerHTML = buildTableForChapter(`Chapter ${i}`, data);
   }
