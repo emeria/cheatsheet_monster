@@ -182,7 +182,7 @@ function buildTableForChapter(chapterFilter, data) {
 document.addEventListener('DOMContentLoaded', function() {
   const data = fetchCsvData();
 
-  let chapterCount = 7;
+  let chapterCount = 8;
   for (let i = 1; i <= chapterCount; i++) {
       document.getElementById(`chapter${i}Section`).innerHTML = buildTableForChapter(`Chapter ${i}`, data);
   }
