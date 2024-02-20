@@ -1,8 +1,8 @@
 const fs = require('fs');
 const Papa = require('path');
 
-const csvFilePath = './data/leveling.csv'; // Path to your CSV file
-const jsFilePath = './script.js'; // Path to your JavaScript file
+const csvFilePath = './data/leveling.csv'; 
+const jsFilePath = './script.js'; 
 
 
 
