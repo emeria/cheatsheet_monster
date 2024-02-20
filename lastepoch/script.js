@@ -112,9 +112,22 @@ Chapter 8 ,Go to The Temple of Lagon,
 Chapter 8 ,Go to The Temple Depths,
 Chapter 8 ,Go to Sanctum of the Architect,
 Chapter 8 ,Go to Seafloor Colosseum -> Lagon,"Experience,Passive"
-Chapter 9 ,Do Desert Treasure in Radiant Dunes (bottom right of the area),
-Chapter 9 ,Go to Maj'Elka Sums and go to the top right basement for mainquest and left of that for the sidequest,
-Chapter 9 ,Go to the Chamber of Vessel to fight Maj'Essa,
+Chapter 9 ,Go to Soreth'ka,
+Chapter 9 ,Go to The Crossroads,
+Chapter 9 ,Go to The Dry River,
+Chapter 9 ,Go to The Radiant Dunes -> Bottom Right Area-Then Top Right,
+Chapter 9 ,Go to Maj'Elka Upper District,
+Chapter 9 ,Go to Maj'Elka Lower District,
+Chapter 9 ,Go to Maj'Elka Slums -> Desert Treasure (First Top Right Basement),"Experience,Passive,Idol"
+Chapter 9 ,Town Portal,
+Chapter 9 ,Go to The Oasis,
+Chapter 9 ,Go to The Crystal Mines,
+Chapter 9 ,Go to The Aerie,
+Chapter 9 ,Go to Majasan Heights (Flying),
+Chapter 9 ,Go to The Temple Rooftops,
+Chapter 9 ,Go to The Upper Temple,
+Chapter 9 ,Go to The Lower Temple,
+Chapter 9 ,Go to the Chamber of Vessel -> Apophis And Majasa,"Experience,Passive,Attributes"
 `;
 
 
@@ -150,6 +163,7 @@ const rewardIconMapping = {
     "Mastery": { src: "./pics/mastery-icon.png", alt: "Mastery Reward" },
     "Unique": { src: "./pics/unique-icon.png", alt: "Unique Reward" },
     "Experience": { src: "./pics/experience-icon.png", alt: "Experience Reward" },
+    "Attributes": { src: "./pics/attributes-icon.png", alt: "Attributes Reward" }
 };
 
 function buildTableForChapter(chapterFilter, data) {
@@ -182,7 +196,7 @@ function buildTableForChapter(chapterFilter, data) {
 document.addEventListener('DOMContentLoaded', function() {
   const data = fetchCsvData();
 
-  let chapterCount = 8;
+  let chapterCount = 9;
   for (let i = 1; i <= chapterCount; i++) {
       document.getElementById(`chapter${i}Section`).innerHTML = buildTableForChapter(`Chapter ${i}`, data);
   }
