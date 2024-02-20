@@ -43,8 +43,18 @@ Chapter 3 ,Go to The Courtyard,
 Chapter 3 ,Go to The Temple of Eterra,
 Chapter 3 ,Go to The Lotus Halls,
 Chapter 3 ,Go to The Sanctum Bastille,
-Chapter 4 ,Go to Risen Lake and click Time Rift after Waypoint,
-Chapter 4 ,Do The Corrupted Lake by killing Miniboss,
+Chapter 3, Go to The End of Time
+Chapter 4 ,Go to The Outcast Camp,
+Chapter 4 ,Go to Welryn Outskirts,
+Chapter 4 ,Go to Imperial Welryn,
+Chapter 4 ,Go to The Soul Wardens' Road,
+Chapter 4 ,Go to The Risen Lake -> The Corrupted Lake (Rift),"Passive,Idol"
+Chapter 4 ,Go to The Fallen Tower,
+Chapter 4 ,Go to Imperial Thetima,
+Chapter 4 ,Go to The Darkling Pier,
+Chapter 4 ,Go to The Imperial Dreadnought,
+Chapter 4 ,Go to The Dreadnought's Deck,
+Chpater 4 ,Jump off the Deck! -> The Admiral's Dreadnought,Idol
 Chapter 5 ,Go to Maj'Elka Do Main Quest,
 Chapter 5 ,Go to Oracle's Abode,
 Chapter 5 ,Port to The Shining Cove and take Time Rift ,
@@ -131,62 +141,10 @@ function buildTableForChapter(chapterFilter, data) {
             </table>`;
 }
 
-
-// function buildTableForChapter(chapterFilter, data) {
-//     let tableContent = data
-//         .filter(row => row.chapter === chapterFilter)
-//         .map(row => {
-//             // Ensure reward is an array
-//             const rewards = Array.isArray(row.reward) ? row.reward : [row.reward];
-
-//             const rewardIcons = rewards.map(rewardKey => {
-//                 const iconPath = rewardIconMapping[rewardKey];
-//                 return iconPath ? `<img src="${iconPath}" alt="${rewardKey}" class="reward-icon">` : '';
-//             }).join(' ');
-
-//             return `<tr><td>${row.chapter}</td><td>${row.step}</td><td>${rewardIcons}</td></tr>`;
-//         })
-//         .join('');
-
-//     return `<table>
-//                 <thead>
-//                     <tr>
-//                         <th>Chapter</th>
-//                         <th>Step</th>
-//                         <th>Reward</th>
-//                     </tr>
-//                 </thead>
-//                 <tbody>
-//                     ${tableContent}
-//                 </tbody>
-//             </table>`;
-// }
-
-
-// function buildTableForChapter(chapterFilter, data) {
-//   let tableContent = data
-//       .filter(row => row.chapter === chapterFilter)
-//       .map(row => `<tr><td>${row.chapter}</td><td>${row.step}</td><td>${row.reward}</td></tr>`)
-//       .join('');
-
-//   return `<table>
-//               <thead>
-//                   <tr>
-//                       <th>Chapter</th>
-//                       <th>Step</th>
-//                       <th>Reward</th>
-//                   </tr>
-//               </thead>
-//               <tbody>
-//                   ${tableContent}
-//               </tbody>
-//           </table>`;
-// }
-
 document.addEventListener('DOMContentLoaded', function() {
   const data = fetchCsvData();
 
-  let chapterCount = 3;
+  let chapterCount = 4;
   for (let i = 1; i <= chapterCount; i++) {
       document.getElementById(`chapter${i}Section`).innerHTML = buildTableForChapter(`Chapter ${i}`, data);
   }
