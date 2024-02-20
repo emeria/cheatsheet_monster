@@ -66,10 +66,32 @@ Chapter 5 ,Go to The Temporal Sanctum WP -> Back to The Oracle's Abode,
 Chapter 5 ,Go to The Maj'Elkan Catacombs,
 Chapter 5 ,Go to Titan's Canyon,
 Chapter 5 ,Go to The Maj'Elka Waystation,
-Chapter 6 ,Talk to 1 NPC un Yula's Heaven,
-Chapter 7 ,Do Liberating the Nomads in Wengari Fortress by clicking on a NPC,
-Chapter 7 ,Go back to Heobera and move on to The Temple of Heorot,
-Chapter 7 ,Go to The Tomb of Morditas and kill Boss,
+Chapter 6 ,Skip all Sidequests,
+Chapter 6 ,Go to The Desert Waystation,
+Chapter 6 ,Go to The Rust Lands,
+Chapter 6 ,Go to The Lower Sewers,
+Chapter 6 ,Go to The Barren Aqueduct,
+Chapter 6 ,Go to Necropolis of the Deep,
+Chapter 6 ,Go to Yulia's Haven -> Speak with NPC's,
+Chapter 6 ,Go to The Upper Necropolis,
+Chapter 6 ,Go to The Citadel Sewers,
+Chapter 6 ,Go to The Immortal Summit,
+Chapter 6 ,Go to The Immortal Citadel -> The Immortal Citadel,"Experience,Gold,Passive"
+Chapter 6 ,Go to The Gates of Solarum (Rift),
+Chapter 7 ,Go to The Burning Forest,
+Chapter 7 ,Go to The Scorched Grove,
+Chapter 7 ,Go to The Solemn Path,
+Chapter 7 ,Go to Heoborea,
+Chapter 7 ,Go to The Heoborean Forest,
+Chapter 7 ,Go to The Nomad Camp,
+Chapter 7 ,Go to The Wengeri Frotress -> Liberating The Nomads,"Experience,Gold,Idol"
+Chapter 7 ,Town Portal,
+Chapter 7 ,Go to The Tundra,
+Chapter 7 ,Go to The Temple of Heorot,
+Chapter 7 ,Go to Farwood,
+Chapter 7 ,Go to The Frozen Roots,
+Chapter 7 ,Go to The Tomb of Morditas -> The Lance of Heorot,"Experience,Gold,Idol"
+Chapter 7 ,Town Portal
 Chapter 8 ,Go to The Burnin Pier,
 Chapter 8 ,Kill Liath in Liath's Road,
 Chapter 8 ,Go to Thetima,
@@ -147,7 +169,7 @@ function buildTableForChapter(chapterFilter, data) {
 document.addEventListener('DOMContentLoaded', function() {
   const data = fetchCsvData();
 
-  let chapterCount = 5;
+  let chapterCount = 7;
   for (let i = 1; i <= chapterCount; i++) {
       document.getElementById(`chapter${i}Section`).innerHTML = buildTableForChapter(`Chapter ${i}`, data);
   }
