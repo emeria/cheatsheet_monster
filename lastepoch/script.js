@@ -156,6 +156,134 @@ const data = rawData.trim().split('\n').slice(1).map(row => {
   return data;
 }
 
+function fetchBlessingsCsvData() {
+    let blessingsRawData = 
+    `Name,Blessing,Effect
+Fall of the Empire,Grand Hope of the Beginning,15% to 25% Increased Prefix Shard Drop Rate
+Fall of the Empire,Grand Safety of the Labyrinth,22% to 35% Increased Amulet Shard Drop Rate
+Fall of the Empire,Grand Remnants of the Living,33% to 50% Increased Ring Shard Drop Rate
+Fall of the Empire,Grand Visions of Death,40% to 60% Increased Two-Handed Spear Shard Drop Rate
+Fall of the Empire,Grand Inevitability of the Void,30% to 45% Increased Two-Handed Staff Shard Drop Rate
+Fall of the Empire,Grand Rot of the World,40% to 60% Increased Wand Shard Drop Rate
+Fall of the Empire,Grand Boon of the Scarab,40% to 60% Increased Bow Shard Drop Rate
+Fall of the Empire,Grand Shadows of Infinity,22% to 35% Increased Relic Shard Drop Rate
+Fall of the Empire,Grand Despair of the Empire,45% to 70% Increased Ailment Shard Drop Rate
+Fall of the Outcasts,Grand Pride of Rebellion,51% to 100% Increased Grand Idol Drop Rate
+Fall of the Outcasts,Grand Sight of the Outcasts,51% to 100% Increased Large Idol Drop Rate
+Fall of the Outcasts,Grand Curse of Flesh,51% to 100% Increased Huge Idol Drop Rate
+Fall of the Outcasts,Grand Favor of Souls,51% to 100% Increased Ornate Idol Drop Rate
+Fall of the Outcasts,Grand Mark of Agony,51% to 100% Increased Adorned Idol Drop Rate
+Fall of the Outcasts,Grand Memory of the Living,16% to 25% Increased Glyph Drop Rate
+Fall of the Outcasts,Grand Sign of Torment,16% to 25% Increased Rune Drop Rate
+Fall of the Outcasts,Grand Winds of Fortune,16% to 22% Increased Unique Drop Rate
+Fall of the Outcasts,Grand Strength of Mind,7% to 10% Increased Experience
+Fall of the Outcasts,Grand Scales of Greed,45% to 70% Increased Gold Drop Rate
+The Stolen Lance,Grand Arrogance of Argentus,22% to 50% Increased Helmet Drop Rate
+The Stolen Lance,Grand Embrace of Ice,22% to 50% Increased Body Armour Drop Rate
+The Stolen Lance,Grand Grip of the Lance,35% to 75% Increased Gloves Drop Rate
+The Stolen Lance,Grand Right of Conquest,35% to 75% Increased Boots Drop Rate
+The Stolen Lance,Grand Reach of Flame,35% to 75% Increased Off-Hand Catalyst Drop Rate
+The Stolen Lance,Grand Binds of Sanctuary,35% to 75% Increased Shield Drop Rate
+The Stolen Lance,Grand Slumber of Morditas,30% to 60% Increased Relic Drop Rate
+The Stolen Lance,Grand Talon of Granduer,35% to 75% Increased Ring Drop Rate
+The Stolen Lance,Grand Vision of the Aurora,35% to 75% Increased Amulet Drop Rate
+The Stolen Lance,Grand Might of the Siege,35% to 75% Increased Belt Drop Rate
+The Stolen Lance,Grand Apex of Fortune,41% to 60% Increased Quiver Drop Rate
+The Black Sun,Grand Wrath of Rahyeh,+(3.1% to 5%) of Throwing Damage Leeched as Health
+The Black Sun,Grand Whisper of Orobyss,+(65% to 100%) increased Void Damage
+The Black Sun,Grand Flames of the Black Sun,+(65% to 100%) Chance to Ignite on Hit
+The Black Sun,Grand Hunger of the Void,+(3.1% to 5%) of Spell Damage Leeched as Health
+The Black Sun,Grand Strength of the Mountain,15 to 22 Health Gain on Block
+The Black Sun,Grand Winds of Oblivion,+(51% to 80%) increased Critical Strike Chance
+The Black Sun,Grand Depths of Infinity,+(25% to 50%) Chance to Shred Void Resistance on Hit
+The Black Sun,Grand Greed of Darkness,15 to 22 Health Gain on Kill
+The Black Sun,Grand Emptiness of Ash,+(27% to 40%) Critical Strike Multiplier
+The Black Sun,Grand Thirst of the Sun,35% to 50% Increased Leech Rate
+"Blood, Frost, and Death",Grand Cruelty of Formosus,50% to 90% Increased Wand Drop Rate
+"Blood, Frost, and Death",Grand Savior of the North,50% to 90% Increased Sceptre Drop Rate
+"Blood, Frost, and Death",Grand Chill of Death,50% to 90% Increased Two-Handed Staff Drop Rate
+"Blood, Frost, and Death",Grand Enmity of the Clans,50% to 90% Increased One-Handed Sword Drop Rate
+"Blood, Frost, and Death",Grand Ambition of the Empire,50% to 90% Increased Two-Handed Sword Drop Rate
+"Blood, Frost, and Death",Grand Scars of Blood,50% to 90% Increased One-Handed Axe Drop Rate
+"Blood, Frost, and Death",Grand Favor of the Wengari,50% to 90% Increased Two-Handed Axe Drop Rate
+"Blood, Frost, and Death",Grand Resolve of Frost,50% to 90% Increased One-Handed Mace Drop Rate
+"Blood, Frost, and Death",Grand Shards of Unity,50% to 90% Increased Two-Handed Mace Drop Rate
+"Blood, Frost, and Death",Grand Remorse of Heorot,50% to 90% Increased Two-Handed Spear Drop Rate
+"Blood, Frost, and Death",Grand Vigilance of the Damned,50% to 75% Increased Bow Drop Rate
+"Blood, Frost, and Death",Grand Subtlety of Slaughter,50% to 75% Increased Dagger Drop Rate
+Ending the Storm,Grand Bastion of Divinity,+(45% to 75%) Lightning Resistance
+Ending the Storm,Grand Light of the Moon,+(51 to 80) Mana
+Ending the Storm,Grand Rhythm of the Tide,+(120% to 200%) increased Health Regen
+Ending the Storm,Grand Chaos of Lagon,+(65% to 100%) increased Lightning Damage
+Ending the Storm,Grand Might of the Sea TItan,+(65% to 100%) increased Cold Damage
+Ending the Storm,Grand Resonance of the Sea,+(30 to 42) Ward per Second
+Ending the Storm,Grand Mysteries of the Deep,+(25% to 50%) Chance to Shred Lightning Resistance on Hit
+Ending the Storm,Grand Cruelty of the Meruna,+(65% to 100%) Chance to Shock on Hit
+Ending the Storm,Grand Weight of the Abyss,+(200% to 300%) Freeze Rate Multiplier
+Ending the Storm,Grand Crash of the Waves,100% to 160% Increased Stun Chance
+Ending the Storm,Grand Trance of the Sirens,15% to 22% Increased Shock Duration
+Ending the Storm,Grand Intellect of Liath,30% to 50% Chance to Gain 30 Ward when Hit
+Ending the Storm,Grand Grace of Water,80 to 130 Ward Gained on Potion Use
+Reign of Dragons,Grand Binds of Nature,+(65% to 100%) increased Poison Damage
+Reign of Dragons,Grand Despair of Flesh,+(65% to 100%) increased Necrotic Damage
+Reign of Dragons,Grand Cruelty of Strength,+(65% to 100%) increased Physical Damage
+Reign of Dragons,Grand Hemmorage of Marrow,+(65% to 100%) Chance to Bleed on Hit
+Reign of Dragons,Grand Taste of Venom,+(55% to 85%) Chance to Poison on Hit
+Reign of Dragons,Grand Hunger of Dragons,+(4.5% to 7%) of Melee Damage Leeched as Health
+Reign of Dragons,Grand Virtue of Command,+(13% to 20%) to Minion All Resistances
+Reign of Dragons,Grand Persistance of Will,+(45% to 75%) Poison Resistance
+Reign of Dragons,Grand Guile of Wyrms,+(100% to 150%) Chance to Shred Poison Resistance on Hit
+Reign of Dragons,Grand Allure of Apathy,+(65% to 100%) Chance to Slow on Hit
+Reign of Dragons,Grand Resolve of Humanity,+(13% to 20%) to All Resistances
+Reign of Dragons,Grand Survival of Might,+(50% to 70%) Critical Strike Avoidance
+Reign of Dragons,Grand Dream of Eterra,+(45% to 75%) Necrotic Resistance
+The Last Ruin,Grand Temple of the Mind,22% to 35% Increased Helmet Shard Drop Rate
+The Last Ruin,Grand Bastion of the Heart,22% to 35% Increased Body Armour Shard Drop Rate
+The Last Ruin,Grand Binding of Ruin,32% to 50% Increased Belt Shard Drop Rate
+The Last Ruin,Grand Refuge of Despair,32% to 50% Increased Shield Shard Drop Rate
+The Last Ruin,Grand Comfort of the End,22% to 35% Increased Suffix Shard Drop Rate
+The Last Ruin,Grand Memory of Masters,20% to 30% Increased Class Specific Shard Drop Rate
+The Last Ruin,Grand Grasp of Hope,32% to 50% Increased Gloves Shard Drop Rate
+The Last Ruin,Grand Remnants of the Elders,32% to 50% Increased Off-Hand Catalyst Shard Drop Rate
+The Last Ruin,Grand Knowledge of Skill,22% to 35% Increased Skill Shard Drop Rate
+The Age of Winter,Grand Maw of Artor,+(65% to 100%) Chance to apply Frostbite on Hit
+The Age of Winter,Grand Winds of Frost,+(55% to 80%) Freeze Rate per stack of Chill
+The Age of Winter,Grand Rage of Winter,+(25% to 50%) Chance to Shred Cold Resistance on Hit
+The Age of Winter,Grand Fury of the North,+(25% to 50%) Chance to Shred Physical Resistance on Hit
+The Age of Winter,Grand Heart of Ice,+(40% to 60%) Chance to Chill on Hit
+The Age of Winter,Grand Bones of Eternity,"+(5% to 8%) Block Chance, +(180 to 240) Block Effectiveness"
+The Age of Winter,Grand Bulwark of the Tundra,+(40% to 70%) increased Armor
+The Age of Winter,Grand Defiance of Yulia,+(11 to 20) Spell Cold Damage While Channelling
+Spirits of Fire,Grand Embers of Immortality,+(15% to 27%) Endurance
+Spirits of Fire,Grand Swiftness of Logi,+(40% to 70%) increased Dodge Rating
+Spirits of Fire,Grand Breath of Cinders,+(25% to 50%) Chance to Shred Fire Resistance on Hit
+Spirits of Fire,Grand Promise of Death,+(25% to 50%) Chance to Shred Necrotic Resistance on Hit
+Spirits of Fire,Grand Spirit of Command,+(65% to 100%) increased Minion Damage
+Spirits of Fire,Grand Might of Bhuldar,32% to 50% Increased Stun Duration
+Spirits of Fire,Grand Flames of Calamity,+(65% to 100%) increased Fire Damage
+Spirits of Fire,Grand Patience of Herkir,+(500 to 750) Armor While Channelling
+Spirits of Fire,Grand Heart of the Caldera,+(45% to 75%) Fire Resistance
+Spirits of Fire,Grand Body of Obsidian,+(200 to 320) Armor
+Spirits of Fire,Grand Curse of Sulphur,+(40% to 60%) Chance to apply Frailty on Hit
+`;
+const rows = blessingsRawData.trim().split('\n').slice(1);
+const data = rows.map(row => {
+    const [name, blessing, effect] = parseCsvRow(row);
+    return { name, blessing, effect };
+});
+
+    return data;
+}
+function parseCsvRow(row) {
+    const regex = /(?:^|,)(\"(?:[^\"]*(?:\"\"[^\"]*)*)\"|[^,]*)/g;
+    let columns = [];
+    let match;
+    while (match = regex.exec(row)) {
+        let column = match[1].replace(/^"|"$/g, '').replace(/""/g, '"');
+        columns.push(column.trim());
+    }
+    return columns;
+}
 const rewardIconMapping = {
     "Passive": { src: "./pics/passive-icon.png", alt: "Passive Reward" },
     "Idol": { src: "./pics/idol-icon.png", alt: "Idol Reward" },
@@ -193,12 +321,86 @@ function buildTableForChapter(chapterFilter, data) {
             </table>`;
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  const data = fetchCsvData();
+function buildTableForBlessings(data) {
+    let tableContent = data
+        .select(row => {
+            const rewardIcons = row.rewards.map(rewardKey => {
+                const rewardInfo = rewardIconMapping[rewardKey];
+                return rewardInfo ? `<img src="${rewardInfo.src}" alt="${rewardInfo.alt}" class="reward-icon">` : '';
+            }).join(' ');
 
-  let chapterCount = 9;
-  for (let i = 1; i <= chapterCount; i++) {
-      document.getElementById(`chapter${i}Section`).innerHTML = buildTableForChapter(`Chapter ${i}`, data);
-  }
+            return `<tr><td>${row.chapter}</td><td>${row.step}</td><td>${rewardIcons}</td></tr>`;
+        })
+        .join('');
+
+    return `<table>
+                <thead>
+                    <tr>
+                        <th>Chapter</th>
+                        <th>Step</th>
+                        <th>Reward</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${tableContent}
+                </tbody>
+            </table>`;
+}
+
+function buildTableForBlessings(data) {
+    let tableContent = data.map(row => {
+        return `<tr><td>${row.name}</td><td>${row.blessing}</td><td>${row.effect}</td></tr>`;
+    }).join('');
+
+    return `<table id="blessingsTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Blessing</th>
+                        <th>Effect</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${tableContent}
+                </tbody>
+            </table>`;
+}
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const data = fetchCsvData();
+
+    let chapterCount = 9;
+    for (let i = 1; i <= chapterCount; i++) {
+        document.getElementById(`chapter${i}Section`).innerHTML = buildTableForChapter(`Chapter ${i}`, data);
+    }
+
+    let blessingData = fetchBlessingsCsvData();
+    let tableHtml = buildTableForBlessings(blessingData);
+    document.getElementById('blessingsTable').innerHTML = tableHtml;
 });
 
+function filterBlessingsTable() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("filterBlessingsInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("blessingsTable");
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 1; i < tr.length; i++) { // Start from 1 to skip the header row
+        td = tr[i].getElementsByTagName("td");
+        var showRow = false;
+        for (var j = 0; j < td.length; j++) {
+            if (td[j]) {
+                txtValue = td[j].textContent || td[j].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    showRow = true;
+                    break;
+                }
+            }       
+        }
+        tr[i].style.display = showRow ? "" : "none";
+    }
+}
