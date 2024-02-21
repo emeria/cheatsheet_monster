@@ -378,3 +378,38 @@ function filterBlessingsTable() {
         tr[i].style.display = showRow ? "" : "none";
     }
 }
+
+
+function collapseChapterDetails() {
+    // Select all <summary> elements with an ID containing 'chapter'
+    const summaries = document.querySelectorAll('summary[id*="chapter"]');
+
+    // Loop through each summary
+    summaries.forEach(summary => {
+        // Get the parent <details> element
+        const details = summary.parentElement;
+
+        // Check if the parent is a <details> element
+        if (details && details.tagName === 'DETAILS') {
+            // Collapse the <details> element
+            details.open = false;
+        }
+    });
+}
+
+function expandChapterDetails() {
+    // Select all <summary> elements with an ID containing 'chapter'
+    const summaries = document.querySelectorAll('summary[id*="chapter"]');
+
+    // Loop through each summary
+    summaries.forEach(summary => {
+        // Get the parent <details> element
+        const details = summary.parentElement;
+
+        // Check if the parent is a <details> element
+        if (details && details.tagName === 'DETAILS') {
+            // Collapse the <details> element
+            details.open = true;
+        }
+    });
+}
