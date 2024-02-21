@@ -1,133 +1,133 @@
 function fetchCsvData() {
   let rawData =
- `Chapter,Step,Reward
-Chapter 1,Go to the Burning Forest,
-Chapter 1,The Keepers,"Experience,Gold,Passive"
-Chapter 1,Go to The Fortress Gardens,
-Chapter 1,Go to the Fortress Walls,
-Chapter 1,Go to The Storerooms -> Storeroom Saboteurs,"Passive"
-Chapter 1,Go to the The Keeper Vault -> The Keeper Vault,"Experience,Passive"
-Chapter 1,Go to the Northern Road,
-Chapter 1,Town Portal,
-Chapter 1,Go to Ulatri Highlands,
-Chapter 1,Go to The Osprix Warcamp,
-Chapter 1,Go to The Summit,
-Chapter 2,Go to Last Refuge Outskirts -> The Void Assault,"Experience,Gold,Idol"
-Chapter 2,In Last Refuge Outskirts -> Evacuation,"Experience,Gold,Passive"
-Chapter 2 ,Go to The Council Chambers,
-Chapter 2 ,Go to The Last Archive,
-Chapter 2 ,Go to Erza's Library -> Get Ledger,
-Chapter 2,Go to Pannion's Study,
-Chapter 2,Finding Pannion,"Experience,Gold,Passive"
-Chapter 2,Town Portal,
-Chapter 2 ,"Erza = Gloves (Ele Leech), Artem = Amulet (Crit)","Experience,Gold,Passive,Unique"
-Chapter 2 ,Go to The Precipice,
-Chapter 2 ,Go to The Armoury,
-Chapter 2 ,Go to The Lower District,
-Chapter 2 ,Go to The End of Time,
-Chapter 2 ,The Power of Mastery,"Experience,Passive,Mastery"
-Chapter 3 ,Skip all Sidequests,
-Chapter 3 ,Go to Council Chamber,
-Chapter 3 ,Go to The Sheltered Wood,
-Chapter 3 ,Go to The Surface,
-Chapter 3 ,Go to The Forsaken Trail,
-Chapter 3 ,Go to Cultist Camp,
-Chapter 3 ,Go to The Ruins of Welryn,
-Chapter 3 ,Go to Welryn Undercity,
-Chapter 3 ,Town Portal,
-Chapter 3 ,Go to Welryn Docks,
-Chapter 3 ,Go to Cultist Camp,
-Chapter 3, Go to The Ritual Site,
-Chapter 3 ,Go to The Shattered Valley (Skip Rift),
-Chapter 3 ,Go to The Courtyard,
-Chapter 3 ,Go to The Temple of Eterra,
-Chapter 3 ,Go to The Lotus Halls,
-Chapter 3 ,Go to The Sanctum Bastille,
-Chapter 3, Go to The End of Time
-Chapter 4 ,Go to The Outcast Camp,
-Chapter 4 ,Go to Welryn Outskirts,
-Chapter 4 ,Go to Imperial Welryn,
-Chapter 4 ,Go to The Soul Wardens' Road,
-Chapter 4 ,Go to The Risen Lake -> The Corrupted Lake (Rift),"Experience,Passive,Idol"
-Chapter 4 ,Go to The Fallen Tower,
-Chapter 4 ,Go to Imperial Thetima,
-Chapter 4 ,Go to The Darkling Pier,
-Chapter 4 ,Go to The Imperial Dreadnought,
-Chapter 4 ,Go to The Dreadnought's Deck,
-Chpater 4 ,Jump off the Deck! -> The Admiral's Dreadnought,"Experience,Gold,Idol"
-Chapter 5 ,Go to The Shining Cove,
-Chapter 5 ,Go to The Majasan Desert,
-Chapter 5 ,Go to The Wraith Dunes -> Hidden Gems (bottom right),"Experience,Gold,Passive"
-Chapter 5 ,Go to Maj'Elka,
-Chapter 5 ,Go to The Oracles Abode,"Experience,Gold,Passive"
-Chapter 5 ,Go to the Shining Cove and find the Time Rift,
-Chapter 5 ,Go to the Ruined Coast (Rift) -> The Sapphire Tablet,"Experience,Passive,Idol" 
-Chapter 5 ,Go to The Temporal Sanctum WP -> Back to The Oracle's Abode,
-Chapter 5 ,Go to The Maj'Elkan Catacombs,
-Chapter 5 ,Go to Titan's Canyon,
-Chapter 5 ,Go to The Maj'Elka Waystation,
-Chapter 6 ,Skip all Sidequests,
-Chapter 6 ,Go to The Desert Waystation,
-Chapter 6 ,Go to The Rust Lands,
-Chapter 6 ,Go to The Lower Sewers,
-Chapter 6 ,Go to The Barren Aqueduct,
-Chapter 6 ,Go to Necropolis of the Deep,
-Chapter 6 ,Go to Yulia's Haven -> Speak with NPC's,
-Chapter 6 ,Go to The Upper Necropolis,
-Chapter 6 ,Go to The Citadel Sewers,
-Chapter 6 ,Go to The Immortal Summit,
-Chapter 6 ,Go to The Immortal Citadel -> The Immortal Citadel,"Experience,Gold,Passive"
-Chapter 6 ,Go to The Gates of Solarum (Rift),
-Chapter 7 ,Go to The Burning Forest,
-Chapter 7 ,Go to The Scorched Grove,
-Chapter 7 ,Go to The Solemn Path,
-Chapter 7 ,Go to Heoborea,
-Chapter 7 ,Go to The Heoborean Forest,
-Chapter 7 ,Go to The Nomad Camp,
-Chapter 7 ,Go to The Wengeri Frotress -> Liberating The Nomads,"Experience,Gold,Idol"
-Chapter 7 ,Town Portal,
-Chapter 7 ,Go to The Tundra,
-Chapter 7 ,Go to The Temple of Heorot,
-Chapter 7 ,Go to Farwood,
-Chapter 7 ,Go to The Frozen Roots,
-Chapter 7 ,Go to The Tomb of Morditas -> The Lance of Heorot,"Experience,Gold,Idol"
-Chapter 7 ,Town Portal,
-Chapter 8 ,Go to The Northern Stream,
-Chapter 8 ,Go to Deep Harbor,
-Chapter 8 ,Go to The Burning Pier,
-Chapter 8 ,Go to Deep Harbor,
-Chapter 8 ,Go to Etendell,
-Chapter 8 ,Go to Lake Liath,
-Chapter 8 ,Go to Liath's Road,
-Chapter 8 ,Go to Thetima,
-Chapter 8 ,Go to Liath's Tower -> Liath's Tower,"Experience,Passive,Idol"
-Chapter 8 ,Go back to Thetima,
-Chapter 8 ,Go to Lagon's Isle,
-Chapter 8 ,Go to Moonlit Shrine,
-Chapter 8 ,Go to The Strand of Storms (fragment),
-Chapter 8 ,Go back to Moonlit Shrine,
-Chapter 8 ,Go to The Coral Pools (fragment),
-Chapter 8 ,Go back to Moonlit Shrine,
-Chapter 8 ,Go to The Temple of Lagon,
-Chapter 8 ,Go to The Temple Depths,
-Chapter 8 ,Go to Sanctum of the Architect,
-Chapter 8 ,Go to Seafloor Colosseum -> Lagon,"Experience,Passive"
-Chapter 9 ,Go to Soreth'ka,
-Chapter 9 ,Go to The Crossroads,
-Chapter 9 ,Go to The Dry River,
-Chapter 9 ,Go to The Radiant Dunes -> Bottom Right Area-Then Top Right,
-Chapter 9 ,Go to Maj'Elka Upper District,
-Chapter 9 ,Go to Maj'Elka Lower District,
-Chapter 9 ,Go to Maj'Elka Slums -> Desert Treasure (First Top Right Basement),"Experience,Passive,Idol"
-Chapter 9 ,Town Portal,
-Chapter 9 ,Go to The Oasis,
-Chapter 9 ,Go to The Crystal Mines,
-Chapter 9 ,Go to The Aerie,
-Chapter 9 ,Go to Majasan Heights (Flying),
-Chapter 9 ,Go to The Temple Rooftops,
-Chapter 9 ,Go to The Upper Temple,
-Chapter 9 ,Go to The Lower Temple,
-Chapter 9 ,Go to the Chamber of Vessel -> Apophis And Majasa,"Experience,Passive,Attributes"
+ `Chapter,Step,Task,Reward
+Chapter 1,1,Go to the Burning Forest -> Rescue Grael,
+Chapter 1,2,The Keepers -> NPC Keeper Leena,"Experience,Gold,Passive"
+Chapter 1,3,Go to The Fortress Gardens,
+Chapter 1,4,Go to the Fortress Walls,
+Chapter 1,5,Go to The Storerooms -> Storeroom Saboteurs,Passive
+Chapter 1,6,Go to the The Keeper Vault -> The Keeper Vault,"Experience,Passive"
+Chapter 1,7,Go to the Northern Road,
+Chapter 1,8,Town Portal,
+Chapter 1,9,Go to Ulatri Highlands,
+Chapter 1,10,Go to The Osprix Warcamp,
+Chapter 1,11,Go to The Summit,
+Chapter 2,1,Go to Last Refuge Outskirts -> The Void Assault,"Experience,Gold,Idol"
+Chapter 2,2,In Last Refuge Outskirts -> Evacuation,"Experience,Gold,Passive"
+Chapter 2 ,3,Go to The Council Chambers,
+Chapter 2 ,4,Go to The Last Archive,
+Chapter 2 ,5,Go to Erza's Library -> Get Ledger,
+Chapter 2,6,Go to Pannion's Study,
+Chapter 2,7,Finding Pannion,"Experience,Gold,Passive"
+Chapter 2,8,Town Portal,
+Chapter 2 ,9,"Erza = Gloves (Ele Leech), Artem = Amulet (Crit)","Experience,Gold,Passive,Unique"
+Chapter 2 ,10,Go to The Precipice,
+Chapter 2 ,11,Go to The Armoury,
+Chapter 2 ,12,Go to The Lower District,
+Chapter 2 ,13,Go to The End of Time,
+Chapter 2 ,14,The Power of Mastery,"Experience,Passive,Mastery"
+Chapter 3 ,0,Skip all Sidequests,
+Chapter 3 ,1,Go to Council Chamber,
+Chapter 3 ,2,Go to The Sheltered Wood,
+Chapter 3 ,3,Go to The Surface,
+Chapter 3 ,4,Go to The Forsaken Trail,
+Chapter 3 ,5,Go to Cultist Camp,
+Chapter 3 ,6,Go to The Ruins of Welryn,
+Chapter 3 ,7,Go to Welryn Undercity,
+Chapter 3 ,8,Town Portal,
+Chapter 3 ,9,Go to Welryn Docks,
+Chapter 3 ,10,Go to Cultist Camp,
+Chapter 3,11, Go to The Ritual Site,
+Chapter 3 ,12,Go to The Shattered Valley (Skip Rift),
+Chapter 3 ,13,Go to The Courtyard,
+Chapter 3 ,14,Go to The Temple of Eterra,
+Chapter 3 ,15,Go to The Lotus Halls,
+Chapter 3 ,16,Go to The Sanctum Bastille,
+Chapter 3,17, Go to The End of Time,
+Chapter 4 ,1,Go to The Outcast Camp -> Speak to Outcast Queen,
+Chapter 4 ,2,Go to Welryn Outskirts,
+Chapter 4 ,3,Go to Imperial Welryn,
+Chapter 4 ,4,Go to The Soul Wardens' Road,
+Chapter 4 ,5,Go to The Risen Lake -> The Corrupted Lake (Rift),"Experience,Passive,Idol"
+Chapter 4 ,6,Go to The Fallen Tower,
+Chapter 4 ,7,Go to Imperial Thetima,
+Chapter 4 ,8,Go to The Darkling Pier,
+Chapter 4 ,9,Go to The Imperial Dreadnought,
+Chapter 4 ,10,Go to The Dreadnought's Deck,
+Chpater 4 ,11,Jump off the Deck! -> The Admiral's Dreadnought,"Experience,Gold,Idol"
+Chapter 5 ,1,Go to The Shining Cove,
+Chapter 5 ,2,Go to The Majasan Desert,
+Chapter 5 ,3,Go to The Wraith Dunes -> Hidden Gems (bottom right),"Experience,Gold,Passive"
+Chapter 5 ,4,Go to Maj'Elka,
+Chapter 5 ,5,Go to The Oracles Abode,"Experience,Gold,Passive"
+Chapter 5 ,6,Go to the Shining Cove and find the Time Rift,
+Chapter 5 ,7,Go to the Ruined Coast (Rift) -> The Sapphire Tablet,"Experience,Passive,Idol "
+Chapter 5 ,8,Go to The Temporal Sanctum WP -> Back to The Oracle's Abode,
+Chapter 5 ,9,Go to The Maj'Elkan Catacombs,
+Chapter 5 ,10,Go to Titan's Canyon,
+Chapter 5 ,11,Go to The Maj'Elka Waystation,
+Chapter 6 ,0,Skip all Sidequests,
+Chapter 6 ,1,Go to The Desert Waystation,
+Chapter 6 ,2,Go to The Rust Lands,
+Chapter 6 ,3,Go to The Lower Sewers,
+Chapter 6 ,4,Go to The Barren Aqueduct,
+Chapter 6 ,5,Go to Necropolis of the Deep,
+Chapter 6 ,6,Go to Yulia's Haven -> Speak with NPC's,
+Chapter 6 ,7,Go to The Upper Necropolis,
+Chapter 6 ,8,Go to The Citadel Sewers,
+Chapter 6 ,9,Go to The Immortal Summit,
+Chapter 6 ,10,Go to The Immortal Citadel -> The Immortal Citadel,"Experience,Gold,Passive"
+Chapter 6 ,11,Go to The Gates of Solarum (Rift),
+Chapter 7 ,1,Go to The Burning Forest,
+Chapter 7 ,2,Go to The Scorched Grove,
+Chapter 7 ,3,Go to The Solemn Path,
+Chapter 7 ,4,Go to Heoborea,
+Chapter 7 ,5,Go to The Heoborean Forest,
+Chapter 7 ,6,Go to The Nomad Camp,
+Chapter 7 ,7,Go to The Wengeri Frotress -> Liberating The Nomads,"Experience,Gold,Idol"
+Chapter 7 ,8,Town Portal,
+Chapter 7 ,9,Go to The Tundra,
+Chapter 7 ,10,Go to The Temple of Heorot,
+Chapter 7 ,11,Go to Farwood,
+Chapter 7 ,12,Go to The Frozen Roots,
+Chapter 7 ,13,Go to The Tomb of Morditas -> The Lance of Heorot,"Experience,Gold,Idol"
+Chapter 7 ,14,Town Portal,
+Chapter 8 ,1,Go to The Northern Stream,
+Chapter 8 ,2,Go to Deep Harbor,
+Chapter 8 ,3,Go to The Burning Pier,
+Chapter 8 ,4,Go to Deep Harbor,
+Chapter 8 ,5,Go to Etendell,
+Chapter 8 ,6,Go to Lake Liath,
+Chapter 8 ,7,Go to Liath's Road,
+Chapter 8 ,8,Go to Thetima,
+Chapter 8 ,9,Go to Liath's Tower -> Liath's Tower,"Experience,Passive,Idol"
+Chapter 8 ,10,Go back to Thetima,
+Chapter 8 ,11,Go to Lagon's Isle,
+Chapter 8 ,12,Go to Moonlit Shrine,
+Chapter 8 ,13,Go to The Strand of Storms (fragment),
+Chapter 8 ,14,Go back to Moonlit Shrine,
+Chapter 8 ,15,Go to The Coral Pools (fragment),
+Chapter 8 ,16,Go back to Moonlit Shrine,
+Chapter 8 ,17,Go to The Temple of Lagon,
+Chapter 8 ,18,Go to The Temple Depths,
+Chapter 8 ,19,Go to Sanctum of the Architect,
+Chapter 8 ,20,Go to Seafloor Colosseum -> Lagon,"Experience,Passive"
+Chapter 9 ,1,Go to Soreth'ka,
+Chapter 9 ,2,Go to The Crossroads,
+Chapter 9 ,3,Go to The Dry River,
+Chapter 9 ,4,Go to The Radiant Dunes -> Bottom Right Area-Then Top Right,
+Chapter 9 ,5,Go to Maj'Elka Upper District,
+Chapter 9 ,6,Go to Maj'Elka Lower District,
+Chapter 9 ,7,Go to Maj'Elka Slums -> Desert Treasure (First Top Right Basement),"Experience,Passive,Idol"
+Chapter 9 ,8,Town Portal,
+Chapter 9 ,9,Go to The Oasis,
+Chapter 9 ,10,Go to The Crystal Mines,
+Chapter 9 ,11,Go to The Aerie,
+Chapter 9 ,12,Go to Majasan Heights (Flying),
+Chapter 9 ,13,Go to The Temple Rooftops,
+Chapter 9 ,14,Go to The Upper Temple,
+Chapter 9 ,15,Go to The Lower Temple,
+Chapter 9 ,16,Go to the Chamber of Vessel -> Apophis And Majasa,"Experience,Passive,Attributes"
 `;
 
 
@@ -144,10 +144,10 @@ const data = rawData.trim().split('\n').slice(1).map(row => {
     matches = matches.map(field => field.trim().replace(/^"|"$/g, '').trim());
 
     // Assuming there are always 3 fields per row
-    if (matches.length === 3) {
-        const [chapter, step, rewardString] = matches;
+    if (matches.length === 4) {
+        const [chapter, step, task, rewardString] = matches;
         const rewards = rewardString ? rewardString.split(',').map(r => r.trim()) : [];
-        return { chapter, step, rewards };
+        return { chapter, step, task, rewards };
     }
     return null;
 }).filter(row => row !== null);
@@ -303,41 +303,15 @@ function buildTableForChapter(chapterFilter, data) {
                 return rewardInfo ? `<img src="${rewardInfo.src}" alt="${rewardInfo.alt}" class="reward-icon">` : '';
             }).join(' ');
 
-            return `<tr><td>${row.chapter}</td><td>${row.step}</td><td>${rewardIcons}</td></tr>`;
+            return `<tr><td>${row.step}</td><td>${row.task}</td><td>${rewardIcons}</td></tr>`;
         })
         .join('');
 
-    return `<table>
+    return `<p>Step numbers on cheatsheet DO NOT align with table</p><table>
                 <thead>
                     <tr>
-                        <th>Chapter</th>
                         <th>Step</th>
-                        <th>Reward</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${tableContent}
-                </tbody>
-            </table>`;
-}
-
-function buildTableForBlessings(data) {
-    let tableContent = data
-        .select(row => {
-            const rewardIcons = row.rewards.map(rewardKey => {
-                const rewardInfo = rewardIconMapping[rewardKey];
-                return rewardInfo ? `<img src="${rewardInfo.src}" alt="${rewardInfo.alt}" class="reward-icon">` : '';
-            }).join(' ');
-
-            return `<tr><td>${row.chapter}</td><td>${row.step}</td><td>${rewardIcons}</td></tr>`;
-        })
-        .join('');
-
-    return `<table>
-                <thead>
-                    <tr>
-                        <th>Chapter</th>
-                        <th>Step</th>
+                        <th>Task</th>
                         <th>Reward</th>
                     </tr>
                 </thead>
