@@ -1,137 +1,137 @@
 function fetchCsvData() {
   let rawData =
   `Chapter,Step,Task,Reward
-  Chapter 1,1,Go to the Burning Forest -> Rescue Grael,
-  Chapter 1,2,The Keepers -> NPC Keeper Leena,"Experience,Gold,Passive"
-  Chapter 1,3,Go to The Fortress Gardens,
-  Chapter 1,4,Go to the Fortress Walls,
-  Chapter 1,5,Go to The Storerooms -> Storeroom Saboteurs,Passive
-  Chapter 1,6,Go to the The Keeper Vault -> The Keeper Vault,"Experience,Passive"
-  Chapter 1,7,Go to the Northern Road,
-  Chapter 1,8,Town Portal,
-  Chapter 1,9,Go to Ulatri Highlands,
-  Chapter 1,10,Go to The Osprix Warcamp,
-  Chapter 1,11,Go to The Summit,
-  Chapter 2,1,Go to Last Refuge Outskirts -> The Void Assault,"Experience,Gold,Idol"
-  Chapter 2,2,In Last Refuge Outskirts -> Evacuation,"Experience,Gold,Passive"
-  Chapter 2 ,3,Go to The Council Chambers,
-  Chapter 2 ,4,Go to The Last Archive,
-  Chapter 2 ,5,Go to Erza's Library -> Get Ledger,
-  Chapter 2,6,Go to Pannion's Study,
-  Chapter 2,7,Finding Pannion,"Experience,Gold,Passive"
-  Chapter 2,8,Town Portal,
-  Chapter 2 ,9,"Erza = Gloves (Ele Leech), Artem = Amulet (Crit)","Experience,Gold,Passive,Unique"
-  Chapter 2 ,10,Go to The Precipice,
-  Chapter 2 ,11,Go to The Armoury,
-  Chapter 2 ,12,Go to The Lower District,
-  Chapter 2 ,13,Go to The End of Time,
-  Chapter 2 ,14,The Power of Mastery,"Experience,Passive,Mastery"
-  Chapter 3 ,0,Skip all Sidequests,
-  Chapter 3 ,1,Go to Council Chamber,
-  Chapter 3 ,2,Go to The Sheltered Wood,
-  Chapter 3 ,3,Go to The Surface,
-  Chapter 3 ,4,Go to The Forsaken Trail,
-  Chapter 3 ,5,Go to Cultist Camp,
-  Chapter 3 ,6,Go to The Ruins of Welryn,
-  Chapter 3 ,7,Go to Welryn Undercity,
-  Chapter 3 ,8,Town Portal,
-  Chapter 3 ,9,Go to Welryn Docks,
-  Chapter 3 ,10,Go to Cultist Camp,
-  Chapter 3,11, Go to The Ritual Site,
-  Chapter 3 ,12,Go to The Shattered Valley (Skip Rift),
-  Chapter 3 ,13,Go to The Courtyard,
-  Chapter 3 ,14,Go to The Temple of Eterra,
-  Chapter 3 ,15,Go to The Lotus Halls,
-  Chapter 3 ,16,Go to The Sanctum Bastille,
-  Chapter 3,17, Go to The End of Time,
-  Chapter 4 ,1,Go to The Outcast Camp -> Speak to Outcast Queen,
-  Chapter 4 ,2,Go to Welryn Outskirts,
-  Chapter 4 ,3,Go to Imperial Welryn,
-  Chapter 4 ,4,Go to The Soul Wardens' Road,
-  Chapter 4 ,5,Go to The Risen Lake -> The Corrupted Lake (Rift),"Experience,Passive,Idol"
-  Chapter 4 ,6,Go to The Fallen Tower,
-  Chapter 4 ,7,Go to Imperial Thetima,
-  Chapter 4 ,8,Go to The Darkling Pier,
-  Chapter 4 ,9,Go to The Imperial Dreadnought,
-  Chapter 4 ,10,Go to The Dreadnought's Deck,
-  Chpater 4 ,11,Jump off the Deck! -> The Admiral's Dreadnought,"Experience,Gold,Idol"
-  Chapter 5 ,1,Go to The Shining Cove,
-  Chapter 5 ,2,Go to The Majasan Desert,
-  Chapter 5 ,3,Go to The Wraith Dunes -> Hidden Gems (top left),"Experience,Gold,Passive"
-  Chapter 5 ,4,Go to Maj'Elka,
-  Chapter 5 ,5,Go to The Oracles Abode,"Experience,Gold,Passive"
-  Chapter 5 ,6,Go to the Shining Cove and find the Time Rift,
-  Chapter 5 ,7,Go to the Ruined Coast (Rift) -> The Sapphire Tablet,"Experience,Passive,Idol "
-  Chapter 5 ,8,Go to The Temporal Sanctum WP -> Back to The Oracle's Abode,
-  Chapter 5 ,9,Go to The Maj'Elkan Catacombs,
-  Chapter 5 ,10,Go to Titan's Canyon,
-  Chapter 5 ,11,Go to The Maj'Elka Waystation,
-  Chapter 6 ,0,Skip all Sidequests,
-  Chapter 6 ,1,Go to The Desert Waystation,
-  Chapter 6 ,2,Go to The Rust Lands,
-  Chapter 6 ,3,Go to The Lower Sewers,
-  Chapter 6 ,4,Go to The Barren Aqueduct,
-  Chapter 6 ,5,Go to Necropolis of the Deep,
-  Chapter 6 ,6,Go to Yulia's Haven -> Speak with NPC's,
-  Chapter 6 ,7,Go to The Upper Necropolis,
-  Chapter 6 ,8,Go to The Citadel Sewers,
-  Chapter 6 ,9,Go to The Immortal Summit,
-  Chapter 6 ,10,Go to The Immortal Citadel -> The Immortal Citadel,"Experience,Gold,Passive"
-  Chapter 6 ,11,Go to The Gates of Solarum (Rift),
-  Chapter 7 ,1,Go to The Burning Forest,
-  Chapter 7 ,2,Go to The Scorched Grove,
-  Chapter 7 ,3,Go to The Solemn Path,
-  Chapter 7 ,4,Go to Heoborea,
-  Chapter 7 ,5,Go to The Heoborean Forest,
-  Chapter 7 ,6,Go to The Nomad Camp,
-  Chapter 7 ,7,Go to The Wengeri Frotress -> Liberating The Nomads,"Experience,Gold,Idol"
-  Chapter 7 ,8,Town Portal,
-  Chapter 7 ,9,Go to The Tundra,
-  Chapter 7 ,10,Go to The Temple of Heorot,
-  Chapter 7 ,11,Go to Farwood,
-  Chapter 7 ,12,Go to The Frozen Roots,
-  Chapter 7 ,13,Go to The Tomb of Morditas -> The Lance of Heorot,"Experience,Gold,Idol"
-  Chapter 7 ,14,Town Portal,
-  Chapter 8 ,1,Go to The Northern Stream,
-  Chapter 8 ,2,Go to Deep Harbor,
-  Chapter 8 ,3,Go to The Burning Pier,
-  Chapter 8 ,4,Go to Deep Harbor,
-  Chapter 8 ,5,Go to Etendell,
-  Chapter 8 ,6,Go to Lake Liath,
-  Chapter 8 ,7,Go to Liath's Road,
-  Chapter 8 ,8,Go to Thetima,
-  Chapter 8 ,9,Go to Liath's Tower -> Liath's Tower,"Experience,Passive,Idol"
-  Chapter 8 ,10,Go back to Thetima,
-  Chapter 8 ,11,Go to Lagon's Isle,
-  Chapter 8 ,12,Go to Moonlit Shrine,
-  Chapter 8 ,13,Go to The Strand of Storms (fragment),
-  Chapter 8 ,14,Go back to Moonlit Shrine,
-  Chapter 8 ,15,Go to The Coral Pools (fragment),
-  Chapter 8 ,16,Go back to Moonlit Shrine,
-  Chapter 8 ,17,Go to The Temple of Lagon,
-  Chapter 8 ,18,Go to The Temple Depths,
-  Chapter 8 ,19,Go to Sanctum of the Architect,
-  Chapter 8 ,20,Go to Seafloor Colosseum -> Lagon,"Experience,Passive"
-  Chapter 9 ,1,Go to Soreth'ka,
-  Chapter 9 ,2,Go to The Crossroads,
-  Chapter 9 ,3,Go to The Dry River,
-  Chapter 9 ,4,Go to The Radiant Dunes -> Bottom Right Area-Then Top Right,
-  Chapter 9 ,5,Go to Maj'Elka Upper District,
-  Chapter 9 ,6,Go to Maj'Elka Lower District,
-  Chapter 9 ,7,Go to Maj'Elka Slums -> Desert Treasure (First Top Right Basement),"Experience,Passive,Idol"
-  Chapter 9 ,8,Town Portal,
-  Chapter 9 ,9,Go to The Oasis,
-  Chapter 9 ,10,Go to The Crystal Mines,
-  Chapter 9 ,11,Go to The Aerie,
-  Chapter 9 ,12,Go to Majasan Heights (Flying),
-  Chapter 9 ,13,Go to The Temple Rooftops,
-  Chapter 9 ,14,Go to The Upper Temple,
-  Chapter 9 ,15,Go to The Lower Temple,
-  Chapter 9 ,16,Go to the Chamber of Vessel -> Apophis And Majasa,"Experience,Passive,Attributes"
-  `;
+Chapter 1,1,Go to the Burning Forest -> Rescue Grael,
+Chapter 1,2,The Keepers -> NPC Keeper Leena,"Experience,Gold,Passive"
+Chapter 1,3,Go to The Fortress Gardens,
+Chapter 1,4,Go to the Fortress Walls,
+Chapter 1,5,Go to The Storerooms -> Storeroom Saboteurs,Passive
+Chapter 1,6,Go to the The Keeper Vault -> The Keeper Vault,"Experience,Passive"
+Chapter 1,7,Go to the Northern Road,
+Chapter 1,8,Town Portal,
+Chapter 1,9,Go to Ulatri Highlands,
+Chapter 1,10,Go to The Osprix Warcamp,
+Chapter 1,11,Go to The Summit,
+Chapter 2,1,Go to Last Refuge Outskirts -> The Void Assault,"Experience,Gold,Idol"
+Chapter 2,2,In Last Refuge Outskirts -> Evacuation,"Experience,Gold,Passive"
+Chapter 2 ,3,Go to The Council Chambers,
+Chapter 2 ,4,Go to The Last Archive,
+Chapter 2 ,5,Go to Erza's Library -> Get Ledger,
+Chapter 2,6,Go to Pannion's Study,
+Chapter 2,7,Finding Pannion,"Experience,Gold,Passive"
+Chapter 2,8,Town Portal,
+Chapter 2 ,9,"Erza = Gloves (Ele Leech), Artem = Amulet (Crit)","Experience,Gold,Passive,Unique"
+Chapter 2 ,10,Go to The Precipice,
+Chapter 2 ,11,Go to The Armoury,
+Chapter 2 ,12,Go to The Lower District,
+Chapter 2 ,13,Go to The End of Time,
+Chapter 2 ,14,The Power of Mastery,"Experience,Passive,Mastery"
+Chapter 3 ,0,Skip all Sidequests,
+Chapter 3 ,1,Go to Council Chamber,
+Chapter 3 ,2,Go to The Sheltered Wood,
+Chapter 3 ,3,Go to The Surface,
+Chapter 3 ,4,Go to The Forsaken Trail,
+Chapter 3 ,5,Go to Cultist Camp,
+Chapter 3 ,6,Go to The Ruins of Welryn,
+Chapter 3 ,7,Go to Welryn Undercity,
+Chapter 3 ,8,Town Portal,
+Chapter 3 ,9,Go to Welryn Docks,
+Chapter 3 ,10,Go to Cultist Camp,
+Chapter 3,11, Go to The Ritual Site,
+Chapter 3 ,12,Go to The Shattered Valley (Skip Rift),
+Chapter 3 ,13,Go to The Courtyard,
+Chapter 3 ,14,Go to The Temple of Eterra,
+Chapter 3 ,15,Go to The Lotus Halls,
+Chapter 3 ,16,Go to The Sanctum Bastille,
+Chapter 3,17, Go to The End of Time,
+Chapter 4 ,1,Go to The Outcast Camp -> Speak to Outcast Queen,
+Chapter 4 ,2,Go to Welryn Outskirts,
+Chapter 4 ,3,Go to Imperial Welryn,
+Chapter 4 ,4,Go to The Soul Wardens' Road,
+Chapter 4 ,5,Go to The Risen Lake -> The Corrupted Lake (Rift),"Experience,Passive,Idol"
+Chapter 4 ,6,Go to The Fallen Tower,
+Chapter 4 ,7,Go to Imperial Thetima,
+Chapter 4 ,8,Go to The Darkling Pier,
+Chapter 4 ,9,Go to The Imperial Dreadnought,
+Chapter 4 ,10,Go to The Dreadnought's Deck,
+Chpater 4 ,11,Jump off the Deck! -> The Admiral's Dreadnought,"Experience,Gold,Idol"
+Chapter 5 ,1,Go to The Shining Cove,
+Chapter 5 ,2,Go to The Majasan Desert,
+Chapter 5 ,3,Go to The Wraith Dunes -> Hidden Gems Pt. 1 (top left),"Experience,Gold,Passive"
+Chapter 5 ,4,Go to Maj'Elka -> Hidden Gems Pt. 2 (bottom right),
+Chapter 5 ,5,Go to The Oracles Abode,"Experience,Gold,Passive"
+Chapter 5 ,6,Go to the Shining Cove and find the Time Rift,
+Chapter 5 ,7,Go to the Ruined Coast (Rift) -> The Sapphire Tablet,"Experience,Passive,Idol "
+Chapter 5 ,8,Go to The Temporal Sanctum WP -> Back to The Oracle's Abode,
+Chapter 5 ,9,Go to The Maj'Elkan Catacombs,
+Chapter 5 ,10,Go to Titan's Canyon,
+Chapter 5 ,11,Go to The Maj'Elka Waystation,
+Chapter 6 ,0,Skip all Sidequests,
+Chapter 6 ,1,Go to The Desert Waystation,
+Chapter 6 ,2,Go to The Rust Lands (Skip Rift),
+Chapter 6 ,3,Go to The Lower Sewers -> Speak Alric,
+Chapter 6 ,4,Go to The Barren Aqueduct,
+Chapter 6 ,5,Go to Necropolis of the Deep,
+Chapter 6 ,6,Go to Yulia's Haven -> Speak with NPC's,
+Chapter 6 ,7,Go to The Upper Necropolis,
+Chapter 6 ,8,Go to The Citadel Sewers,
+Chapter 6 ,9,Go to The Immortal Summit,
+Chapter 6 ,10,Go to The Immortal Citadel -> The Immortal Citadel,"Experience,Gold,Passive"
+Chapter 6 ,11,Go to The Gates of Solarum (Rift),
+Chapter 7 ,1,Go to The Burning Forest,
+Chapter 7 ,2,Go to The Scorched Grove,
+Chapter 7 ,3,Go to The Solemn Path,
+Chapter 7 ,4,Go to Heoborea,
+Chapter 7 ,5,Go to The Heoborean Forest,
+Chapter 7 ,6,Go to The Nomad Camp,
+Chapter 7 ,7,Go to The Wengeri Frotress -> Liberating The Nomads,"Experience,Gold,Idol"
+Chapter 7 ,8,Town Portal,
+Chapter 7 ,9,Go to The Tundra,
+Chapter 7 ,10,Go to The Temple of Heorot,
+Chapter 7 ,11,Go to Farwood,
+Chapter 7 ,12,Go to The Frozen Roots,
+Chapter 7 ,13,Go to The Tomb of Morditas -> The Lance of Heorot,"Experience,Gold,Idol"
+Chapter 7 ,14,Town Portal,
+Chapter 7 ,15,Go to The Solemn Path,
+Chapter 7 ,16,Go to The Scorched Grove -> Speak to Heorot,
+Chapter 7 ,17,Use Heoborea Waypoint,
+Chapter 8 ,1,Go to The Northern Stream,
+Chapter 8 ,2,Go to Deep Harbor,
+Chapter 8 ,3,Go to The Burning Pier,
+Chapter 8 ,4,Go to Deep Harbor,
+Chapter 8 ,5,Go to Lake Liath,
+Chapter 8 ,6,Go to Liath's Road,
+Chapter 8 ,7,Go to Thetima,
+Chapter 8 ,8,Go to Liath's Tower -> Liath's Tower,"Experience,Passive,Idol"
+Chapter 8 ,9,Go back to Thetima,
+Chapter 8 ,10,Go to Lagon's Isle,
+Chapter 8 ,11,Go to Moonlit Shrine,
+Chapter 8 ,12,Go to The Strand of Storms (fragment),
+Chapter 8 ,13,Go back to Moonlit Shrine,
+Chapter 8 ,14,Go to The Coral Pools (fragment),
+Chapter 8 ,15,Go back to Moonlit Shrine,
+Chapter 8 ,16,Go to The Temple of Lagon,
+Chapter 8 ,17,Go to The Temple Depths,
+Chapter 8 ,18,Go to Sanctum of the Architect,
+Chapter 8 ,19,Go to Seafloor Colosseum -> Lagon,"Experience,Passive"
+Chapter 9 ,1,Go to Soreth'ka,
+Chapter 9 ,2,Go to The Crossroads,
+Chapter 9 ,3,Go to The Dry River,
+Chapter 9 ,4,Go to The Radiant Dunes -> Bottom Right Area-Then Top Right,
+Chapter 9 ,5,Go to Maj'Elka Upper District,
+Chapter 9 ,6,Go to Maj'Elka Lower District,
+Chapter 9 ,7,Go to Maj'Elka Slums -> Desert Treasure (First Top Right Basement),"Experience,Passive,Idol"
+Chapter 9 ,8,Town Portal,
+Chapter 9 ,9,Go to The Oasis,
+Chapter 9 ,10,Go to The Crystal Mines,
+Chapter 9 ,11,Go to The Aerie,
+Chapter 9 ,12,Go to Majasan Heights (Flying),
+Chapter 9 ,13,Go to The Temple Rooftops,
+Chapter 9 ,14,Go to The Upper Temple,
+Chapter 9 ,15,Go to The Lower Temple,
+Chapter 9 ,16,Go to the Chamber of Vessel -> Apophis And Majasa,"Experience,Passive,Attributes"
+`;
   
-
-
 const data = rawData.trim().split('\n').slice(1).map(row => {
     // Split the row by commas, but ignore commas inside quotes
     const regex = /(?:^|,)(\"(?:[^\"]+|\"\")*\"|[^,]*)/g;
@@ -155,7 +155,7 @@ const data = rawData.trim().split('\n').slice(1).map(row => {
 
 //    console.log(data);
   return data;
-}
+};
 
 function fetchBlessingsCsvData() {
     let blessingsRawData = 
@@ -274,7 +274,8 @@ const data = rows.map(row => {
 });
 
     return data;
-}
+};
+
 function parseCsvRow(row) {
     const regex = /(?:^|,)(\"(?:[^\"]*(?:\"\"[^\"]*)*)\"|[^,]*)/g;
     let columns = [];
@@ -284,7 +285,8 @@ function parseCsvRow(row) {
         columns.push(column.trim());
     }
     return columns;
-}
+};
+
 const rewardIconMapping = {
     "Passive": { src: "./pics/passive-icon.png", alt: "Passive Reward" },
     "Idol": { src: "./pics/idol-icon.png", alt: "Idol Reward" },
@@ -320,7 +322,7 @@ function buildTableForChapter(chapterFilter, data) {
                     ${tableContent}
                 </tbody>
             </table>`;
-}
+};
 
 function buildTableForBlessings(data) {
     let tableContent = data.map(row => {
@@ -339,7 +341,7 @@ function buildTableForBlessings(data) {
                     ${tableContent}
                 </tbody>
             </table>`;
-}
+};
 
 
 
@@ -354,6 +356,84 @@ document.addEventListener('DOMContentLoaded', function() {
     let blessingData = fetchBlessingsCsvData();
     let tableHtml = buildTableForBlessings(blessingData);
     document.getElementById('blessingsTable').innerHTML = tableHtml;
+
+    let dungeonsRawData = `dungeon,reward,mod,reward increase,day
+        Temporal Sanctum,the dungeon boss drops a horde of Exalted Jewelry,"+90% increased Damage, +120% increased Health",Drop Count: 6-7,1
+        Temporal Sanctum,enemies drop substantially more exalted relics,"+90% increased Damage, +100% increased Health",Increased Chance: 7%,2
+        Temporal Sanctum,the dungeon boss drops a horde of Exalted Weapons,"+120% increased Damage, +90% increased Health",Drop Count: 6-7,3
+        Temporal Sanctum,the dungeon boss drops a horde of Runes,"+80% increased Damage, +110% increased Health",Drop Count: 7-8,4
+        Temporal Sanctum,enemies drop substantially more exalted amulets,"+100% increased Damage, +90% increased Health",Increased Chance: 7%,5
+        Temporal Sanctum,the dungeon boss drops a Glyph of Despair,"+120% increased Damage, +120% increased Health",Drop Count: 1,6
+        Temporal Sanctum,the dungeon boss drops a Unique Weapon,"+110% increased Damage, +110% increased Health",Drop Count: 1,7
+        Temporal Sanctum,enemies drop substantially more glyphs,"+90% increased Damage, +60% increased Health",Increased Chance: 7%,8
+        Temporal Sanctum,the dungeon boss drops 2 Unique Items,"+140% increased Damage, +140% increased Health",Drop Count: 2,9
+        Temporal Sanctum,enemies drop substantially more exalted helmets,"+90% increased Damage, +100% increased Health",Increased Chance: 7%,10
+        Temporal Sanctum,the dungeon boss drops a horde of Idols,"+90% increased Damage, +100% increased Health",Drop Count: 7-8,11
+        Temporal Sanctum,the dungeon boss drops a horde of Exalted Items,"+120% increased Damage, +120% increased Health",Drop Count: 6-7,12
+        Temporal Sanctum,enemies drop substantially more exalted rings,"+100% increased Damage, +90% increased Health",Increased Chance: 7%,13
+        Temporal Sanctum,the dungeon boss drops a horde of Glyphs,"+110% increased Damage, +80% increased Health",Drop Count: 6-7,14
+        Temporal Sanctum,enemies drop substantially more exalted weapons,"+110% increased Damage, +90% increased Health",Increased Chance: 7%,15
+        Temporal Sanctum,enemies drop substantially more runes,"+60% increased Damage, +90% increased Health",Increased Chance: 7%,16
+        Soulfire Bastion,The Soul Gambler's inventory contains 4 additional axes,"+180% increased Damage, +180% increased Health",,10
+        Soulfire Bastion,The Soul Gambler's inventory contains 4 additional belts,"+180% increased Damage, +180% increased Health",,11
+        Soulfire Bastion,The Soul Gambler's inventory contains 4 additional body armours,"+180% increased Damage, +180% increased Health",,12
+        Soulfire Bastion,The Soul Gambler's inventory contains 4 additional pairs of boots,"+180% increased Damage, +180% increased Health",,13
+        Soulfire Bastion,The Soul Gambler's inventory contains 4 additional bows,"+180% increased Damage, +180% increased Health",,1
+        Soulfire Bastion,The Soul Gambler's inventory contains 4 additional catalysts,"+180% increased Damage, +180% increased Health",,2
+        Soulfire Bastion,The Soul Gambler's inventory contains 4 additional pairs of gloves,"+180% increased Damage, +180% increased Health",,3
+        Soulfire Bastion,The Soul Gambler's inventory contains 4 additional helmets,"+180% increased Damage, +180% increased Health",,4
+        Soulfire Bastion,The Soul Gambler's inventory contains 4 additional maces,"+180% increased Damage, +180% increased Health",,5
+        Soulfire Bastion,The Soul Gambler's inventory contains 4 additional sceptres,"+180% increased Damage, +180% increased Health",,6
+        Soulfire Bastion,The Soul Gambler's inventory contains 4 additional shields,"+180% increased Damage, +180% increased Health",,7
+        Soulfire Bastion,The Soul Gambler's inventory contains 4 additional staves,"+180% increased Damage, +180% increased Health",,8
+        Soulfire Bastion,The Soul Gambler's inventory contains 4 additional swords,"+180% increased Damage, +180% increased Health",,9
+        Lightless Arbor,enemies drop substantially more exalted amulets,"+100% increased Damage, +90% increased Health",Increased Chance: 7%,8
+        Lightless Arbor,enemies drop substantially more exalted helmets,"+90% increased Damage, +100% increased Health",Increased Chance: 7%,9
+        Lightless Arbor,enemies drop substantially more exalted relics,"+90% increased Damage, +100% increased Health",Increased Chance: 7%,1
+        Lightless Arbor,enemies drop substantially more exalted rings,"+100% increased Damage, +90% increased Health",Increased Chance: 7%,2
+        Lightless Arbor,enemies drop substantially more exalted weapons,"+110% increased Damage, +90% increased Health",Increased Chance: 7%,3
+        Lightless Arbor,the dungeon boss drops a Unique Weapon,"+110% increased Damage, +110% increased Health",Drop Count: 1,4
+        Lightless Arbor,enemies drop substantially more glyphs,"+90% increased Damage, +60% increased Health",Increased Chance: 7%,5
+        Lightless Arbor,enemies drop substantially more runes,"+60% increased Damage, +90% increased Health",Increased Chance: 7%,6
+        Lightless Arbor,the dungeon boss drops a horde of Idols,"+90% increased Damage, +100% increased Health",Drop Count: 7-8,7
+        `;
+
+    displayDungeons(dungeonsRawData);
+   
+    // const rows =  dungeonsRawData.split('\n');
+    // const dungeons = {
+    //     'Temporal Sanctum': { divId: 'dungeonTemporalSanctumTable', cycleLength: 7, data: [] },
+    //     'Soulfire Bastion': { divId: 'dungeonSoulfireBastionTable', cycleLength: 10, data: [] },
+    //     'Lightless Arbor': { divId: 'dungeonLightlessArborTable', cycleLength: 5, data: [] }
+    // };
+
+    // rows.forEach(row => {
+    //     if (row.trim() === '') return;
+    //     const columns = row.split(',');
+    //     const dungeonName = columns[0];
+    //     if (dungeons[dungeonName]) {
+    //         dungeons[dungeonName].data.push(columns.slice(1));
+    //     }
+    // });
+
+    // Object.keys(dungeons).forEach(dungeonName => {
+    //     const dungeon = dungeons[dungeonName];
+    //     const table = document.createElement('table');
+    //     dungeon.data.forEach((row, index) => {
+    //         const tr = document.createElement('tr');
+    //         tr.id = dungeonName.replace(/\s/g, '') + 'day' + (index + 1);
+    //         row.forEach(col => {
+    //             const td = document.createElement('td');
+    //             td.textContent = col;
+    //             tr.appendChild(td);
+    //         });
+    //         table.appendChild(tr);
+    //     });
+    //     document.getElementById(dungeon.divId).appendChild(table);
+    //     displayCurrentEntry(dungeonName, dungeon.divId, dungeon.cycleLength);
+    // });
+
+
 });
 
 function filterBlessingsTable() {
@@ -378,7 +458,7 @@ function filterBlessingsTable() {
         }
         tr[i].style.display = showRow ? "" : "none";
     }
-}
+};
 
 
 function collapseChapterDetails() {
@@ -396,7 +476,7 @@ function collapseChapterDetails() {
             details.open = false;
         }
     });
-}
+};
 
 function expandChapterDetails() {
     // Select all <summary> elements with an ID containing 'chapter'
@@ -413,54 +493,27 @@ function expandChapterDetails() {
             details.open = true;
         }
     });
-}
+};
 
 
+function displayCurrentEntry(dungeonName, divId, cycleLength) {
+    const today = new Date();
+    const startDate = new Date('YYYY-MM-DD'); // Set your start date
+    const diffTime = Math.abs(today - startDate);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    const rowId = dungeonName.replace(/\s/g, '') + 'Day' + (diffDays % cycleLength + 1);
+    const rows = document.querySelectorAll(`#${divId} tr`);
+    rows.forEach(row => row.style.display = 'none');
+    const todayRow = document.getElementById(rowId);
+    if (todayRow) {
+        todayRow.style.display = '';
+    }
+};
 
-document.addEventListener("DOMContentLoaded", function() {
 
-    let dungeonsRawData = `dungeon,reward,mod,reward increase,day
-Temporal Sanctum,the dungeon boss drops a horde of Exalted Jewelry,"+90% increased Damage, +120% increased Health",Drop Count: 6-7,1
-Temporal Sanctum,enemies drop substantially more exalted relics,"+90% increased Damage, +100% increased Health",Increased Chance: 7%,2
-Temporal Sanctum,the dungeon boss drops a horde of Exalted Weapons,"+120% increased Damage, +90% increased Health",Drop Count: 6-7,3
-Temporal Sanctum,the dungeon boss drops a horde of Runes,"+80% increased Damage, +110% increased Health",Drop Count: 7-8,4
-Temporal Sanctum,enemies drop substantially more exalted amulets,"+100% increased Damage, +90% increased Health",Increased Chance: 7%,5
-Temporal Sanctum,the dungeon boss drops a Glyph of Despair,"+120% increased Damage, +120% increased Health",Drop Count: 1,6
-Temporal Sanctum,the dungeon boss drops a Unique Weapon,"+110% increased Damage, +110% increased Health",Drop Count: 1,7
-Temporal Sanctum,enemies drop substantially more glyphs,"+90% increased Damage, +60% increased Health",Increased Chance: 7%,8
-Temporal Sanctum,the dungeon boss drops 2 Unique Items,"+140% increased Damage, +140% increased Health",Drop Count: 2,9
-Temporal Sanctum,enemies drop substantially more exalted helmets,"+90% increased Damage, +100% increased Health",Increased Chance: 7%,10
-Temporal Sanctum,the dungeon boss drops a horde of Idols,"+90% increased Damage, +100% increased Health",Drop Count: 7-8,11
-Temporal Sanctum,the dungeon boss drops a horde of Exalted Items,"+120% increased Damage, +120% increased Health",Drop Count: 6-7,12
-Temporal Sanctum,enemies drop substantially more exalted rings,"+100% increased Damage, +90% increased Health",Increased Chance: 7%,13
-Temporal Sanctum,the dungeon boss drops a horde of Glyphs,"+110% increased Damage, +80% increased Health",Drop Count: 6-7,14
-Temporal Sanctum,enemies drop substantially more exalted weapons,"+110% increased Damage, +90% increased Health",Increased Chance: 7%,15
-Temporal Sanctum,enemies drop substantially more runes,"+60% increased Damage, +90% increased Health",Increased Chance: 7%,16
-Soulfire Bastion,The Soul Gambler's inventory contains 4 additional axes,"+180% increased Damage, +180% increased Health",,10
-Soulfire Bastion,The Soul Gambler's inventory contains 4 additional belts,"+180% increased Damage, +180% increased Health",,11
-Soulfire Bastion,The Soul Gambler's inventory contains 4 additional body armours,"+180% increased Damage, +180% increased Health",,12
-Soulfire Bastion,The Soul Gambler's inventory contains 4 additional pairs of boots,"+180% increased Damage, +180% increased Health",,13
-Soulfire Bastion,The Soul Gambler's inventory contains 4 additional bows,"+180% increased Damage, +180% increased Health",,1
-Soulfire Bastion,The Soul Gambler's inventory contains 4 additional catalysts,"+180% increased Damage, +180% increased Health",,2
-Soulfire Bastion,The Soul Gambler's inventory contains 4 additional pairs of gloves,"+180% increased Damage, +180% increased Health",,3
-Soulfire Bastion,The Soul Gambler's inventory contains 4 additional helmets,"+180% increased Damage, +180% increased Health",,4
-Soulfire Bastion,The Soul Gambler's inventory contains 4 additional maces,"+180% increased Damage, +180% increased Health",,5
-Soulfire Bastion,The Soul Gambler's inventory contains 4 additional sceptres,"+180% increased Damage, +180% increased Health",,6
-Soulfire Bastion,The Soul Gambler's inventory contains 4 additional shields,"+180% increased Damage, +180% increased Health",,7
-Soulfire Bastion,The Soul Gambler's inventory contains 4 additional staves,"+180% increased Damage, +180% increased Health",,8
-Soulfire Bastion,The Soul Gambler's inventory contains 4 additional swords,"+180% increased Damage, +180% increased Health",,9
-Lightless Arbor,enemies drop substantially more exalted amulets,"+100% increased Damage, +90% increased Health",Increased Chance: 7%,8
-Lightless Arbor,enemies drop substantially more exalted helmets,"+90% increased Damage, +100% increased Health",Increased Chance: 7%,9
-Lightless Arbor,enemies drop substantially more exalted relics,"+90% increased Damage, +100% increased Health",Increased Chance: 7%,1
-Lightless Arbor,enemies drop substantially more exalted rings,"+100% increased Damage, +90% increased Health",Increased Chance: 7%,2
-Lightless Arbor,enemies drop substantially more exalted weapons,"+110% increased Damage, +90% increased Health",Increased Chance: 7%,3
-Lightless Arbor,the dungeon boss drops a Unique Weapon,"+110% increased Damage, +110% increased Health",Drop Count: 1,4
-Lightless Arbor,enemies drop substantially more glyphs,"+90% increased Damage, +60% increased Health",Increased Chance: 7%,5
-Lightless Arbor,enemies drop substantially more runes,"+60% increased Damage, +90% increased Health",Increased Chance: 7%,6
-Lightless Arbor,the dungeon boss drops a horde of Idols,"+90% increased Damage, +100% increased Health",Drop Count: 7-8,7
-`;
-   
-    const rows =  dungeonsRawData.split('\n');
+// Function to parse CSV data
+function parseDungeonsCSVData(rawDungeonData) {
+    const rows = rawDungeonData.split('\n');
     const dungeons = {
         'Temporal Sanctum': { divId: 'dungeonTemporalSanctumTable', cycleLength: 7, data: [] },
         'Soulfire Bastion': { divId: 'dungeonSoulfireBastionTable', cycleLength: 10, data: [] },
@@ -469,41 +522,51 @@ Lightless Arbor,the dungeon boss drops a horde of Idols,"+90% increased Damage
 
     rows.forEach(row => {
         if (row.trim() === '') return;
-        const columns = row.split(',');
+        const columns = row.split(',').map(col => col.trim()); // Trimming each column for cleaner data
         const dungeonName = columns[0];
         if (dungeons[dungeonName]) {
             dungeons[dungeonName].data.push(columns.slice(1));
         }
     });
 
-    Object.keys(dungeons).forEach(dungeonName => {
-        const dungeon = dungeons[dungeonName];
-        const table = document.createElement('table');
-        dungeon.data.forEach((row, index) => {
-            const tr = document.createElement('tr');
-            tr.id = dungeonName.replace(/\s/g, '') + 'day' + (index + 1);
-            row.forEach(col => {
-                const td = document.createElement('td');
-                td.textContent = col;
-                tr.appendChild(td);
-            });
-            table.appendChild(tr);
+    return dungeons;
+};
+
+// Function to create a table from dungeon data
+function createTableFromData(dungeon, dungeonName) {
+    const table = document.createElement('table');
+    table.classList.add('dungeon-table'); // Add a class for styling
+
+    dungeon.data.forEach((row, index) => {
+        const tr = document.createElement('tr');
+        tr.id = dungeonName.replace(/\s/g, '') + 'day' + (index + 1);
+        row.forEach(col => {
+            const td = document.createElement('td');
+            td.textContent = col;
+            tr.appendChild(td);
         });
-        document.getElementById(dungeon.divId).appendChild(table);
-        // displayCurrentEntry(dungeonName, dungeon.divId, dungeon.cycleLength);
+        table.appendChild(tr);
     });
 
-    function displayCurrentEntry(dungeonName, divId, cycleLength) {
-        const today = new Date();
-        const startDate = new Date('YYYY-MM-DD'); // Set your start date
-        const diffTime = Math.abs(today - startDate);
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        const rowId = dungeonName.replace(/\s/g, '') + 'Day' + (diffDays % cycleLength + 1);
-        const rows = document.querySelectorAll(`#${divId} tr`);
-        rows.forEach(row => row.style.display = 'none');
-        const todayRow = document.getElementById(rowId);
-        if (todayRow) {
-            todayRow.style.display = '';
+    return table;
+};
+
+// Main function to process and display data
+function displayDungeons(dungeonsRawData) {
+    const dungeons = parseDungeonsCSVData(dungeonsRawData);
+
+    Object.keys(dungeons).forEach(dungeonName => {
+        const dungeon = dungeons[dungeonName];
+        const table = createTableFromData(dungeon, dungeonName);
+        const dungeonDiv = document.getElementById(dungeon.divId);
+
+        if (dungeonDiv) {
+            dungeonDiv.appendChild(table);
+            // displayCurrentEntry(dungeonName, dungeon.divId, dungeon.cycleLength);
+        } else {
+            console.error(`Div not found for ${dungeonName}`);
         }
-    };
-});
+    });
+};
+
+

@@ -23,12 +23,12 @@ fs.readFile(csvFilePath, 'utf8', (err, newCsvData) => {
             return;
         }
 
-        console.log(jsContent);
+        // console.log(jsContent);
         // Regex to find the rawData variable and replace its content
         const regex = /(let rawData\s*=\s*`)[\s\S]*?(`;)/;
         const updatedJSContent = jsContent.replace(regex, `$1${escapedCsvData}$2`);
-        console.log('into');
-        console.log(updatedJSContent);
+        // console.log('into');
+        // console.log(updatedJSContent);
         // Write the updated content back to the JavaScript file
         fs.writeFile(jsFilePath, updatedJSContent, 'utf8', (err) => {
             if (err) {
@@ -56,12 +56,12 @@ fs.readFile(blessingsCsvFilePath, 'utf8', (err, newCsvData) => {
             return;
         }
 
-        console.log(jsContent);
+        // console.log(jsContent);
         // Regex to find the rawData variable and replace its content
         const regex = /(let blessingsRawData\s*=\s*`)[\s\S]*?(`;)/;
         const updatedJSContent = jsContent.replace(regex, `$1${escapedCsvData}$2`);
-        console.log('into');
-        console.log(updatedJSContent);
+        // console.log('into');
+        // console.log(updatedJSContent);
         // Write the updated content back to the JavaScript file
         fs.writeFile(jsFilePath, updatedJSContent, 'utf8', (err) => {
             if (err) {
