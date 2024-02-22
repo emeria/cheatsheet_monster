@@ -399,40 +399,6 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
 
     displayDungeons(dungeonsRawData);
-   
-    // const rows =  dungeonsRawData.split('\n');
-    // const dungeons = {
-    //     'Temporal Sanctum': { divId: 'dungeonTemporalSanctumTable', cycleLength: 7, data: [] },
-    //     'Soulfire Bastion': { divId: 'dungeonSoulfireBastionTable', cycleLength: 10, data: [] },
-    //     'Lightless Arbor': { divId: 'dungeonLightlessArborTable', cycleLength: 5, data: [] }
-    // };
-
-    // rows.forEach(row => {
-    //     if (row.trim() === '') return;
-    //     const columns = row.split(',');
-    //     const dungeonName = columns[0];
-    //     if (dungeons[dungeonName]) {
-    //         dungeons[dungeonName].data.push(columns.slice(1));
-    //     }
-    // });
-
-    // Object.keys(dungeons).forEach(dungeonName => {
-    //     const dungeon = dungeons[dungeonName];
-    //     const table = document.createElement('table');
-    //     dungeon.data.forEach((row, index) => {
-    //         const tr = document.createElement('tr');
-    //         tr.id = dungeonName.replace(/\s/g, '') + 'day' + (index + 1);
-    //         row.forEach(col => {
-    //             const td = document.createElement('td');
-    //             td.textContent = col;
-    //             tr.appendChild(td);
-    //         });
-    //         table.appendChild(tr);
-    //     });
-    //     document.getElementById(dungeon.divId).appendChild(table);
-    //     displayCurrentEntry(dungeonName, dungeon.divId, dungeon.cycleLength);
-    // });
-
 
 });
 
@@ -498,17 +464,21 @@ function expandChapterDetails() {
 
 function displayCurrentEntry(dungeonName, divId, cycleLength) {
     const today = new Date();
-    const startDate = new Date('YYYY-MM-DD'); // Set your start date
+    const startDate = new Date('2024-02-20'); // Set your start date
     const diffTime = Math.abs(today - startDate);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    const rowId = dungeonName.replace(/\s/g, '') + 'Day' + (diffDays % cycleLength + 1);
-    const rows = document.querySelectorAll(`#${divId} tr`);
+    const rowId = dungeonName.replace(/\s/g, '') + 'day' + (diffDays % cycleLength + 1);
+    
+    // Select only the data rows, not the header row
+    const rows = document.querySelectorAll(`#${divId} tr:not(:first-child)`);
     rows.forEach(row => row.style.display = 'none');
+    
     const todayRow = document.getElementById(rowId);
     if (todayRow) {
         todayRow.style.display = '';
     }
 };
+
 
 
 // Function to parse CSV data
@@ -534,22 +504,59 @@ function parseDungeonsCSVData(rawDungeonData) {
 
 // Function to create a table from dungeon data
 function createTableFromData(dungeon, dungeonName) {
+    console.log(dungeon);
     const table = document.createElement('table');
     table.classList.add('dungeon-table'); // Add a class for styling
 
+    // Define your column names here dungeon,reward,mod,reward increase,day
+    const columnNames = ['Reward', 'Enemy Mod 1', 'Enemy Mod 2', 'Reward Scaling']; // Replace with actual column names
+
+    // Create and append the header row
+    const headerRow = document.createElement('tr');
+    columnNames.forEach(colName => {
+        const th = document.createElement('th');
+        th.textContent = colName;
+        headerRow.appendChild(th);
+    });
+    table.appendChild(headerRow);
+
+    // Add data rows
     dungeon.data.forEach((row, index) => {
         const tr = document.createElement('tr');
         tr.id = dungeonName.replace(/\s/g, '') + 'day' + (index + 1);
-        row.forEach(col => {
+
+        for (let i = 0; i < row.length - 1; i++) {
             const td = document.createElement('td');
-            td.textContent = col;
+            let cellText = removeQuotes(row[i]);
+            cellText = capitalizeFirstLetter(cellText);
+            td.textContent = cellText;
             tr.appendChild(td);
-        });
+        }
         table.appendChild(tr);
     });
 
     return table;
-};
+}
+
+
+
+
+// Helper function to capitalize the first letter of a string
+function capitalizeFirstLetter(string) {
+    // Find the index of the first alphabetic character
+    const firstLetterIndex = string.search(/[a-zA-Z]/);
+    if (firstLetterIndex === -1) return string; // Return original string if no alphabetic character is found
+
+    // Capitalize the first alphabetic character and concatenate the rest of the string
+    return string.substring(0, firstLetterIndex) +
+           string.charAt(firstLetterIndex).toUpperCase() +
+           string.substring(firstLetterIndex + 1);
+}
+
+function removeQuotes(string) {
+    return string.replace(/["']/g, ''); // Removes both single and double quotes
+}
+
 
 // Main function to process and display data
 function displayDungeons(dungeonsRawData) {
@@ -562,7 +569,7 @@ function displayDungeons(dungeonsRawData) {
 
         if (dungeonDiv) {
             dungeonDiv.appendChild(table);
-            // displayCurrentEntry(dungeonName, dungeon.divId, dungeon.cycleLength);
+            displayCurrentEntry(dungeonName, dungeon.divId, dungeon.cycleLength);
         } else {
             console.error(`Div not found for ${dungeonName}`);
         }
