@@ -233,7 +233,7 @@
 <span style='font-size:14px;color:#DAD97A'> Click an Image to Focus (enlarge for some)</span>
 <div id="overlay" onclick="off()"><img src='' style='max-height:80%;max-width:90%;' onclick='on(this)' alt='' class='center'></img></div>
 <br/>
-<a href="#leveling">Leveling</a> | <a href="#monolithItems">Monolith Items</a> | <a href="#blessings">Blessings</a> 
+<a href="#leveling">Leveling</a> | <a href="#monolithItems">Monolith Items</a> | <a href="#blessings">Blessings</a> | <a href="#dungeons">Dungeons</a> 
 <br/><br/>
 
 <!--leveling-->
@@ -376,6 +376,38 @@
         <figure>
             <input type="text" id="filterBlessingsInput" onkeyup="filterBlessingsTable()" placeholder="Search for blessings...">
             <div id="blessingsTable"></div>
+        </figure>
+        <br/>
+        </details>
+        <br/>
+    </figure>
+<br/>
+</details><br/>
+<details open>
+    <summary class="collapsible" id="dungeons">Dungeon</summary>
+    <figure>
+        <details open>
+            <summary class="collapsible" id="dungeonTemporalSanctum">Temporal Sanctum</summary>
+        <figure>
+            <div id="dungeonTemporalSanctumTable"></div>
+        </figure>
+        <br/>
+        </details>
+        <br/>
+
+        <details open>
+            <summary class="collapsible" id="dungeonSoulfireBastion">Soulfire Bastion</summary>
+        <figure>
+            <div id="dungeonSoulfireBastionTable"></div>
+        </figure>
+        <br/>
+        </details>
+        <br/>
+
+        <details>
+            <summary class="collapsible" id="dungeonLightlessArbor">Lightless Arbor</summary>
+        <figure>
+            <div id="dungeonLightlessArborTable"></div>
         </figure>
         <br/>
         </details>

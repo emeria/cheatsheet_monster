@@ -413,3 +413,96 @@ function expandChapterDetails() {
         }
     });
 }
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    let dungeonsRawData = `dungeon,reward,mod,reward increase,day
+Temporal Sanctum,the dungeon boss drops a horde of Exalted Jewelry,"+90% increased Damage, +120% increased Health",Drop Count: 6-7,1
+Temporal Sanctum,enemies drop substantially more exalted relics,"+90% increased Damage, +100% increased Health",Increased Chance: 7%,2
+Temporal Sanctum,the dungeon boss drops a horde of Exalted Weapons,"+120% increased Damage, +90% increased Health",Drop Count: 6-7,3
+Temporal Sanctum,the dungeon boss drops a horde of Runes,"+80% increased Damage, +110% increased Health",Drop Count: 7-8,4
+Temporal Sanctum,enemies drop substantially more exalted amulets,"+100% increased Damage, +90% increased Health",Increased Chance: 7%,5
+Temporal Sanctum,the dungeon boss drops a Glyph of Despair,"+120% increased Damage, +120% increased Health",Drop Count: 1,6
+Temporal Sanctum,the dungeon boss drops a Unique Weapon,"+110% increased Damage, +110% increased Health",Drop Count: 1,7
+Temporal Sanctum,enemies drop substantially more glyphs,"+90% increased Damage, +60% increased Health",Increased Chance: 7%,8
+Temporal Sanctum,the dungeon boss drops 2 Unique Items,"+140% increased Damage, +140% increased Health",Drop Count: 2,9
+Temporal Sanctum,enemies drop substantially more exalted helmets,"+90% increased Damage, +100% increased Health",Increased Chance: 7%,10
+Temporal Sanctum,the dungeon boss drops a horde of Idols,"+90% increased Damage, +100% increased Health",Drop Count: 7-8,11
+Temporal Sanctum,the dungeon boss drops a horde of Exalted Items,"+120% increased Damage, +120% increased Health",Drop Count: 6-7,12
+Temporal Sanctum,enemies drop substantially more exalted rings,"+100% increased Damage, +90% increased Health",Increased Chance: 7%,13
+Temporal Sanctum,the dungeon boss drops a horde of Glyphs,"+110% increased Damage, +80% increased Health",Drop Count: 6-7,14
+Temporal Sanctum,enemies drop substantially more exalted weapons,"+110% increased Damage, +90% increased Health",Increased Chance: 7%,15
+Temporal Sanctum,enemies drop substantially more runes,"+60% increased Damage, +90% increased Health",Increased Chance: 7%,16
+Soulfire Bastion,The Soul Gambler's inventory contains 4 additional axes,"+180% increased Damage, +180% increased Health",,10
+Soulfire Bastion,The Soul Gambler's inventory contains 4 additional belts,"+180% increased Damage, +180% increased Health",,11
+Soulfire Bastion,The Soul Gambler's inventory contains 4 additional body armours,"+180% increased Damage, +180% increased Health",,12
+Soulfire Bastion,The Soul Gambler's inventory contains 4 additional pairs of boots,"+180% increased Damage, +180% increased Health",,13
+Soulfire Bastion,The Soul Gambler's inventory contains 4 additional bows,"+180% increased Damage, +180% increased Health",,1
+Soulfire Bastion,The Soul Gambler's inventory contains 4 additional catalysts,"+180% increased Damage, +180% increased Health",,2
+Soulfire Bastion,The Soul Gambler's inventory contains 4 additional pairs of gloves,"+180% increased Damage, +180% increased Health",,3
+Soulfire Bastion,The Soul Gambler's inventory contains 4 additional helmets,"+180% increased Damage, +180% increased Health",,4
+Soulfire Bastion,The Soul Gambler's inventory contains 4 additional maces,"+180% increased Damage, +180% increased Health",,5
+Soulfire Bastion,The Soul Gambler's inventory contains 4 additional sceptres,"+180% increased Damage, +180% increased Health",,6
+Soulfire Bastion,The Soul Gambler's inventory contains 4 additional shields,"+180% increased Damage, +180% increased Health",,7
+Soulfire Bastion,The Soul Gambler's inventory contains 4 additional staves,"+180% increased Damage, +180% increased Health",,8
+Soulfire Bastion,The Soul Gambler's inventory contains 4 additional swords,"+180% increased Damage, +180% increased Health",,9
+Lightless Arbor,enemies drop substantially more exalted amulets,"+100% increased Damage, +90% increased Health",Increased Chance: 7%,8
+Lightless Arbor,enemies drop substantially more exalted helmets,"+90% increased Damage, +100% increased Health",Increased Chance: 7%,9
+Lightless Arbor,enemies drop substantially more exalted relics,"+90% increased Damage, +100% increased Health",Increased Chance: 7%,1
+Lightless Arbor,enemies drop substantially more exalted rings,"+100% increased Damage, +90% increased Health",Increased Chance: 7%,2
+Lightless Arbor,enemies drop substantially more exalted weapons,"+110% increased Damage, +90% increased Health",Increased Chance: 7%,3
+Lightless Arbor,the dungeon boss drops a Unique Weapon,"+110% increased Damage, +110% increased Health",Drop Count: 1,4
+Lightless Arbor,enemies drop substantially more glyphs,"+90% increased Damage, +60% increased Health",Increased Chance: 7%,5
+Lightless Arbor,enemies drop substantially more runes,"+60% increased Damage, +90% increased Health",Increased Chance: 7%,6
+Lightless Arbor,the dungeon boss drops a horde of Idols,"+90% increased Damage, +100% increased Health",Drop Count: 7-8,7
+`;
+   
+    const rows =  dungeonsRawData.split('\n');
+    const dungeons = {
+        'Temporal Sanctum': { divId: 'dungeonTemporalSanctumTable', cycleLength: 7, data: [] },
+        'Soulfire Bastion': { divId: 'dungeonSoulfireBastionTable', cycleLength: 10, data: [] },
+        'Lightless Arbor': { divId: 'dungeonLightlessArborTable', cycleLength: 5, data: [] }
+    };
+
+    rows.forEach(row => {
+        if (row.trim() === '') return;
+        const columns = row.split(',');
+        const dungeonName = columns[0];
+        if (dungeons[dungeonName]) {
+            dungeons[dungeonName].data.push(columns.slice(1));
+        }
+    });
+
+    Object.keys(dungeons).forEach(dungeonName => {
+        const dungeon = dungeons[dungeonName];
+        const table = document.createElement('table');
+        dungeon.data.forEach((row, index) => {
+            const tr = document.createElement('tr');
+            tr.id = dungeonName.replace(/\s/g, '') + 'day' + (index + 1);
+            row.forEach(col => {
+                const td = document.createElement('td');
+                td.textContent = col;
+                tr.appendChild(td);
+            });
+            table.appendChild(tr);
+        });
+        document.getElementById(dungeon.divId).appendChild(table);
+        // displayCurrentEntry(dungeonName, dungeon.divId, dungeon.cycleLength);
+    });
+
+    function displayCurrentEntry(dungeonName, divId, cycleLength) {
+        const today = new Date();
+        const startDate = new Date('YYYY-MM-DD'); // Set your start date
+        const diffTime = Math.abs(today - startDate);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        const rowId = dungeonName.replace(/\s/g, '') + 'Day' + (diffDays % cycleLength + 1);
+        const rows = document.querySelectorAll(`#${divId} tr`);
+        rows.forEach(row => row.style.display = 'none');
+        const todayRow = document.getElementById(rowId);
+        if (todayRow) {
+            todayRow.style.display = '';
+        }
+    }
+});
