@@ -357,7 +357,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let tableHtml = buildTableForBlessings(blessingData);
     document.getElementById('blessingsTable').innerHTML = tableHtml;
 
-    let dungeonsRawData = `﻿dungeon,tier,reward,mod,reward increase,day
+    let dungeonsRawData = `dungeon,tier,reward,mod,reward increase,day
 Lightless Arbor,4,enemies drop substantially more exalted amulets,"+100% increased Damage, +90% increased Health",Increased Chance: 7%,8
 Lightless Arbor,4,enemies drop substantially more exalted helmets,"+90% increased Damage, +100% increased Health",Increased Chance: 7%,9
 Lightless Arbor,4,enemies drop substantially more exalted relics,"+90% increased Damage, +100% increased Health",Increased Chance: 7%,1
@@ -544,6 +544,7 @@ function displayCurrentEntry(dungeonName, divId, dungeonData) {
         const diffTime = Math.abs(today - startDate);
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
         const currentDay = diffDays % cycleLength + 1;
+        console.log(dungeonName + ' | ',tier + ' | ',cycleLength +' | ', startDate +' | ', today +' | ', diffTime +' | ', diffDays +' | ', currentDay)
         console.log(`Current Day for Tier ${tier}: ${currentDay}`);
 
         const rowId = dungeonName.replace(/\s/g, '') + 'tier' + tier + 'day' + currentDay;
@@ -563,11 +564,37 @@ function displayCurrentEntry(dungeonName, divId, dungeonData) {
 function parseDungeonsCSVData(rawDungeonData) {
     const rows = rawDungeonData.split('\n');
     const dungeons = {
-        'Temporal Sanctum': { divId: 'dungeonTemporalSanctumTable', tiers: { 1: { cycleLength: 1, startDate: '2024-02-20', data: [] }, 2: { cycleLength: 8,startDate: '2024-02-20', data: [] }, 3: { cycleLength: 8,startDate: '2024-02-09', data: [] }, 4: { cycleLength: 8,startDate: '2024-02-22', data: [] } } },
+        // 'Temporal Sanctum': { divId: 'dungeonTemporalSanctumTable', tiers: { 1: { cycleLength: 1, startDate: '2024-02-20', data: [] }, 2: { cycleLength: 8,startDate: '2024-02-20', data: [] }, 3: { cycleLength: 11,startDate: '2024-02-19', data: [] }, 4: { cycleLength: 16,startDate: '2024-02-22', data: [] } } },
         
+        // 'Soulfire Bastion': { divId: 'dungeonSoulfireBastionTable', tiers: { 1: { cycleLength: 1, startDate: '2024-02-20', data: [] }, 2: { cycleLength: 13,startDate: '2024-02-16', data: [] }, 3: { cycleLength: 13,startDate: '2024-02-19', data: [] }, 4: { cycleLength: 13,startDate: '2024-02-18', data: [] } } },
+        
+        // 'Lightless Arbor': { divId: 'dungeonLightlessArborTable', tiers: { 1: { cycleLength: 1, startDate: '2024-02-20', data: [] }, 2: { cycleLength:  9,startDate: '2024-02-18', data: [] }, 3: { cycleLength: 9,startDate: '2024-02-15', data: [] }, 4: { cycleLength: 9,startDate: '2024-02-20', data: [] } } }
+        /**
+         * t1 1
+         * t2 11  | the dungeon boss drops a Set Item | 8
+         * t3 11 | enemies drop more runes | 11
+         * t4 16 | the dungeon boss drops a Glyph of Despair | 6
+         * 
+         */
+        'Temporal Sanctum': { divId: 'dungeonTemporalSanctumTable', tiers: { 1: { cycleLength: 1, startDate: '2024-02-20', data: [] }, 2: { cycleLength: 11,startDate: '2024-02-20', data: [] }, 3: { cycleLength: 11,startDate: '2024-02-17', data: [] }, 4: { cycleLength: 16,startDate: '2024-02-22', data: [] } } },
+
+        /**
+         * t1 1
+         * t2 13 | The Soul Gambler's inventory contains 2 additional staves | 12
+         * t3 13 | The Soul Gambler's inventory contains 3 additional maces | 9
+         * t4 13 | The Soul Gambler's inventory contains 4 additional sceptres | 10
+         * 
+         */
         'Soulfire Bastion': { divId: 'dungeonSoulfireBastionTable', tiers: { 1: { cycleLength: 1, startDate: '2024-02-20', data: [] }, 2: { cycleLength: 13,startDate: '2024-02-16', data: [] }, 3: { cycleLength: 13,startDate: '2024-02-19', data: [] }, 4: { cycleLength: 13,startDate: '2024-02-18', data: [] } } },
-        
-        'Lightless Arbor': { divId: 'dungeonLightlessArborTable', tiers: { 1: { cycleLength: 1, startDate: '2024-02-20', data: [] }, 2: { cycleLength:  9,startDate: '2024-02-18', data: [] }, 3: { cycleLength: 9,startDate: '2024-02-15', data: [] }, 4: { cycleLength: 9,startDate: '2024-02-20', data: [] } } }
+
+        /**
+         * t1 1
+         * t2 8 | the dungeon boss drops Exalted Jewelry | 1
+         * t3 9| enemies drop more exalted rings | 4
+         * t4 9| enemies drop substantially more runes | 8
+         * 
+         */
+        'Lightless Arbor': { divId: 'dungeonLightlessArborTable', tiers: { 1: { cycleLength: 1, startDate: '2024-02-20', data: [] }, 2: { cycleLength:  9,startDate: '2024-02-18', data: [] }, 3: { cycleLength: 9,startDate: '2024-02-24', data: [] }, 4: { cycleLength: 9,startDate: '2024-02-20', data: [] } } }
     };
 
     rows.forEach((row, rowIndex) => {
