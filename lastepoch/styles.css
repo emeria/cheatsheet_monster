@@ -359,6 +359,7 @@ pre
 }
 
 .content {
+    position: relative;
   padding: 0 18px;
   max-height: 0;
   overflow: hidden;
@@ -459,3 +460,18 @@ td {
     background-color: #45a049; /* Darker shade of green */
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Add a shadow on hover */
 }
+
+
+#daily-dungeons {
+    text-align: center;
+}
+
+.dungeons {
+    display: flex;
+    flex-flow: row;
+  }
+
+  .dungeons > div {
+    /* background-color: #f1f1f1; */
+    margin: 5px;
+  }
