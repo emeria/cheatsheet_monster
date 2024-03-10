@@ -1,370 +1,343 @@
-
+/* Define default theme colors */
+:root {
+    --primary-color: #0f0; /* Example primary color */
+    --secondary-color: #E52A01; /* Example secondary color */
+    --background-color: #000; /* Example background color */
+    --text-color: #fff; /* Example text color */
+    --link-visited-color: #E52A01;
+    --link-color: #0F0;
+    --button-bg-color: #ccc;
+    --button-hover-bg-color: #ddd;
+    --button-active-bg-color: #ccc;
+    --table-header-bg-color: #5d3b8e;
+    --table-row-odd-bg-color: #412b58;
+    --table-row-even-bg-color: #1a1a1a;
+    --table-row-hover-bg-color: #302244;
+    --accordion-bg-color: #777;
+    --accordion-hover-bg-color: #555;
+    --accordion-content-bg-color: #050505;
+    --debug-border-color: cyan;
+    --ruler-bg-color: #222;
+    --ruler-border-color: skyblue;
+    --overlay-bg-color: rgba(0,0,0,0.5);
+    --tab-bg-color: #f1f1f1;
+    --tab-border-color: #ccc;
+    --tab-content-border-color: #ccc;
+    --top-btn-bg-color: red;
+    --top-btn-hover-bg-color: #555;
+    --collapsible-bg-color: #777;
+    --collapsible-hover-bg-color: #555;
+    --content-bg-color: #050505;
+    --table-bg-color: #1a1a1a;
+    --th-bg-color: #5d3b8e;
+    --tr-odd-bg-color: #412b58;
+    --tr-even-bg-color: #1a1a1a;
+    --tr-hover-bg-color: #302244;
+    --td-border-color: #333;
+    --reward-icon-size: 20px;
+    --styled-button-bg-color: #302244;
+    --styled-button-hover-bg-color: #45a049;
+    --styled-button-font-size: 16px;
+    --dungeon-bg-color: #f1f1f1;
+    /* Add more custom properties as needed */
+}
 
 /* ----- Buttons ----- */
-    button
-    {
-        height   : 16px;
-        font-size: 12px;
-        line-height: 0;  /* hack to center text vertical */
-    }
+button {
+    height: var(--button-height, 16px); /* Default value provided */
+    font-size: var(--button-font-size, 12px); /* Default value provided */
+    line-height: 0; /* hack to center text vertical */
+}
 
-    .collapsed
-    {
-        height    : 0px;
-        max-height: 0px;
-        display   : none;
-    }
+.collapsed {
+    height: 0px;
+    max-height: 0px;
+    display: none;
+}
 
-    .collapse
-    {
-        text-align: right;
-/*
-        display: inline-block;
-*/
-        float  : right;
-    }
+.collapse {
+    text-align: right;
+    /*
+    display: inline-block;
+    */
+    float: right;
+}
 
-    .in
-    {
-        display       : inline-block;
-        vertical-align: 8px;
-    }
+.in {
+    display: inline-block;
+    vertical-align: var(--in-vertical-align, 8px); /* Default value provided */
+}
 
-    .out
-    {
-        height     : 30px;
-        line-height: 30px;
-    }
+.out {
+    height: var(--out-height, 30px); /* Default value provided */
+    line-height: var(--out-line-height, 30px); /* Default value provided */
+}
 
-    .rejuvs
-    {
-        content: url("pics/rejuv.png");
-    }
-
-    .rejuvf
-    {
-        content: url("pics/full_rejuv.png");
-    }
-
-span.c{ color: #0f0;}
+span.c {
+    color: var(--primary-color);
+}
 
 /* ----- padding ----- */
 
-    /* Resist spacer */
-    .padd
-    {
-        color           : #FFF;
-        padding-left    : 2px;
-        padding-right   : 2px;
-    }
+/* Resist spacer */
+.padd {
+    color: var(--text-color);
+    padding-left: 2px;
+    padding-right: 2px;
+}
 
-    /* Spacer before Essences */
-    .padd5
-    {
-        padding-left: 5px;
-    }
+/* Spacer before Essences */
+.padd5 {
+    padding-left: 5px;
+}
 
-    /* Section indent */
-    .padd15
-    {
-        padding-left: 15px;
-    }
-
+/* Section indent */
+.padd15 {
+    padding-left: 15px;
+}
 
 /* ---------- Table ---------- */
 
-    .debug
-    {
-        border: 1px dotted cyan;
-    }
+.debug {
+    border: 1px dotted var(--debug-border-color, cyan); /* Default value provided */
+}
 
-    .column1
-    {
-        min-width: 730px; /* for mobile */
-    }
+.column1 {
+    min-width: var(--column1-min-width, 730px); /* Default value provided */
+}
 
-    .column2
-    {
-        margin-left: 35px;
-    }
+.column2 {
+    margin-left: var(--column2-margin-left, 35px); /* Default value provided */
+}
 
-    /* Extracted from runetip */
-    .desk-runes2
-    {
-        width: 505px;
-    }
+/* Extracted from runetip */
+.desk-runes2 {
+    width: var(--desk-runes2-width, 505px); /* Default value provided */
+}
 
-    .pre
-    {
-        white-space: pre;
-    }
+.pre {
+    white-space: pre;
+}
+
 
 /* ----- Device ----- */
 
-    .ios-hidden
-    {
-        display: block;
-    }
+.ios-hidden {
+    display: block;
+}
 
-    .ios-visible
-    {
-        display: none;
-    }
+.ios-visible {
+    display: none;
+}
 
 /* iPhone Plus -- is screen width <= 767px */
-@media screen and (max-width: 991.98px)
-{
-    .ios-hidden
-    {
+@media screen and (max-width: 991.98px) {
+    .ios-hidden {
         display: none;
     }
 
-    .ios-runes1
-    {
-        width: 550px; /* 600 Too wide */
+    .ios-runes1 {
+        width: var(--ios-runes1-width, 550px); /* Default value provided */
     }
 
-    .ios-visible
-    {
+    .ios-visible {
         display: block;
     }
 
     /* Spacer between FCR/FHR/FBR and Runes */
-    .column2
-    {
-        margin-left: 55px;
+    .column2 {
+        margin-left: var(--column2-margin-left, 55px); /* Default value provided */
     }
 
     /* Single Column */
-    .runetip
-    {
-        width         : 740px; /* auto, 615, also see: ios-runes  */
+    .runetip {
+        width: var(--runetip-width, 740px); /* Default value provided */
     }
 
-    .runetip:hover .gemtext
-    {
-        left      : 185px; /* Single Column:  32,  185 */
-        top       : 32px;  /* Multi  column: -32, -285 */
+    .runetip:hover .gemtext {
+        left: var(--gemtext-hover-left, 185px); /* Default value provided */
+        top: var(--gemtext-hover-top, 32px); /* Default value provided */
     }
 
-    .tooltip:hover .ttr
-    {
-        left      : 250px;
-        top       : 28px;
-    }
-
-    .tooltip:hover .ttg
-    {
-        left      : 250px;
-        top       : 28px;
-    }
-
-    .tooltip:hover .ttb
-    {
-        left      : 250px;
-        top       : 28px;
-    }
-
-    .tooltip:hover .ttk
-    {
-        left      : 250px;
-        top       : 28px;
+    .tooltip:hover .ttr,
+    .tooltip:hover .ttg,
+    .tooltip:hover .ttb,
+    .tooltip:hover .ttk {
+        left: var(--tooltip-hover-left, 250px); /* Default value provided */
+        top: var(--tooltip-hover-top, 28px); /* Default value provided */
     }
 }
 
 /* ----- General ----- */
 
-    a:visited
-    {
-        color          : #E52A01;
-/*      text-decoration: none; */
-    }
+a:visited {
+    color: var(--link-visited-color);
+    /* text-decoration: none; */
+}
 
-    a:link
-    {
-        color          : #0F0; /* 8F8 */
-/*      text-decoration: none; */
-        font-weight    : bold
-    }
+a:link {
+    color: var(--link-color);
+    /* text-decoration: none; */
+    font-weight: bold;
+}
 
-    /* Runeword description: type (Shields, etc) */
-    b
-    {
-        color: #FF8; /* Softer yellow */
-    }
+/* Runeword description: type (Shields, etc) */
+b {
+    color: var(--runeword-description-color, #FF8); /* Default value provided */
+}
 
-    body
-    {
-        -webkit-text-size-adjust: none; /* stop iOS from resizing th even though font size is specified */
-        color           : #fff;
-        background-color: #000;
-        font-family     : Consolas, Menlo, Monaco, Lucida Console, monospace;
-        font-size       : 16px;
-        width           : 1300px; /* Obediance */
-        max-width       : 1300px;
-    /*
-        overflow-x      : hidden;
-    */
-        overflow-y      : scroll;
-    }
+body {
+    -webkit-text-size-adjust: none; /* stop iOS from resizing th even though font size is specified */
+    color: var(--text-color);
+    background-color: var(--background-color);
+    font-family: Consolas, Menlo, Monaco, Lucida Console, monospace;
+    font-size: var(--body-font-size, 16px); /* Default value provided */
+    width: var(--body-width, 1300px); /* Default value provided */
+    max-width: var(--body-max-width, 1300px); /* Default value provided */
+    overflow-y: scroll;
+}
 
-    div.c
-    {
-        display       : inline-block;
-        vertical-align: middle;
-    }
+div.c {
+    display: inline-block;
+    vertical-align: middle;
+}
 
 /* ----- Images ----- */
-    img
-    {
-        margin:  0px;
+img {
+    margin: 0px;
+    padding: 0px;
+}
+
+img.blank30x30 {
+    content: url('data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==');
+    width: 30px;
+    height: 30px;
+    margin: 0px;
+    padding: 0px;
+    visibility: hidden; /* FF needs this other it will render an outline box */
+}
+
+/* Stupid FF bug img content in css doesn't work with img */
+div.wp {
+    content: url('pics/wp.png');
+    width: 16px;
+    height: 16px;
+    alt: 'Waypoint';
+}
+
+
+    pre {
+        font-family: Consolas, Menlo, Monaco, Lucida Console, monospace;
+        font-size: var(--pre-font-size, 16px); /* Default value provided if variable is not defined */
+        margin: 0px;
+    }
+    
+    .ruler {
+        background-color: var(--ruler-bg-color, #222); /* Default value provided */
+        border: 0.5px dotted var(--ruler-border-color, skyblue); /* Default value provided */
+        border-radius: 0px;
+        color: var(--ruler-color, #F00); /* Default value provided */
+        margin: 0px;
         padding: 0px;
+        position: absolute;
+        top: 0px;
+        height: 3700px;
+        width: 0px;
+        z-index: 1;
     }
-
-    img.blank30x30
-    {
-        content   : url('data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==');
-        width     : 30px;
-        height    : 30px;
-        margin    :  0px;
-        padding   :  0px;
-        visibility: hidden; /* FF needs this other it will render an outline box */
+    
+    #overlay {
+        position: fixed;
+        display: none;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--overlay-bg-color, rgba(0,0,0,0.5)); /* Default value provided */
+        z-index: 2;
+        cursor: pointer;
+        padding: 5%;
     }
-
-    /* Stupid FF bug img content in css doesn't work with img */
-    div.wp
-    {
-        content: url('pics/wp.png');
-        width  : 16px;
-        height : 16px;
-        alt    : 'Waypoint';
+    
+    /* Tabbed view CSS */
+    .tab {
+        overflow: hidden;
+        border: 1px solid var(--tab-border-color, #ccc); /* Default value provided */
+        background-color: var(--tab-bg-color, #f1f1f1); /* Default value provided */
     }
+    
+    .tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+    }
+    
+    .tab button:hover {
+        background-color: var(--button-hover-bg-color, #ddd); /* Default value provided */
+    }
+    
+    .tab button.active {
+        background-color: var(--button-active-bg-color, #ccc); /* Default value provided */
+    }
+    
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid var(--tab-content-border-color, #ccc); /* Default value provided */
+        border-top: none;
+    }
+    
+    #top_btn {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 30px;
+        z-index: 99;
+        font-size: 18px;
+        border: none;
+        outline: none;
+        background-color: var(--top-btn-bg-color, red); /* Default value provided */
+        color: white;
+        cursor: pointer;
+        padding: 15px;
+        border-radius: 4px;
+    }
+    
+    #top_btn:hover {
+        background-color: var(--top-btn-hover-bg-color, #555); /* Default value provided */
+    }
+    
 
-pre
-{
-    font-family: Consolas, Menlo, Monaco, Lucida Console, monospace;
-    font-size  : 16px;
-    margin     : 0px;
-}
-
-.ruler
-{
-    background-color: #222;
-    border          : 0.5px dotted skyblue;
-    border-radius   : 0px;
-    color           : #F00;
-    margin          : 0px;
-    padding         : 0px 0px;
-    position        : absolute;
-    top             : 0px;
-    height          : 3700px;
-    width           : 0px;
-    z-index         : 1;
-}
-
-/* figure > img:hover {
-  width: 500px;
-  height: 200px;
-} */
-
-#overlay {
-  position: fixed;
-  display: none;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.5);
-  z-index: 2;
-  cursor: pointer;
-  padding:5%;
-}
-
-/* tabbed view css*/
-/* Style the tab */
-.tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-}
-
-/* Style the buttons that are used to open the tab content */
-.tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-}
-
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
-}
-
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: #ccc;
-}
-
-/* Style the tab content */
-.tabcontent {
-  display: none;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-top: none;
-}
-
-
-#top_btn {
-  display: none;
-  position: fixed;
-  bottom: 20px;
-  right: 30px;
-  z-index: 99;
-  font-size: 18px;
-  border: none;
-  outline: none;
-  background-color: red;
-  color: white;
-  cursor: pointer;
-  padding: 15px;
-  border-radius: 4px;
-}
-
-#top_btn:hover {
-  background-color: #555;
-}
-
-
-/* Accordion sections  */
+/* Accordion sections */
 .collapsible {
-  background-color: #777;
-  color: white;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
+    background-color: var(--collapsible-bg-color);
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
 }
 
 .active, .collapsible:hover {
-  background-color: #555;
+    background-color: var(--collapsible-hover-bg-color);
 }
 
 .content {
     position: relative;
-  padding: 0 18px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-  background-color: #050505;
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: var(--accordion-content-bg-color);
 }
 
 /* Styling for tables */
@@ -373,34 +346,34 @@ pre
 table {
     width: 100%;
     border-collapse: collapse;
-    color: white; /* Light text for dark mode */
-    background-color: #1a1a1a; /* Dark background */
+    color: var(--text-color); /* Using variable for text color */
+    background-color: var(--table-bg-color); /* Using variable for background color */
 }
 
 /* Table Header Styling */
 th {
-    background-color: #5d3b8e; /* Dark purple */
+    background-color: var(--th-bg-color); /* Using variable for header background color */
     text-align: left;
     padding: 8px;
 }
 
 /* Table Row Styling */
 tr:nth-child(even) {
-    background-color: #1a1a1a; /* Black */
+    background-color: var(--tr-even-bg-color); /* Using variable for even row background color */
 }
 
 tr:nth-child(odd) {
-    background-color: #412b58; /* Slightly lighter purple for contrast */
+    background-color: var(--tr-odd-bg-color); /* Using variable for odd row background color */
 }
 
 tr:hover {
-    background-color: #302244; /* A different shade for hover */
+    background-color: var(--tr-hover-bg-color); /* Using variable for row hover background color */
 }
 
 /* Table Cell Styling */
 td {
     padding: 8px;
-    border-bottom: 1px solid #333; /* Slightly lighter border for visibility */
+    border-bottom: 1px solid var(--td-border-color); /* Using variable for cell border color */
 }
 
 /* Responsive Table */
@@ -433,23 +406,24 @@ td {
     }
 }
 
+
 /* Icon Styling */
 .reward-icon {
-    height: 20px; /* Adjust size as needed */
-    width: 20px; /* Adjust size as needed */
+    height: var(--reward-icon-size); /* Using variable for size */
+    width: var(--reward-icon-size); /* Using variable for size */
     margin-right: 5px;
     vertical-align: middle;
 }
 
 .styled-button {
-    background-color: #302244; 
+    background-color: var(--styled-button-bg-color); 
     border: none;
-    color: white; /* White text */
+    color: var(--styled-button-text-color); /* Variable for text color */
     padding: 15px 32px; /* Some padding */
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: var(--styled-button-font-size); /* Variable for font size */
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 8px; /* Rounded corners */
@@ -457,10 +431,9 @@ td {
 }
 
 .styled-button:hover {
-    background-color: #45a049; /* Darker shade of green */
+    background-color: var(--styled-button-hover-bg-color); /* Variable for hover background color */
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Add a shadow on hover */
 }
-
 
 #daily-dungeons {
     text-align: center;
@@ -469,9 +442,9 @@ td {
 .dungeons {
     display: flex;
     flex-flow: row;
-  }
+}
 
-  .dungeons > div {
-    /* background-color: #f1f1f1; */
+.dungeons > div {
+    background-color: var(--dungeon-bg-color); /* Variable for background color */
     margin: 5px;
-  }
+}
