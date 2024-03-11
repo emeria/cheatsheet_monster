@@ -692,4 +692,162 @@ function displayDungeons(dungeonsRawData) {
     });
 };
 
+const darkTheme = {
+    primaryColor: '#0f0',
+    secondaryColor: '#E52A01',
+    backgroundColor: '#000',
+    textColor: '#fff',
+    linkVisitedColor: '#E52A01',
+    linkColor: '#0F0',
+    buttonBgColor: '#ccc',
+    buttonHoverBgColor: '#ddd',
+    buttonActiveBgColor: '#ccc',
+    tableHeaderBgColor: '#5d3b8e',
+    tableRowOddBgColor: '#412b58',
+    tableRowEvenBgColor: '#1a1a1a',
+    tableRowHoverBgColor: '#302244',
+    accordionBgColor: '#777',
+    accordionHoverBgColor: '#555',
+    accordionContentBgColor: '#050505',
+    debugBorderColor: 'cyan',
+    rulerBgColor: '#222',
+    rulerBorderColor: 'skyblue',
+    overlayBgColor: 'rgba(0,0,0,0.5)',
+    tabBgColor: '#f1f1f1',
+    tabBorderColor: '#ccc',
+    tabContentBorderColor: '#ccc',
+    topBtnBgColor: 'red',
+    topBtnHoverBgColor: '#555',
+    collapsibleBgColor: '#777',
+    collapsibleHoverBgColor: '#555',
+    contentBgColor: '#050505',
+    tableBgColor: '#1a1a1a',
+    thBgColor: '#5d3b8e',
+    trOddBgColor: '#412b58',
+    trEvenBgColor: '#1a1a1a',
+    trHoverBgColor: '#302244',
+    tdBorderColor: '#333',
+    rewardIconSize: '20px',
+    styledButtonBgColor: '#302244',
+    styledButtonHoverBgColor: '#45a049',
+    styledButtonFontSize: '16px',
+    dungeonBgColor: '#f1f1f1',
+    header: '#FF8',
+    focusImageTextColor: '#5a5a03',
+};
+const lightTheme = {
+    primaryColor: '#0055ff', // Example: a different primary color
+    secondaryColor: '#ff5500', // Example: a different secondary color
+    backgroundColor: '#f0f0f0', // Lighter background
+    textColor: '#000', // Darker text for better readability
+    linkVisitedColor: '#551a8b', // Darker shade for visited links
+    linkColor: '#0000ee', // Standard link color
+    buttonBgColor: '#e0e0e0', // Lighter button background
+    buttonHoverBgColor: '#d0d0d0', // Slightly darker on hover
+    buttonActiveBgColor: '#c0c0c0', // Even darker for active state
+    tableHeaderBgColor: '#c3a5ec', // Lighter header background
+    tableRowOddBgColor: '#e9e9e9', // Very light gray for odd rows
+    tableRowEvenBgColor: '#f9f9f9', // Almost white for even rows
+    tableRowHoverBgColor: '#dcdcdc', // Light gray for hover
+    accordionBgColor: '#e2e2e2', // Light accordion background
+    accordionHoverBgColor: '#d2d2d2', // Slightly darker on hover
+    accordionContentBgColor: '#ffffff', // White content background
+    debugBorderColor: 'black', // More visible debug border
+    rulerBgColor: '#eaeaea', // Light ruler background
+    rulerBorderColor: 'gray', // Visible ruler border
+    overlayBgColor: 'rgba(255,255,255,0.5)', // Light overlay
+    tabBgColor: '#f1f1f1', // Light tab background
+    tabBorderColor: '#ddd', // Light border for tabs
+    tabContentBorderColor: '#ccc', // Light border for tab content
+    topBtnBgColor: 'red', // Light top button background
+    topBtnHoverBgColor: '#555', // Slightly darker on hover
+    collapsibleBgColor: '#777',
+    collapsibleHoverBgColor: '#555',
+    contentBgColor: '#ffffff', // White content background
+    tableBgColor: '#ffffff', // White table background
+    thBgColor: '#c3a5ec', // Very light header background
+    trOddBgColor: '#f7f7f7', // Almost white odd rows
+    trEvenBgColor: '#ffffff', // White even rows
+    trHoverBgColor: '#efefef', // Light gray for hover
+    tdBorderColor: '#ddd', // Light border for table cells
+    rewardIconSize: '20px', // Same icon size
+    styledButtonBgColor: '#c3a5ec', // Light styled button background
+    styledButtonHoverBgColor: '#aae0ac', // Slightly darker on hover
+    dungeonBgColor: '#fafafa', // Very light dungeon background
+    header: '#5a5a03',
+    focusImageTextColor: 'blue',
+};
 
+let currentTheme = darkTheme; // Default to dark theme
+function switchTheme() {
+    const root = document.documentElement; 
+    const themeSwitchButton = document.getElementById('theme-switch');
+
+    if (currentTheme === lightTheme) {
+        currentTheme = darkTheme; // Update the current theme
+        themeSwitchButton.textContent = 'Switch to Light Theme';
+    } else {
+        currentTheme = lightTheme; // Update the current theme
+        themeSwitchButton.textContent = 'Switch to Dark Theme';
+    }
+
+    root.style.setProperty('--primary-color', currentTheme.primaryColor);
+    root.style.setProperty('--secondary-color', currentTheme.secondaryColor);
+    root.style.setProperty('--background-color', currentTheme.backgroundColor);
+    root.style.setProperty('--text-color', currentTheme.textColor);
+    root.style.setProperty('--link-visited-color', currentTheme.linkVisitedColor);
+    root.style.setProperty('--link-color', currentTheme.linkColor);
+    root.style.setProperty('--button-bg-color', currentTheme.buttonBgColor);
+    root.style.setProperty('--button-hover-bg-color', currentTheme.buttonHoverBgColor);
+    root.style.setProperty('--button-active-bg-color', currentTheme.buttonActiveBgColor);
+    root.style.setProperty('--table-header-bg-color', currentTheme.tableHeaderBgColor);
+    root.style.setProperty('--table-row-odd-bg-color', currentTheme.tableRowOddBgColor);
+    root.style.setProperty('--table-row-even-bg-color', currentTheme.tableRowEvenBgColor);
+    root.style.setProperty('--table-row-hover-bg-color', currentTheme.tableRowHoverBgColor);
+    root.style.setProperty('--accordion-bg-color', currentTheme.accordionBgColor);
+    root.style.setProperty('--accordion-hover-bg-color', currentTheme.accordionHoverBgColor);
+    root.style.setProperty('--accordion-content-bg-color', currentTheme.accordionContentBgColor);
+    root.style.setProperty('--debug-border-color', currentTheme.debugBorderColor);
+    root.style.setProperty('--ruler-bg-color', currentTheme.rulerBgColor);
+    root.style.setProperty('--ruler-border-color', currentTheme.rulerBorderColor);
+    root.style.setProperty('--overlay-bg-color', currentTheme.overlayBgColor);
+    root.style.setProperty('--tab-bg-color', currentTheme.tabBgColor);
+    root.style.setProperty('--tab-border-color', currentTheme.tabBorderColor);
+    root.style.setProperty('--tab-content-border-color', currentTheme.tabContentBorderColor);
+    root.style.setProperty('--top-btn-bg-color', currentTheme.topBtnBgColor);
+    root.style.setProperty('--top-btn-hover-bg-color', currentTheme.topBtnHoverBgColor);
+    root.style.setProperty('--collapsible-bg-color', currentTheme.collapsibleBgColor);
+    root.style.setProperty('--collapsible-hover-bg-color', currentTheme.collapsibleHoverBgColor);
+    root.style.setProperty('--content-bg-color', currentTheme.contentBgColor);
+    root.style.setProperty('--table-bg-color', currentTheme.tableBgColor);
+    root.style.setProperty('--th-bg-color', currentTheme.thBgColor);
+    root.style.setProperty('--tr-odd-bg-color', currentTheme.trOddBgColor);
+    root.style.setProperty('--tr-even-bg-color', currentTheme.trEvenBgColor);
+    root.style.setProperty('--tr-hover-bg-color', currentTheme.trHoverBgColor);
+    root.style.setProperty('--td-border-color', currentTheme.tdBorderColor);
+    root.style.setProperty('--reward-icon-size', currentTheme.rewardIconSize);
+    root.style.setProperty('--styled-button-bg-color', currentTheme.styledButtonBgColor);
+    root.style.setProperty('--styled-button-hover-bg-color', currentTheme.styledButtonHoverBgColor);
+    root.style.setProperty('--styled-button-font-size', currentTheme.styledButtonFontSize);
+    root.style.setProperty('--dungeon-bg-color', currentTheme.dungeonBgColor);
+    root.style.setProperty('--header', currentTheme.header);
+    root.style.setProperty('--focus-image-text-color', currentTheme.focusImageTextColor);
+    
+}
+
+
+
+// Example usage
+// document.getElementById('theme-switch').addEventListener('click', () => {
+//     const themeSwitchButton = document.getElementById('theme-switch');
+
+//     if (currentTheme === 'lightTheme') {
+//         switchTheme(darkTheme);
+//         currentTheme = 'darkTheme'; // Update the current theme
+//         themeSwitchButton.textContent = 'Switch to Light Theme';
+//     } else {
+//         switchTheme(lightTheme);
+//         currentTheme = 'lightTheme'; // Update the current theme
+//         themeSwitchButton.textContent = 'Switch to Dark Theme';
+//     }
+// });

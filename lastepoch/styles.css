@@ -9,7 +9,7 @@
     --button-bg-color: #ccc;
     --button-hover-bg-color: #ddd;
     --button-active-bg-color: #ccc;
-    --table-header-bg-color: #5d3b8e;
+    --table-header-bg-color: #5d3b8e; 
     --table-row-odd-bg-color: #412b58;
     --table-row-even-bg-color: #1a1a1a;
     --table-row-hover-bg-color: #302244;
@@ -39,9 +39,13 @@
     --styled-button-hover-bg-color: #45a049;
     --styled-button-font-size: 16px;
     --dungeon-bg-color: #f1f1f1;
-    /* Add more custom properties as needed */
+    --header: #FF8;
+    --focus-image-text-color: #fff;
 }
 
+.focus-image-text {
+    color: var(--focus-image-text-color);
+}
 /* ----- Buttons ----- */
 button {
     height: var(--button-height, 16px); /* Default value provided */
@@ -183,7 +187,7 @@ a:link {
 
 /* Runeword description: type (Shields, etc) */
 b {
-    color: var(--runeword-description-color, #FF8); /* Default value provided */
+    color: var(--header, #FF8); /* Default value provided */
 }
 
 body {

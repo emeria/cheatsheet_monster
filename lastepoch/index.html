@@ -150,13 +150,15 @@
             <h1>Cheatsheet.Monster</h1>
         </div>
 
-        <br>
+        <br />
         <span style='font-size:18px;'><i><b>Last Epoch</b></i> Cheatsheet of Cheatsheets</span>
         <br /><span style='font-size:14px;'> by <i> Thundersphinx | IGN: C8die | </i></span><i><a
                 href='https://www.reddit.com/user/emeria'>Reddit /u/emeria</a></i> | <i><a
                 href='https://www.twitch.tv/thundersphinx'>Twitch</a></i> | <i><a
                 href='https://www.patreon.com/emeria'>Patreon</a></i> | <i><a
                 href='https://www.buymeacoffee.com/emeria'>Buy Me a Coffee</a></i>
+        <br />        
+        <button id="theme-switch" onclick="switchTheme()">Switch to Light Theme</button>
 
 
         <!--Back to top button-->
@@ -246,7 +248,7 @@
 
         <!--Cheat sheet section-->
         <h2 id="cheatsheets"><b>Cheatsheets</b></h2>
-        <span style='font-size:14px;color:#DAD97A'> Click an Image to Focus (enlarge for some)</span>
+        <span id='focus-image-text' style='font-size:14px;'> Click an Image to Focus (enlarge for some)</span>
         <div id="overlay" onclick="off()"><img src='' style='max-height:80%;max-width:90%;' onclick='on(this)' alt=''
                 class='center'></img></div>
         <br />
