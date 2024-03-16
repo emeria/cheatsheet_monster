@@ -160,7 +160,6 @@ Chapter 9,18,"HP: ~1k-1.2k starting Monoliths, aim for close to 2k ASAP",
         return null;
     }).filter(row => row !== null);
 
-    //    console.log(data);
     return data;
 };
 
@@ -411,13 +410,12 @@ function buildTableForTLDR(data) {
         return a.step - b.step;
     };
 
-    // Sort and filter the data
+    // Sort the data
     let sortedFilteredData = data
-        .filter(row => row.rewards && row.rewards.length > 0)
+        .filter(row => row.step == 0 || (row.rewards && row.rewards.length > 0))
         .sort(sortChapters);
-
+        
     let currentChapter = null;
-    let stepCounter = 0;
     let tableContent = sortedFilteredData.map(row => {
         let chapterRow = '';
         if (row.chapter !== currentChapter) {
@@ -425,7 +423,11 @@ function buildTableForTLDR(data) {
             chapterRow = `<tr><td colspan="10"><b>${currentChapter}</b></td></tr>`;
         }
 
-        stepCounter++; // Increment step counter
+        // Concatenate task to chapter row if step is 0
+        if (row.step === 0) {
+            chapterRow = `<tr><td colspan="10"><b>${currentChapter}: ${row.task}</b></td></tr>`;
+            return chapterRow;
+        }
 
         const rewardCells = rewardOrder.map(rewardType => {
             const isAdditionalReward = additionalRewards.includes(rewardType);
@@ -438,7 +440,7 @@ function buildTableForTLDR(data) {
             return `<td class="${cellClass}"></td>`; // Empty cell for missing reward
         }).join('');
 
-        return chapterRow + `<tr><td>${stepCounter}</td><td>${row.task}</td>${rewardCells}</tr>`;
+        return chapterRow + `<tr><td>${row.step}</td><td>${row.task}</td>${rewardCells}</tr>`;
     }).join('');
 
     return `<table>
@@ -454,6 +456,7 @@ function buildTableForTLDR(data) {
                 </tbody>
             </table>`;
 }
+
 
 function buildChapterSkipTable(data) {
     const rewardOrder = ['Passive', 'Idol', 'Experience', 'Gold', 'Unique', 'Mastery', 'Attributes'];
