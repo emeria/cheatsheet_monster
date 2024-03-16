@@ -1,4 +1,4 @@
-function fetchCsvData() {
+function fetchLevelingCsvData() {
     let rawData =
         `Chapter,Step,Task,Reward
 Chapter 1,1,Go to the Burning Forest -> Rescue Grael,
@@ -133,6 +133,69 @@ Chapter 9 ,16,Go to the Chamber of Vessel -> Apophis And Majasa,"Experience,Pass
 `;
 
     const data = rawData.trim().split('\n').slice(1).map(row => {
+        // Split the row by commas, but ignore commas inside quotes
+        const regex = /(?:^|,)(\"(?:[^\"]+|\"\")*\"|[^,]*)/g;
+        let matches = [];
+        let match;
+        while (match = regex.exec(row)) {
+            matches.push(match[1]);
+        }
+
+        // Remove leading/trailing quotes and extra spaces
+        matches = matches.map(field => field.trim().replace(/^"|"$/g, '').trim());
+
+        // Assuming there are always 3 fields per row
+        if (matches.length === 4) {
+            const [chapter, step, task, rewardString] = matches;
+            const rewards = rewardString ? rewardString.split(',').map(r => r.trim()) : [];
+            return { chapter, step, task, rewards };
+        }
+        return null;
+    }).filter(row => row !== null);
+
+    //    console.log(data);
+    return data;
+};
+
+
+function fetchChapterSkipCsvData() {
+    let rawSkipData =
+        `Chapter,Step,Task,Reward
+Chapter 0,1,"Acquire 3 Keys: Lightless Arbor, Soulfire Bastion, and Temporal Sanctum","Start"
+Chapter 1,1,"'The Keepers' @ The Keepers Camp","Experience,Gold,Passive"
+Chapter 1,2,"'The Keepers Vault' @ The Keepers Vault","Experience,Gold,Passive"
+Chapter 1,3,"'Storeroom Sabotuers' @ The Storerooms","Experience,Gold,Passive"
+Chapter 2,1,"'The Void Assault' @ Last Refuge Outskirts","Experience,Gold,Idol"
+Chapter 2,2,"'Evacuation' @ Last Refuge Outskirts","Experience,Gold,Passive"
+Chapter 2,3,"'Erza's Ledger' @ The Council Chambers (Artem or Erza)","Experience,Gold,Passive,Unique"
+Chapter 2,4,"'Finding Pannion' @ The Council Chambers","Experience,Gold,Passive"
+Chapter 2,5,"'The Power of Mastery' @ The Council Chambers","Experience,Passive,Mastery"
+Chapter 2,6,"'The Upper District' @ The Upper District","Experience,Gold,Passive"
+Chapter 3,1,"'The Lesser Refuge' @ The Council Chambers","Experience,Gold,Passive"
+Chapter 3,2,"'An Ancient Hunt' @ The Council Chambers","Experience,Gold,Idol"
+Chapter 3,3,"Go to 'The Surface' @ Ruined Era",
+Chapter 3,4,"Go north to 'The Shrouded Ridge', north to 'The Lightless Arbor'",
+Chapter 3,5,"Complete dungeon, go to the 'Corrupted Lake'",
+Chapter 4,1,"'The Corrupted Lake' @ The Corrupted Lake","Experience,Passive,Idol"
+Chapter 4,2,"Switch to 'Imperial Era' @ The Risen Lake",
+Chapter 4,3,"Go to 'The Outcast Camp'",
+Chapter 4,4,"'A Study in Time' @ The Outcast Camp","Experience,Passive"
+Chapter 4,5,"Go back to 'The Risen Lake'",
+Chapter 4,6,"'The Admiral's Dreadnought' @ The Admiral's Dreadnought","Experience,Gold,Idol"
+Chapter 4,7,"Go to 'The Shining Cove', get waypoint",
+Chapter 4,8,"Go to 'The Risen Lake'",
+Chapter 4,9,"Go to 'The Fellwood', and then 'The Soulfire Bastion'",
+Chapter 4,10,"Complete dungeon, go to the 'The Shining Cove'",
+Chapter 5,1,"'The Oracle's Aid' @ The Shining Cove","Experience,Gold,Passive"
+Chapter 5,2,"'Hidden Gems' @ The Majasan Desert","Experience,Gold,Passive"
+Chapter 5,3,"'The Sapphire Tablet' @ The Oracle's Abode","Experience,Passive,Idol"
+Chapter 5,4,"In 'Ruined Era', complete the 'Temporal Sanctum Dungeon'",
+Chapter 9 ,16,"'Desert Treasure' @ The Radiant Dunes","Experience,Passive,Idol"
+Chapter 9 ,16,"'Arjani, the Ruby Commander' @ Maj'Elka Upper District","Experience,Gold,Idol"
+Chapter 9 ,16,"'Too Greedily, Too Deep' @ The Oasis","Experience,Passive,Idol"
+Chapter 9 ,16,"Bonus: 'Apophis And Majasa @ Chamber of Vessel","Experience,Passive,Attributes"`;
+
+    const data = rawSkipData.trim().split('\n').slice(1).map(row => {
         // Split the row by commas, but ignore commas inside quotes
         const regex = /(?:^|,)(\"(?:[^\"]+|\"\")*\"|[^,]*)/g;
         let matches = [];
@@ -385,6 +448,68 @@ function buildTableForTLDR(data) {
             </table>`;
 }
 
+function buildChapterSkipTable(data) {
+    const rewardOrder = ['Passive', 'Idol', 'Experience', 'Gold', 'Unique', 'Mastery', 'Attributes'];
+    const additionalRewards = ['Experience', 'Gold', 'Unique', 'Mastery', 'Attributes'];
+    const rewardCounts = {};
+
+    rewardOrder.forEach(rewardType => rewardCounts[rewardType] = 0);
+
+    // Custom sorting function for chapters
+    const sortChapters = (a, b) => {
+        const chapterNumberA = parseInt(a.chapter.match(/\d+/), 10);
+        const chapterNumberB = parseInt(b.chapter.match(/\d+/), 10);
+
+        if (chapterNumberA !== chapterNumberB) {
+            return chapterNumberA - chapterNumberB;
+        }
+        return a.step - b.step;
+    };
+
+    // Sort the data
+    let sortedData = data.sort(sortChapters);
+
+    let currentChapter = null;
+    let stepCounter = 0;
+    let tableContent = sortedData.map(row => {
+        let chapterRow = '';
+        if (row.chapter !== currentChapter) {
+            currentChapter = row.chapter;
+            chapterRow = `<tr><td colspan="10"><b>${currentChapter}</b></td></tr>`;
+        }
+
+        stepCounter++; // Increment step counter
+
+        const rewardCells = rewardOrder.map(rewardType => {
+            const isAdditionalReward = additionalRewards.includes(rewardType);
+            const cellClass = isAdditionalReward ? 'additional-reward' : '';
+            if (row.rewards && row.rewards.includes(rewardType)) {
+                rewardCounts[rewardType]++;
+                const rewardInfo = rewardIconMapping[rewardType];
+                return `<td class="${cellClass}"><img src="${rewardInfo.src}" alt="${rewardInfo.alt}" class="reward-icon"><span class="reward-count">${rewardCounts[rewardType]}</span></td>`;
+            }
+            return `<td class="${cellClass}"></td>`; // Empty cell for missing reward
+        }).join('');
+
+        return chapterRow + `<tr><td>${stepCounter}</td><td>${row.task}</td>${rewardCells}</tr>`;
+    }).join('');
+
+    return `<table>
+                <thead>
+                    <tr>
+                        <th>Step</th>
+                        <th>Task</th>
+                        ${rewardOrder.map(rewardType => `<th class="${additionalRewards.includes(rewardType) ? 'additional-reward' : ''}">${rewardType}</th>`).join('')}
+                    </tr>
+                </thead>
+                <tbody>
+                    ${tableContent}
+                </tbody>
+            </table>`;
+}
+
+
+
 
 
 
@@ -410,13 +535,24 @@ function buildTableForBlessings(data) {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    const data = fetchCsvData();
+    /**
+     * Data used for:
+     * Chapter Tables
+     * TLDR Table
+     */
+    const data = fetchLevelingCsvData();
 
+    /**
+     * Chapter Tables
+     */
     let chapterCount = 9;
     for (let i = 1; i <= chapterCount; i++) {
         document.getElementById(`chapter${i}Section`).innerHTML = buildTableForChapter(`Chapter ${i}`, data);
     }
 
+    /**
+     * TLDR Table
+     */
     document.getElementById('chapterTldrSection').innerHTML = buildTableForTLDR(data);
 
     const checkbox = document.getElementById('toggleAdditionalRewards');
@@ -428,12 +564,25 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
     checkbox.dispatchEvent(new Event('change'));
+
+
+    /**
+     * Chapter Skip Table
+     */
+    dataForChapterSkip = fetchChapterSkipCsvData();
+    document.getElementById('chapterSkipSection').innerHTML = buildChapterSkipTable(dataForChapterSkip);
     
 
+    /**
+     * Blessings Table
+     */
     let blessingData = fetchBlessingsCsvData();
     let tableHtml = buildTableForBlessings(blessingData);
     document.getElementById('blessingsTable').innerHTML = tableHtml;
 
+    /**
+     * Dungeon Table
+     */
     let dungeonsRawData = `﻿dungeon,tier,reward,mod,reward increase,day
 Lightless Arbor,4,enemies drop substantially more exalted amulets,"+100% increased Damage, +90% increased Health",Increased Chance: 7%,8
 Lightless Arbor,4,enemies drop substantially more exalted helmets,"+90% increased Damage, +100% increased Health",Increased Chance: 7%,9
@@ -548,6 +697,9 @@ Temporal Sanctum,1,N/A,"35% less Damage, 25% less Health",,Current Modifier
 
 });
 
+/**
+ * Filter for blessings table
+ */
 function filterBlessingsTable() {
     var input, filter, table, tr, td, i, txtValue;
     input = document.getElementById("filterBlessingsInput");
@@ -573,6 +725,9 @@ function filterBlessingsTable() {
 };
 
 
+/**
+ * Collapse chapters
+ */
 function collapseChapterDetails() {
     // Select all <summary> elements with an ID containing 'chapter'
     const summaries = document.querySelectorAll('summary[id*="chapter"]');
@@ -590,6 +745,9 @@ function collapseChapterDetails() {
     });
 };
 
+/**
+ * Expand chapters
+ */
 function expandChapterDetails() {
     // Select all <summary> elements with an ID containing 'chapter'
     const summaries = document.querySelectorAll('summary[id*="chapter"]');
@@ -607,6 +765,12 @@ function expandChapterDetails() {
     });
 };
 
+/**
+ * Used to rotate out the daily dungeon rewards
+ * @param {*} dungeonName 
+ * @param {*} divId 
+ * @param {*} dungeonData 
+ */
 function displayCurrentEntry(dungeonName, divId, dungeonData) {
     // Hide all rows initially
     const rows = document.querySelectorAll(`#${divId} tr:not(:first-child)`);
@@ -636,8 +800,11 @@ function displayCurrentEntry(dungeonName, divId, dungeonData) {
     }
 };
 
-
-
+/**
+ * Parsing dungeon data from CSV
+ * @param {*} rawDungeonData 
+ * @returns 
+ */
 function parseDungeonsCSVData(rawDungeonData) {
     const rows = rawDungeonData.split('\n');
     const dungeons = {
@@ -690,7 +857,12 @@ function parseDungeonsCSVData(rawDungeonData) {
     return dungeons;
 };
 
-
+/**
+ * Building a dungeon table for daily rewards
+ * @param {*} dungeon 
+ * @param {*} dungeonName 
+ * @returns 
+ */
 function createTableFromData(dungeon, dungeonName) {
     const table = document.createElement('table');
     table.classList.add('dungeon-table');
@@ -911,20 +1083,3 @@ function switchTheme() {
     root.style.setProperty('--focus-image-text-color', currentTheme.focusImageTextColor);
 
 }
-
-
-
-// Example usage
-// document.getElementById('theme-switch').addEventListener('click', () => {
-//     const themeSwitchButton = document.getElementById('theme-switch');
-
-//     if (currentTheme === 'lightTheme') {
-//         switchTheme(darkTheme);
-//         currentTheme = 'darkTheme'; // Update the current theme
-//         themeSwitchButton.textContent = 'Switch to Light Theme';
-//     } else {
-//         switchTheme(lightTheme);
-//         currentTheme = 'lightTheme'; // Update the current theme
-//         themeSwitchButton.textContent = 'Switch to Dark Theme';
-//     }
-// });
