@@ -482,7 +482,7 @@ function buildChapterSkipTable(data) {
 
         const rewardCells = rewardOrder.map(rewardType => {
             const isAdditionalReward = additionalRewards.includes(rewardType);
-            const cellClass = isAdditionalReward ? 'additional-reward' : '';
+            const cellClass = isAdditionalReward ? 'additional-reward-skip' : '';
             if (row.rewards && row.rewards.includes(rewardType)) {
                 rewardCounts[rewardType]++;
                 const rewardInfo = rewardIconMapping[rewardType];
@@ -499,7 +499,7 @@ function buildChapterSkipTable(data) {
                     <tr>
                         <th>Step</th>
                         <th>Task</th>
-                        ${rewardOrder.map(rewardType => `<th class="${additionalRewards.includes(rewardType) ? 'additional-reward' : ''}">${rewardType}</th>`).join('')}
+                        ${rewardOrder.map(rewardType => `<th class="${additionalRewards.includes(rewardType) ? 'additional-reward-skip' : ''}">${rewardType}</th>`).join('')}
                     </tr>
                 </thead>
                 <tbody>
@@ -571,7 +571,16 @@ document.addEventListener('DOMContentLoaded', function () {
      */
     dataForChapterSkip = fetchChapterSkipCsvData();
     document.getElementById('chapterSkipSection').innerHTML = buildChapterSkipTable(dataForChapterSkip);
-    
+
+    const checkboxToggleSkip = document.getElementById('toggleAdditionalRewardsSkip');
+    checkboxToggleSkip.addEventListener('change', function() {
+        const isVisible = checkboxToggleSkip.checked;
+        const additionalRewardCells = document.querySelectorAll('.additional-reward-skip');
+        additionalRewardCells.forEach(cell => {
+            cell.style.display = isVisible ? '' : 'none';
+        });
+    });
+    checkboxToggleSkip.dispatchEvent(new Event('change'));
 
     /**
      * Blessings Table

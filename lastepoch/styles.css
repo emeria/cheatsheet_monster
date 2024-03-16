@@ -439,11 +439,6 @@ td {
     margin-left: 2px; /* Adjust spacing between icon and count */
 }
 
-/* .additional-reward {
-    display: none;
-} */
-
-
 .styled-button {
     background-color: var(--styled-button-bg-color); 
     border: none;
