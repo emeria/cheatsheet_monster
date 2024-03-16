@@ -12,6 +12,7 @@ Chapter 1,8,Town Portal,
 Chapter 1,9,Go to Ulatri Highlands,
 Chapter 1,10,Go to The Osprix Warcamp,
 Chapter 1,11,Go to The Summit,
+Chapter 2,0,"Max: Phys, Some: Void Resistance",
 Chapter 2,1,Go to Last Refuge Outskirts -> The Void Assault,"Experience,Gold,Idol"
 Chapter 2,2,In Last Refuge Outskirts -> Evacuation,"Experience,Gold,Passive"
 Chapter 2 ,3,Go to The Council Chambers,
@@ -26,6 +27,7 @@ Chapter 2 ,11,Go to The Armoury,
 Chapter 2 ,12,Go to The Lower District,
 Chapter 2 ,13,Go to The End of Time,
 Chapter 2 ,14,The Power of Mastery,"Experience,Passive,Mastery"
+Chapter 3 ,0,"Max: Phys & Void Resistance",
 Chapter 3 ,0,Skip all Sidequests,
 Chapter 3 ,1,Go to Council Chamber,
 Chapter 3 ,2,Go to The Sheltered Wood,
@@ -78,6 +80,7 @@ Chapter 6 ,8,Go to The Citadel Sewers,
 Chapter 6 ,9,Go to The Immortal Summit,
 Chapter 6 ,10,Go to The Immortal Citadel -> The Immortal Citadel,"Experience,Gold,Passive"
 Chapter 6 ,11,Go to The Gates of Solarum (Rift),
+Chapter 7 ,0,"Max: Phys,Void, Some: Cold,Light Resistance",
 Chapter 7 ,1,Go to The Burning Forest,
 Chapter 7 ,2,Go to The Scorched Grove,
 Chapter 7 ,3,Go to The Solemn Path,
@@ -95,6 +98,7 @@ Chapter 7 ,14,Town Portal,
 Chapter 7 ,15,Go to The Solemn Path,
 Chapter 7 ,16,Go to The Scorched Grove -> Speak to Heorot,
 Chapter 7 ,17,Use Heoborea Waypoint,
+Chapter 8 ,0,"Max: Phys,Void,Cold,Light Resistance",
 Chapter 8 ,1,Go to The Northern Stream,
 Chapter 8 ,2,Go to Deep Harbor,
 Chapter 8 ,3,Go to The Burning Pier,
@@ -114,6 +118,7 @@ Chapter 8 ,16,Go to The Temple of Lagon,
 Chapter 8 ,17,Go to The Temple Depths,
 Chapter 8 ,18,Go to Sanctum of the Architect,
 Chapter 8 ,19,Go to Seafloor Colosseum -> Lagon,"Experience,Passive"
+Chapter 9 ,0,"Max: Phys,Void,Cold,Light,Poison Resistance",
 Chapter 9 ,1,Go to Soreth'ka,
 Chapter 9 ,2,Go to The Crossroads,
 Chapter 9 ,3,Go to The Dry River,
@@ -130,6 +135,8 @@ Chapter 9 ,13,Go to The Temple Rooftops,
 Chapter 9 ,14,Go to The Upper Temple,
 Chapter 9 ,15,Go to The Lower Temple,
 Chapter 9 ,16,Go to the Chamber of Vessel -> Apophis And Majasa,"Experience,Passive,Attributes"
+Chapter 9,17,"Max: Phys,Void,Cold,Light,Necrotic Resistance",
+Chapter 9,18,"HP: ~1k-1.2k starting Monoliths, aim for close to 2k ASAP",
 `;
 
     const data = rawData.trim().split('\n').slice(1).map(row => {
@@ -507,11 +514,6 @@ function buildChapterSkipTable(data) {
                 </tbody>
             </table>`;
 }
-
-
-
-
-
 
 function buildTableForBlessings(data) {
     let tableContent = data.map(row => {
