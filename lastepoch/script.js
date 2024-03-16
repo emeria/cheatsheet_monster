@@ -1,6 +1,6 @@
 function fetchCsvData() {
-  let rawData =
-  `Chapter,Step,Task,Reward
+    let rawData =
+        `Chapter,Step,Task,Reward
 Chapter 1,1,Go to the Burning Forest -> Rescue Grael,
 Chapter 1,2,The Keepers -> NPC Keeper Leena,"Experience,Gold,Passive"
 Chapter 1,3,Go to The Fortress Gardens,
@@ -54,7 +54,7 @@ Chapter 4 ,7,Go to Imperial Thetima,
 Chapter 4 ,8,Go to The Darkling Pier,
 Chapter 4 ,9,Go to The Imperial Dreadnought,
 Chapter 4 ,10,Go to The Dreadnought's Deck,
-Chpater 4 ,11,Jump off the Deck! -> The Admiral's Dreadnought,"Experience,Gold,Idol"
+Chapter 4 ,11,Jump off the Deck! -> The Admiral's Dreadnought,"Experience,Gold,Idol"
 Chapter 5 ,1,Go to The Shining Cove,
 Chapter 5 ,2,Go to The Majasan Desert,
 Chapter 5 ,3,Go to The Wraith Dunes -> Hidden Gems Pt. 1 (top left),"Experience,Gold,Passive"
@@ -131,35 +131,35 @@ Chapter 9 ,14,Go to The Upper Temple,
 Chapter 9 ,15,Go to The Lower Temple,
 Chapter 9 ,16,Go to the Chamber of Vessel -> Apophis And Majasa,"Experience,Passive,Attributes"
 `;
-  
-const data = rawData.trim().split('\n').slice(1).map(row => {
-    // Split the row by commas, but ignore commas inside quotes
-    const regex = /(?:^|,)(\"(?:[^\"]+|\"\")*\"|[^,]*)/g;
-    let matches = [];
-    let match;
-    while (match = regex.exec(row)) {
-        matches.push(match[1]);
-    }
 
-    // Remove leading/trailing quotes and extra spaces
-    matches = matches.map(field => field.trim().replace(/^"|"$/g, '').trim());
+    const data = rawData.trim().split('\n').slice(1).map(row => {
+        // Split the row by commas, but ignore commas inside quotes
+        const regex = /(?:^|,)(\"(?:[^\"]+|\"\")*\"|[^,]*)/g;
+        let matches = [];
+        let match;
+        while (match = regex.exec(row)) {
+            matches.push(match[1]);
+        }
 
-    // Assuming there are always 3 fields per row
-    if (matches.length === 4) {
-        const [chapter, step, task, rewardString] = matches;
-        const rewards = rewardString ? rewardString.split(',').map(r => r.trim()) : [];
-        return { chapter, step, task, rewards };
-    }
-    return null;
-}).filter(row => row !== null);
+        // Remove leading/trailing quotes and extra spaces
+        matches = matches.map(field => field.trim().replace(/^"|"$/g, '').trim());
 
-//    console.log(data);
-  return data;
+        // Assuming there are always 3 fields per row
+        if (matches.length === 4) {
+            const [chapter, step, task, rewardString] = matches;
+            const rewards = rewardString ? rewardString.split(',').map(r => r.trim()) : [];
+            return { chapter, step, task, rewards };
+        }
+        return null;
+    }).filter(row => row !== null);
+
+    //    console.log(data);
+    return data;
 };
 
 function fetchBlessingsCsvData() {
-    let blessingsRawData = 
-    `Name,Blessing,Effect
+    let blessingsRawData =
+        `Name,Blessing,Effect
 Fall of the Empire,Grand Hope of the Beginning,15% to 25% Increased Prefix Shard Drop Rate
 Fall of the Empire,Grand Safety of the Labyrinth,22% to 35% Increased Amulet Shard Drop Rate
 Fall of the Empire,Grand Remnants of the Living,33% to 50% Increased Ring Shard Drop Rate
@@ -267,11 +267,11 @@ Spirits of Fire,Grand Heart of the Caldera,+(45% to 75%) Fire Resistance
 Spirits of Fire,Grand Body of Obsidian,+(200 to 320) Armor
 Spirits of Fire,Grand Curse of Sulphur,+(40% to 60%) Chance to apply Frailty on Hit
 `;
-const rows = blessingsRawData.trim().split('\n').slice(1);
-const data = rows.map(row => {
-    const [name, blessing, effect] = parseCsvRow(row);
-    return { name, blessing, effect };
-});
+    const rows = blessingsRawData.trim().split('\n').slice(1);
+    const data = rows.map(row => {
+        const [name, blessing, effect] = parseCsvRow(row);
+        return { name, blessing, effect };
+    });
 
     return data;
 };
@@ -323,6 +323,70 @@ function buildTableForChapter(chapterFilter, data) {
                 </tbody>
             </table>`;
 };
+function buildTableForTLDR(data) {
+    const rewardOrder = ['Passive', 'Idol', 'Experience', 'Gold', 'Unique', 'Mastery', 'Attributes'];
+    const additionalRewards = ['Experience', 'Gold', 'Unique', 'Mastery', 'Attributes'];
+    const rewardCounts = {};
+
+    rewardOrder.forEach(rewardType => rewardCounts[rewardType] = 0);
+
+    // Custom sorting function for chapters
+    const sortChapters = (a, b) => {
+        const chapterNumberA = parseInt(a.chapter.match(/\d+/), 10);
+        const chapterNumberB = parseInt(b.chapter.match(/\d+/), 10);
+
+        if (chapterNumberA !== chapterNumberB) {
+            return chapterNumberA - chapterNumberB;
+        }
+        return a.step - b.step;
+    };
+
+    // Sort and filter the data
+    let sortedFilteredData = data
+        .filter(row => row.rewards && row.rewards.length > 0)
+        .sort(sortChapters);
+
+    let currentChapter = null;
+    let stepCounter = 0;
+    let tableContent = sortedFilteredData.map(row => {
+        let chapterRow = '';
+        if (row.chapter !== currentChapter) {
+            currentChapter = row.chapter;
+            chapterRow = `<tr><td colspan="10"><b>${currentChapter}</b></td></tr>`;
+        }
+
+        stepCounter++; // Increment step counter
+
+        const rewardCells = rewardOrder.map(rewardType => {
+            const isAdditionalReward = additionalRewards.includes(rewardType);
+            const cellClass = isAdditionalReward ? 'additional-reward' : '';
+            if (row.rewards.includes(rewardType)) {
+                rewardCounts[rewardType]++;
+                const rewardInfo = rewardIconMapping[rewardType];
+                return `<td class="${cellClass}"><img src="${rewardInfo.src}" alt="${rewardInfo.alt}" class="reward-icon"><span class="reward-count">${rewardCounts[rewardType]}</span></td>`;
+            }
+            return `<td class="${cellClass}"></td>`; // Empty cell for missing reward
+        }).join('');
+
+        return chapterRow + `<tr><td>${stepCounter}</td><td>${row.task}</td>${rewardCells}</tr>`;
+    }).join('');
+
+    return `<table>
+                <thead>
+                    <tr>
+                        <th>Step</th>
+                        <th>Task</th>
+                        ${rewardOrder.map(rewardType => `<th class="${additionalRewards.includes(rewardType) ? 'additional-reward' : ''}">${rewardType}</th>`).join('')}
+                    </tr>
+                </thead>
+                <tbody>
+                    ${tableContent}
+                </tbody>
+            </table>`;
+}
+
+
+
 
 function buildTableForBlessings(data) {
     let tableContent = data.map(row => {
@@ -345,7 +409,7 @@ function buildTableForBlessings(data) {
 
 
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const data = fetchCsvData();
 
     let chapterCount = 9;
@@ -353,11 +417,24 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById(`chapter${i}Section`).innerHTML = buildTableForChapter(`Chapter ${i}`, data);
     }
 
+    document.getElementById('chapterTldrSection').innerHTML = buildTableForTLDR(data);
+
+    const checkbox = document.getElementById('toggleAdditionalRewards');
+    checkbox.addEventListener('change', function() {
+        const isVisible = checkbox.checked;
+        const additionalRewardCells = document.querySelectorAll('.additional-reward');
+        additionalRewardCells.forEach(cell => {
+            cell.style.display = isVisible ? '' : 'none';
+        });
+    });
+    checkbox.dispatchEvent(new Event('change'));
+    
+
     let blessingData = fetchBlessingsCsvData();
     let tableHtml = buildTableForBlessings(blessingData);
     document.getElementById('blessingsTable').innerHTML = tableHtml;
 
-    let dungeonsRawData = `dungeon,tier,reward,mod,reward increase,day
+    let dungeonsRawData = `﻿dungeon,tier,reward,mod,reward increase,day
 Lightless Arbor,4,enemies drop substantially more exalted amulets,"+100% increased Damage, +90% increased Health",Increased Chance: 7%,8
 Lightless Arbor,4,enemies drop substantially more exalted helmets,"+90% increased Damage, +100% increased Health",Increased Chance: 7%,9
 Lightless Arbor,4,enemies drop substantially more exalted relics,"+90% increased Damage, +100% increased Health",Increased Chance: 7%,1
@@ -386,45 +463,45 @@ Lightless Arbor,2,the dungeon boss drops a Set Item,"+30% increased Damage, +
 Lightless Arbor,2,the dungeon boss drops a Set Item,"+30% increased Damage, +30% increased Health",Drop Count: 1,4
 Lightless Arbor,2,the dungeon boss drops additional Idols,"+20% increased Damage, +20% increased Health",Drop Count: 3-4,5
 Lightless Arbor,1,N/A,"35% less Damage, 25% less Health",,1
-Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional axes,"+180% increased Damage, +180% increased Health",,10
-Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional belts,"+180% increased Damage, +180% increased Health",,11
-Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional body armours,"+180% increased Damage, +180% increased Health",,12
-Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional pairs of boots,"+180% increased Damage, +180% increased Health",,13
-Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional bows,"+180% increased Damage, +180% increased Health",,1
-Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional catalysts,"+180% increased Damage, +180% increased Health",,2
-Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional pairs of gloves,"+180% increased Damage, +180% increased Health",,3
-Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional helmets,"+180% increased Damage, +180% increased Health",,4
-Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional maces,"+180% increased Damage, +180% increased Health",,5
-Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional sceptres,"+180% increased Damage, +180% increased Health",,6
-Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional shields,"+180% increased Damage, +180% increased Health",,7
-Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional staves,"+180% increased Damage, +180% increased Health",,8
-Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional swords,"+180% increased Damage, +180% increased Health",,9
-Soulfire Bastion,3,The Soul Gambler's inventory contains 3 additional axes,"+80% increased Damage, +80% increased Health",,11
-Soulfire Bastion,3,The Soul Gambler's inventory contains 3 additional belts,"+80% increased Damage, +80% increased Health",,12
-Soulfire Bastion,3,The Soul Gambler's inventory contains 3 additional body armours,"+80% increased Damage, +80% increased Health",,13
-Soulfire Bastion,3,The Soul Gambler's inventory contains 3 additional pairs of boots,"+80% increased Damage, +80% increased Health",,1
-Soulfire Bastion,3,The Soul Gambler's inventory contains 3 additional bows,"+80% increased Damage, +80% increased Health",,2
-Soulfire Bastion,3,The Soul Gambler's inventory contains 3 additional catalysts,"+80% increased Damage, +80% increased Health",,3
-Soulfire Bastion,3,The Soul Gambler's inventory contains 3 additional pairs of gloves,"+80% increased Damage, +80% increased Health",,4
-Soulfire Bastion,3,The Soul Gambler's inventory contains 3 additional helmets,"+80% increased Damage, +80% increased Health",,5
-Soulfire Bastion,3,The Soul Gambler's inventory contains 3 additional maces,"+80% increased Damage, +80% increased Health",,6
-Soulfire Bastion,3,The Soul Gambler's inventory contains 3 additional sceptres,"+80% increased Damage, +80% increased Health",,7
-Soulfire Bastion,3,The Soul Gambler's inventory contains 3 additional shields,"+80% increased Damage, +80% increased Health",,8
-Soulfire Bastion,3,The Soul Gambler's inventory contains 3 additional staves,"+80% increased Damage, +80% increased Health",,9
-Soulfire Bastion,3,The Soul Gambler's inventory contains 3 additional swords,"+80% increased Damage, +80% increased Health",,10
-Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional axes,"+50% increased Damage, +50% increased Health",,8
-Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional belts,"+50% increased Damage, +50% increased Health",,9
-Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional body armours,"+50% increased Damage, +50% increased Health",,10
-Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional pairs of boots,"+50% increased Damage, +50% increased Health",,11
-Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional bows,"+50% increased Damage, +50% increased Health",,12
-Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional catalysts,"+50% increased Damage, +50% increased Health",,13
-Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional pairs of gloves,"+50% increased Damage, +50% increased Health",,1
-Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional helmets,"+50% increased Damage, +50% increased Health",,2
-Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional maces,"+50% increased Damage, +50% increased Health",,3
-Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional sceptres,"+50% increased Damage, +50% increased Health",,4
-Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional shields,"+50% increased Damage, +50% increased Health",,5
-Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional staves,"+50% increased Damage, +50% increased Health",,6
-Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional swords,"+50% increased Damage, +50% increased Health",,7
+Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional axes,"+180% increased Damage, +180% increased Health",,1
+Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional belts,"+180% increased Damage, +180% increased Health",,2
+Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional body armours,"+180% increased Damage, +180% increased Health",,3
+Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional pairs of boots,"+180% increased Damage, +180% increased Health",,4
+Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional bows,"+180% increased Damage, +180% increased Health",,5
+Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional catalysts,"+180% increased Damage, +180% increased Health",,6
+Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional pairs of gloves,"+180% increased Damage, +180% increased Health",,7
+Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional helmets,"+180% increased Damage, +180% increased Health",,8
+Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional maces,"+180% increased Damage, +180% increased Health",,9
+Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional sceptres,"+180% increased Damage, +180% increased Health",,10
+Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional shields,"+180% increased Damage, +180% increased Health",,11
+Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional staves,"+180% increased Damage, +180% increased Health",,12
+Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional swords,"+180% increased Damage, +180% increased Health",,13
+Soulfire Bastion,3,The Soul Gambler's inventory contains 3 additional axes,"+80% increased Damage, +80% increased Health",,1
+Soulfire Bastion,3,The Soul Gambler's inventory contains 3 additional belts,"+80% increased Damage, +80% increased Health",,2
+Soulfire Bastion,3,The Soul Gambler's inventory contains 3 additional body armours,"+80% increased Damage, +80% increased Health",,3
+Soulfire Bastion,3,The Soul Gambler's inventory contains 3 additional pairs of boots,"+80% increased Damage, +80% increased Health",,4
+Soulfire Bastion,3,The Soul Gambler's inventory contains 3 additional bows,"+80% increased Damage, +80% increased Health",,5
+Soulfire Bastion,3,The Soul Gambler's inventory contains 3 additional catalysts,"+80% increased Damage, +80% increased Health",,6
+Soulfire Bastion,3,The Soul Gambler's inventory contains 3 additional pairs of gloves,"+80% increased Damage, +80% increased Health",,7
+Soulfire Bastion,3,The Soul Gambler's inventory contains 3 additional helmets,"+80% increased Damage, +80% increased Health",,8
+Soulfire Bastion,3,The Soul Gambler's inventory contains 3 additional maces,"+80% increased Damage, +80% increased Health",,9
+Soulfire Bastion,3,The Soul Gambler's inventory contains 3 additional sceptres,"+80% increased Damage, +80% increased Health",,10
+Soulfire Bastion,3,The Soul Gambler's inventory contains 3 additional shields,"+80% increased Damage, +80% increased Health",,11
+Soulfire Bastion,3,The Soul Gambler's inventory contains 3 additional staves,"+80% increased Damage, +80% increased Health",,12
+Soulfire Bastion,3,The Soul Gambler's inventory contains 3 additional swords,"+80% increased Damage, +80% increased Health",,13
+Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional axes,"+50% increased Damage, +50% increased Health",,1
+Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional belts,"+50% increased Damage, +50% increased Health",,2
+Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional body armours,"+50% increased Damage, +50% increased Health",,3
+Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional pairs of boots,"+50% increased Damage, +50% increased Health",,4
+Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional bows,"+50% increased Damage, +50% increased Health",,5
+Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional catalysts,"+50% increased Damage, +50% increased Health",,6
+Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional pairs of gloves,"+50% increased Damage, +50% increased Health",,7
+Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional helmets,"+50% increased Damage, +50% increased Health",,8
+Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional maces,"+50% increased Damage, +50% increased Health",,9
+Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional sceptres,"+50% increased Damage, +50% increased Health",,10
+Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional shields,"+50% increased Damage, +50% increased Health",,11
+Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional staves,"+50% increased Damage, +50% increased Health",,12
+Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional swords,"+50% increased Damage, +50% increased Health",,13
 Soulfire Bastion,1,N/A,"35% less Damage, 25% less Health",,1
 Temporal Sanctum,4,the dungeon boss drops a horde of Exalted Jewelry,"+90% increased Damage, +120% increased Health",Drop Count: 6-7,1
 Temporal Sanctum,4,enemies drop substantially more exalted relics,"+90% increased Damage, +100% increased Health",Increased Chance: 7%,2
@@ -442,28 +519,28 @@ Temporal Sanctum,4,enemies drop substantially more exalted rings,"+100% increas
 Temporal Sanctum,4,the dungeon boss drops a horde of Glyphs,"+110% increased Damage, +80% increased Health",Drop Count: 6-7,14
 Temporal Sanctum,4,enemies drop substantially more exalted weapons,"+110% increased Damage, +90% increased Health",Increased Chance: 7%,15
 Temporal Sanctum,4,enemies drop substantially more runes,"+60% increased Damage, +90% increased Health",Increased Chance: 7%,16
-Temporal Sanctum,3,the dungeon boss drops much Exalted Jewelry,"+30% increased Damage, +50% increased Health",Drop Count: 4-5,7
-Temporal Sanctum,3,enemies drop more glyphs,+40% increased Damage,Increased Chance: 5%,8
-Temporal Sanctum,3,enemies drop more exalted relics,"+40% increased Damage, +40% increased Health",Increased Chance: 5%,9
-Temporal Sanctum,3,the dungeon boss drops many Idols,"+30% increased Damage, +30% increased Health",Drop Count: 5-6,10
-Temporal Sanctum,3,enemies drop more exalted amulets,"+40% increased Damage, +40% increased Health",Increased Chance: 5%,11
-Temporal Sanctum,3,the dungeon boss drops many Exalted Weapons,"+50% increased Damage, +30% increased Health",Drop Count: 4-5,1
-Temporal Sanctum,3,enemies drop more exalted helmets,"+40% increased Damage, +40% increased Health",Increased Chance: 5%,2
-Temporal Sanctum,3,the dungeon boss drops a Unique Item,"+50% increased Damage, +50% increased Health",Drop Count: 1,3
-Temporal Sanctum,3,enemies drop more exalted rings,"+40% increased Damage, +40% increased Health",Increased Chance: 5%,4
-Temporal Sanctum,3,enemies drop more exalted weapons,"+40% increased Damage, +40% increased Health",Increased Chance: 5%,5
-Temporal Sanctum,3,enemies drop more runes,+40% increased Health,Increased Chance: 5%,6
-Temporal Sanctum,2,the dungeon boss drops Exalted Jewelry,"+20% increased Damage, +30% increased Health",Drop Count: 3,10
-Temporal Sanctum,2,enemies drop slightly more glyphs,+20% increased Damage,Increased Chance: 3%,11
-Temporal Sanctum,2,enemies drop slightly more exalted relics,"+20% increased Damage, +20% increased Health",Increased Chance: 3%,1
-Temporal Sanctum,2,the dungeon boss drops additional Idols,"+20% increased Damage, +20% increased Health",Drop Count: 3-4,2
-Temporal Sanctum,2,enemies drop slightly more exalted amulets,"+20% increased Damage, +20% increased Health",Increased Chance: 3%,3
-Temporal Sanctum,2,the dungeon boss drops additional Exalted Weapons,"+30% increased Damage, +20% increased Health",Drop Count: 3,4
-Temporal Sanctum,2,enemies drop slightly more exalted helmets,"+20% increased Damage, +20% increased Health",Increased Chance: 3%,5
-Temporal Sanctum,2,the dungeon boss drops a Set Item,"+30% increased Damage, +30% increased Health",Drop Count: 1,6
-Temporal Sanctum,2,enemies drop slightly more exalted rings,"+20% increased Damage, +20% increased Health",Increased Chance: 3%,7
-Temporal Sanctum,2,enemies drop slightly more exalted weapons,"+10% increased Damage, +20% increased Health",Increased Chance: 3%,8
-Temporal Sanctum,2,enemies drop slightly more runes,+20% increased Health,Increased Chance: 3%,9
+Temporal Sanctum,3,the dungeon boss drops much Exalted Jewelry,"+30% increased Damage, +50% increased Health",Drop Count: 4-5,1
+Temporal Sanctum,3,enemies drop more glyphs,+40% increased Damage,Increased Chance: 5%,2
+Temporal Sanctum,3,enemies drop more exalted relics,"+40% increased Damage, +40% increased Health",Increased Chance: 5%,3
+Temporal Sanctum,3,the dungeon boss drops many Idols,"+30% increased Damage, +30% increased Health",Drop Count: 5-6,4
+Temporal Sanctum,3,enemies drop more exalted amulets,"+40% increased Damage, +40% increased Health",Increased Chance: 5%,5
+Temporal Sanctum,3,the dungeon boss drops many Exalted Weapons,"+50% increased Damage, +30% increased Health",Drop Count: 4-5,6
+Temporal Sanctum,3,enemies drop more exalted helmets,"+40% increased Damage, +40% increased Health",Increased Chance: 5%,7
+Temporal Sanctum,3,the dungeon boss drops a Unique Item,"+50% increased Damage, +50% increased Health",Drop Count: 1,8
+Temporal Sanctum,3,enemies drop more exalted rings,"+40% increased Damage, +40% increased Health",Increased Chance: 5%,9
+Temporal Sanctum,3,enemies drop more exalted weapons,"+40% increased Damage, +40% increased Health",Increased Chance: 5%,10
+Temporal Sanctum,3,enemies drop more runes,+40% increased Health,Increased Chance: 5%,11
+Temporal Sanctum,2,the dungeon boss drops Exalted Jewelry,"+20% increased Damage, +30% increased Health",Drop Count: 3,1
+Temporal Sanctum,2,enemies drop slightly more glyphs,+20% increased Damage,Increased Chance: 3%,2
+Temporal Sanctum,2,enemies drop slightly more exalted relics,"+20% increased Damage, +20% increased Health",Increased Chance: 3%,3
+Temporal Sanctum,2,the dungeon boss drops additional Idols,"+20% increased Damage, +20% increased Health",Drop Count: 3-4,4
+Temporal Sanctum,2,enemies drop slightly more exalted amulets,"+20% increased Damage, +20% increased Health",Increased Chance: 3%,5
+Temporal Sanctum,2,the dungeon boss drops additional Exalted Weapons,"+30% increased Damage, +20% increased Health",Drop Count: 3,6
+Temporal Sanctum,2,enemies drop slightly more exalted helmets,"+20% increased Damage, +20% increased Health",Increased Chance: 3%,7
+Temporal Sanctum,2,the dungeon boss drops a Set Item,"+30% increased Damage, +30% increased Health",Drop Count: 1,8
+Temporal Sanctum,2,enemies drop slightly more exalted rings,"+20% increased Damage, +20% increased Health",Increased Chance: 3%,9
+Temporal Sanctum,2,enemies drop slightly more exalted weapons,"+10% increased Damage, +20% increased Health",Increased Chance: 3%,10
+Temporal Sanctum,2,enemies drop slightly more runes,+20% increased Health,Increased Chance: 3%,11
 Temporal Sanctum,1,N/A,"35% less Damage, 25% less Health",,Current Modifier
 `;
 
@@ -489,7 +566,7 @@ function filterBlessingsTable() {
                     showRow = true;
                     break;
                 }
-            }       
+            }
         }
         tr[i].style.display = showRow ? "" : "none";
     }
@@ -544,7 +621,7 @@ function displayCurrentEntry(dungeonName, divId, dungeonData) {
         const diffTime = Math.abs(today - startDate);
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
         const currentDay = diffDays % cycleLength + 1;
-        console.log(dungeonName + ' | ',tier + ' | ',cycleLength +' | ', startDate +' | ', today +' | ', diffTime +' | ', diffDays +' | ', currentDay)
+        console.log(dungeonName + ' | ', tier + ' | ', cycleLength + ' | ', startDate + ' | ', today + ' | ', diffTime + ' | ', diffDays + ' | ', currentDay)
         console.log(`Current Day for Tier ${tier}: ${currentDay}`);
 
         const rowId = dungeonName.replace(/\s/g, '') + 'tier' + tier + 'day' + currentDay;
@@ -565,9 +642,9 @@ function parseDungeonsCSVData(rawDungeonData) {
     const rows = rawDungeonData.split('\n');
     const dungeons = {
         // 'Temporal Sanctum': { divId: 'dungeonTemporalSanctumTable', tiers: { 1: { cycleLength: 1, startDate: '2024-02-20', data: [] }, 2: { cycleLength: 8,startDate: '2024-02-20', data: [] }, 3: { cycleLength: 11,startDate: '2024-02-19', data: [] }, 4: { cycleLength: 16,startDate: '2024-02-22', data: [] } } },
-        
+
         // 'Soulfire Bastion': { divId: 'dungeonSoulfireBastionTable', tiers: { 1: { cycleLength: 1, startDate: '2024-02-20', data: [] }, 2: { cycleLength: 13,startDate: '2024-02-16', data: [] }, 3: { cycleLength: 13,startDate: '2024-02-19', data: [] }, 4: { cycleLength: 13,startDate: '2024-02-18', data: [] } } },
-        
+
         // 'Lightless Arbor': { divId: 'dungeonLightlessArborTable', tiers: { 1: { cycleLength: 1, startDate: '2024-02-20', data: [] }, 2: { cycleLength:  9,startDate: '2024-02-18', data: [] }, 3: { cycleLength: 9,startDate: '2024-02-15', data: [] }, 4: { cycleLength: 9,startDate: '2024-02-20', data: [] } } }
         /**
          * t1 1
@@ -576,7 +653,7 @@ function parseDungeonsCSVData(rawDungeonData) {
          * t4 16 | the dungeon boss drops a Glyph of Despair | 6
          * 
          */
-        'Temporal Sanctum': { divId: 'dungeonTemporalSanctumTable', tiers: { 1: { cycleLength: 1, startDate: '2024-02-20', data: [] }, 2: { cycleLength: 11,startDate: '2024-02-20', data: [] }, 3: { cycleLength: 11,startDate: '2024-02-17', data: [] }, 4: { cycleLength: 16,startDate: '2024-02-22', data: [] } } },
+        'Temporal Sanctum': { divId: 'dungeonTemporalSanctumTable', tiers: { 1: { cycleLength: 1, startDate: '2024-02-20', data: [] }, 2: { cycleLength: 11, startDate: '2024-02-20', data: [] }, 3: { cycleLength: 11, startDate: '2024-02-17', data: [] }, 4: { cycleLength: 16, startDate: '2024-02-22', data: [] } } },
 
         /**
          * t1 1
@@ -585,7 +662,7 @@ function parseDungeonsCSVData(rawDungeonData) {
          * t4 13 | The Soul Gambler's inventory contains 4 additional sceptres | 10
          * 
          */
-        'Soulfire Bastion': { divId: 'dungeonSoulfireBastionTable', tiers: { 1: { cycleLength: 1, startDate: '2024-02-20', data: [] }, 2: { cycleLength: 13,startDate: '2024-02-16', data: [] }, 3: { cycleLength: 13,startDate: '2024-02-19', data: [] }, 4: { cycleLength: 13,startDate: '2024-02-18', data: [] } } },
+        'Soulfire Bastion': { divId: 'dungeonSoulfireBastionTable', tiers: { 1: { cycleLength: 1, startDate: '2024-02-20', data: [] }, 2: { cycleLength: 13, startDate: '2024-02-16', data: [] }, 3: { cycleLength: 13, startDate: '2024-02-19', data: [] }, 4: { cycleLength: 13, startDate: '2024-02-18', data: [] } } },
 
         /**
          * t1 1
@@ -594,7 +671,7 @@ function parseDungeonsCSVData(rawDungeonData) {
          * t4 9| enemies drop substantially more runes | 8
          * 
          */
-        'Lightless Arbor': { divId: 'dungeonLightlessArborTable', tiers: { 1: { cycleLength: 1, startDate: '2024-02-20', data: [] }, 2: { cycleLength:  9,startDate: '2024-02-18', data: [] }, 3: { cycleLength: 9,startDate: '2024-02-24', data: [] }, 4: { cycleLength: 9,startDate: '2024-02-20', data: [] } } }
+        'Lightless Arbor': { divId: 'dungeonLightlessArborTable', tiers: { 1: { cycleLength: 1, startDate: '2024-02-20', data: [] }, 2: { cycleLength: 9, startDate: '2024-02-18', data: [] }, 3: { cycleLength: 9, startDate: '2024-02-24', data: [] }, 4: { cycleLength: 9, startDate: '2024-02-20', data: [] } } }
     };
 
     rows.forEach((row, rowIndex) => {
@@ -666,8 +743,8 @@ function capitalizeFirstLetter(string) {
 
     // Capitalize the first alphabetic character and concatenate the rest of the string
     return string.substring(0, firstLetterIndex) +
-           string.charAt(firstLetterIndex).toUpperCase() +
-           string.substring(firstLetterIndex + 1);
+        string.charAt(firstLetterIndex).toUpperCase() +
+        string.substring(firstLetterIndex + 1);
 }
 
 function removeQuotes(string) {
@@ -780,7 +857,7 @@ const lightTheme = {
 
 let currentTheme = darkTheme; // Default to dark theme
 function switchTheme() {
-    const root = document.documentElement; 
+    const root = document.documentElement;
     const themeSwitchButton = document.getElementById('theme-switch');
 
     if (currentTheme === lightTheme) {
@@ -832,7 +909,7 @@ function switchTheme() {
     root.style.setProperty('--dungeon-bg-color', currentTheme.dungeonBgColor);
     root.style.setProperty('--header', currentTheme.header);
     root.style.setProperty('--focus-image-text-color', currentTheme.focusImageTextColor);
-    
+
 }
 
 

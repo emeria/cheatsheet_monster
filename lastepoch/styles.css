@@ -376,7 +376,7 @@ tr:hover {
 
 /* Table Cell Styling */
 td {
-    padding: 8px;
+    padding: 4px;
     border-bottom: 1px solid var(--td-border-color); /* Using variable for cell border color */
 }
 
@@ -415,9 +415,34 @@ td {
 .reward-icon {
     height: var(--reward-icon-size); /* Using variable for size */
     width: var(--reward-icon-size); /* Using variable for size */
-    margin-right: 5px;
+    /* margin-right: 5px; */
+    /* vertical-align: middle; */    
     vertical-align: middle;
+    display: inline-block;
 }
+
+.empty-reward {
+    display: block;
+    margin-right: 5px;
+    margin-left: 2px;
+    width: var(--reward-icon-size);   /* Assuming this is the width of your reward icons */
+    height: var(--reward-icon-size);  /* Assuming this is the height of your reward icons */
+}
+.reward-container {
+    display: inline-flex;
+    vertical-align: center;
+    margin-right: 5px; /* Adjust spacing between reward icons */
+}
+
+
+.reward-count {
+    margin-left: 2px; /* Adjust spacing between icon and count */
+}
+
+/* .additional-reward {
+    display: none;
+} */
+
 
 .styled-button {
     background-color: var(--styled-button-bg-color); 
@@ -452,3 +477,4 @@ td {
     background-color: var(--dungeon-bg-color); /* Variable for background color */
     margin: 5px;
 }
+
