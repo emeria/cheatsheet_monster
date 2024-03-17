@@ -77,100 +77,8 @@ button {
     line-height: var(--out-line-height, 30px); /* Default value provided */
 }
 
-span.c {
-    color: var(--primary-color);
-}
-
-/* ----- padding ----- */
-
-/* Resist spacer */
-.padd {
-    color: var(--text-color);
-    padding-left: 2px;
-    padding-right: 2px;
-}
-
-/* Spacer before Essences */
-.padd5 {
-    padding-left: 5px;
-}
-
-/* Section indent */
-.padd15 {
-    padding-left: 15px;
-}
-
-/* ---------- Table ---------- */
-
-.debug {
-    border: 1px dotted var(--debug-border-color, cyan); /* Default value provided */
-}
-
-.column1 {
-    min-width: var(--column1-min-width, 730px); /* Default value provided */
-}
-
-.column2 {
-    margin-left: var(--column2-margin-left, 35px); /* Default value provided */
-}
-
-/* Extracted from runetip */
-.desk-runes2 {
-    width: var(--desk-runes2-width, 505px); /* Default value provided */
-}
-
-.pre {
-    white-space: pre;
-}
 
 
-/* ----- Device ----- */
-
-.ios-hidden {
-    display: block;
-}
-
-.ios-visible {
-    display: none;
-}
-
-/* iPhone Plus -- is screen width <= 767px */
-@media screen and (max-width: 991.98px) {
-    .ios-hidden {
-        display: none;
-    }
-
-    .ios-runes1 {
-        width: var(--ios-runes1-width, 550px); /* Default value provided */
-    }
-
-    .ios-visible {
-        display: block;
-    }
-
-    /* Spacer between FCR/FHR/FBR and Runes */
-    .column2 {
-        margin-left: var(--column2-margin-left, 55px); /* Default value provided */
-    }
-
-    /* Single Column */
-    .runetip {
-        width: var(--runetip-width, 740px); /* Default value provided */
-    }
-
-    .runetip:hover .gemtext {
-        left: var(--gemtext-hover-left, 185px); /* Default value provided */
-        top: var(--gemtext-hover-top, 32px); /* Default value provided */
-    }
-
-    .tooltip:hover .ttr,
-    .tooltip:hover .ttg,
-    .tooltip:hover .ttb,
-    .tooltip:hover .ttk {
-        left: var(--tooltip-hover-left, 250px); /* Default value provided */
-        top: var(--tooltip-hover-top, 28px); /* Default value provided */
-    }
-}
 
 /* ----- General ----- */
 
@@ -191,6 +99,10 @@ b {
 }
 
 body {
+    /* display:flex; flex-direction:column; justify-content:center; */
+    margin: auto;
+    min-height:100vh;
+    text-align: center;
     -webkit-text-size-adjust: none; /* stop iOS from resizing th even though font size is specified */
     color: var(--text-color);
     background-color: var(--background-color);
@@ -352,6 +264,7 @@ table {
     border-collapse: collapse;
     color: var(--text-color); /* Using variable for text color */
     background-color: var(--table-bg-color); /* Using variable for background color */
+    text-align: left;
 }
 
 /* Table Header Styling */
@@ -473,3 +386,14 @@ td {
     margin: 5px;
 }
 
+.centered-lists{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* This will make the container take the full viewport height */
+ 
+}
+ul, ol {
+    text-align: left; /* Left aligns the text in the list */
+    display: inline-block; /* This makes the list center in the flex container */
+}
