@@ -408,3 +408,31 @@ ul, ol {
     text-align: left; /* Left aligns the text in the list */
     display: inline-block; /* This makes the list center in the flex container */
 }
+
+/* 
+
+*/
+.colored-summary-leveling {
+    background-image: linear-gradient(to bottom,rgb(140,61,49), rgb(73, 49, 3) 20%, transparent 20%);
+    color: inherit;
+}
+
+.colored-summary-monolith {
+    background-image: linear-gradient(to bottom,purple, rgb(70, 4, 70) 20%, transparent 20%);
+    color: inherit;
+}
+
+.colored-summary-exiledmages {
+    background-image: linear-gradient(to bottom, #A6A6F6, #0C0D18 20%, transparent 20%);
+    color: inherit;
+}
+
+.colored-summary-dungeons {
+    background-image: linear-gradient(to bottom,green, rgb(2, 63, 2) 20%, transparent 20%);
+    color: inherit;
+}
+
+.colored-summary-factions {
+    background-image: linear-gradient(to bottom,rgb(140,61,49), blue 20%, transparent 20%);
+    color: inherit;
+}
