@@ -91,9 +91,7 @@ a:link {
 }
 
 /* Runeword description: type (Shields, etc) */
-b {
-  color: var(--header, #ff8); /* Default value provided */
-}
+
 
 body {
   /* display:flex; flex-direction:column; justify-content:center; */

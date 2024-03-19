@@ -1089,6 +1089,52 @@ const darkTheme = {
     header: '#FF8',
     focusImageTextColor: '#5a5a03',
 };
+
+const normalTheme = {
+    primaryColor: '#3366cc', // More balanced primary color
+    secondaryColor: '#cc6633', // More balanced secondary color
+    backgroundColor: '#d6d6d6', // Darker grey background
+    textColor: '#333333', // Softer black for text
+    linkVisitedColor: '#6a3ab2', // Softer purple for visited links
+    linkColor: '#1a0dab', // Standard but slightly less bright link color
+    buttonBgColor: '#d9d9d9', // Standard grey for buttons
+    buttonHoverBgColor: '#c2c2c2', // Standard grey for button hover
+    buttonActiveBgColor: '#ababab', // Standard grey for button active state
+    tableHeaderBgColor: '#b8a0d1', // More balanced header background
+    tableRowOddBgColor: '#f2f2f2', // Slightly darker for odd rows
+    tableRowEvenBgColor: '#ffffff', // White for even rows
+    tableRowHoverBgColor: '#e6e6e6', // Standard grey for hover
+    accordionBgColor: '#e6e6e6', // Standard light grey for accordion
+    accordionHoverBgColor: '#d9d9d9', // Standard grey for accordion hover
+    accordionContentBgColor: '#ffffff', // White content background
+    debugBorderColor: '#333333', // Softer black for debug border
+    rulerBgColor: '#ededed', // Slightly darker ruler background
+    rulerBorderColor: '#bfbfbf', // Standard grey for ruler border
+    overlayBgColor: 'rgba(240,240,240,0.8)', // Slightly darker overlay
+    tabBgColor: '#f5f5f5', // Slightly darker tab background
+    tabBorderColor: '#d4d4d4', // Standard light grey for tab border
+    tabContentBorderColor: '#c2c2c2', // Standard grey for tab content border
+    topBtnBgColor: '#cc4c4c', // More balanced red for top button
+    topBtnHoverBgColor: '#999999', // Standard grey for hover
+    collapsibleBgColor: '#999999', // Standard medium grey
+    collapsibleHoverBgColor: '#808080', // Darker grey for hover
+    contentBgColor: '#ffffff', // White content background
+    tableBgColor: '#ffffff', // White table background
+    thBgColor: '#b8a0d1', // More balanced header background
+    trOddBgColor: '#f7f7f7', // Almost white odd rows
+    trEvenBgColor: '#ffffff', // White even rows
+    trHoverBgColor: '#efefef', // Light grey for hover
+    tdBorderColor: '#d4d4d4', // Standard light grey for table cells
+    rewardIconSize: '20px', // Same icon size
+    styledButtonBgColor: '#b8a0d1', // More balanced styled button background
+    styledButtonHoverBgColor: '#a4c2a8', // More balanced green for hover
+    dungeonBgColor: '#f5f5f5', // Slightly darker dungeon background
+    header: '#6a6a3a', // More balanced header color
+    focusImageTextColor: '#0000cc', // Standard blue, less bright
+};
+
+
+
 const lightTheme = {
     primaryColor: '#0055ff', // Example: a different primary color
     secondaryColor: '#ff5500', // Example: a different secondary color
@@ -1133,16 +1179,19 @@ const lightTheme = {
 };
 
 let currentTheme = darkTheme; // Default to dark theme
-function switchTheme() {
+function switchTheme(targetTheme) {
     const root = document.documentElement;
-    const themeSwitchButton = document.getElementById('theme-switch');
+    // const themeSwitchButton = document.getElementById('theme-switch');
 
-    if (currentTheme === lightTheme) {
-        currentTheme = darkTheme; // Update the current theme
-        themeSwitchButton.textContent = 'Switch to Light Theme';
-    } else {
+    if (targetTheme === 'lightTheme') {
         currentTheme = lightTheme; // Update the current theme
-        themeSwitchButton.textContent = 'Switch to Dark Theme';
+        // themeSwitchButton.textContent = 'Switch to Light Theme';
+    }
+    if (targetTheme === 'darkTheme') {
+        currentTheme = darkTheme; // Update the current theme
+    }
+    if (targetTheme === 'normalTheme') {
+        currentTheme = normalTheme; // Update the current theme
     }
 
     root.style.setProperty('--primary-color', currentTheme.primaryColor);
