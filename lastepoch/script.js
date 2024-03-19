@@ -1,3 +1,94 @@
+/**
+ * Utils
+ * @returns 
+ */
+"use strict"; // hack to turn on type safety
+
+/*
+    https://stackoverflow.com/questions/6850164/get-the-device-width-in-javascript
+*/
+function getScreenSize() {
+    var resolutions =
+    {
+        '(min-width: 1200px)': 'xl',
+        '(min-width: 992px) and (max-width: 1199.98px)': 'lg',
+        '(min-width: 768px) and (max-width: 991.98px)': 'md',
+        '(min-width: 576px) and (max-width: 767.98px)': 'sm',
+        '(max-width: 575.98px)': 'xs'
+    };
+
+    for (let size in resolutions)
+        if (window.matchMedia(size).matches) {
+            return resolutions[size];
+        }
+
+    return null;
+}
+
+function onLoad() {
+    onResize();
+
+    // iOS touch / hover
+    document.addEventListener("touchstart", function () { }, false);
+
+}
+
+function onResize() {
+    var dim = getScreenSize();
+    console.log('Dimension: ' + dim);
+    var debug = document.getElementById('screen-size');
+    debug.innerText = dim;
+    console.log(window.innerHeight);
+    console.log(window.innerWidth);
+    document.getElementById("overlay").style.maxwidth = window.innerWidth;
+    document.getElementById("overlay").style.maxheight = window.innerHeigh;
+}
+
+// Overlay swap logic
+function on(event) {
+    document.getElementById("overlay").style.display = "block";
+    document.getElementById("overlay").getElementsByTagName('img')[0].src = event.src;
+    console.log(event.dataset.enlargeHeight);
+    if (event.dataset.enlargeHeight != "") {
+        document.getElementById("overlay").getElementsByTagName('img')[0].style.maxHeight = event.dataset.enlargeHeight;
+    } else {
+        document.getElementById("overlay").getElementsByTagName('img')[0].style.maxHeight = "80%"
+    }
+    if (event.dataset.enlargeWidth != "") {
+        document.getElementById("overlay").getElementsByTagName('img')[0].style.maxWidth = event.dataset.enlargeWidth;
+    } else {
+        document.getElementById("overlay").getElementsByTagName('img')[0].style.maxWidth = "90%"
+    }
+}
+
+function off() {
+    document.getElementById("overlay").style.display = "none";
+    document.getElementById("overlay").getElementsByTagName('img')[0].src = "";
+}
+
+/**
+ * Top Button Logic
+ */
+var topbutton = document.getElementById("top_btn");
+
+window.onscroll = function () { scrollFunction() };
+
+function scrollFunction() {
+    var topbutton = document.getElementById("top_btn");
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        topbutton.style.display = "block";
+    } else {
+        topbutton.style.display = "none";
+    }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+
+// Data logic
 function fetchLevelingCsvData() {
     let rawData =
         `Chapter,Step,Task,Reward
@@ -574,7 +665,7 @@ document.addEventListener('DOMContentLoaded', function () {
     /**
      * Chapter Skip Table
      */
-    dataForChapterSkip = fetchChapterSkipCsvData();
+    const dataForChapterSkip = fetchChapterSkipCsvData();
     document.getElementById('chapterSkipSection').innerHTML = buildChapterSkipTable(dataForChapterSkip);
 
     const checkboxToggleSkip = document.getElementById('toggleAdditionalRewardsSkip');
