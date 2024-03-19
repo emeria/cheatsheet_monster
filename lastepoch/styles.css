@@ -236,6 +236,9 @@ div.wp {
     color: var(--text-color);
     cursor: pointer;
     padding: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
     border: none;
     text-align: left;
@@ -323,7 +326,15 @@ td {
     }
 }
 
-
+.resistances_chapter {  
+    display: flex;
+    align-items: center;
+}
+.resistance_tag{
+    height: var(--reward-icon-size); /* Using variable for size */
+    width: var(--reward-icon-size); /* Using variable for size */ 
+    vertical-align: middle;
+}
 /* Icon Styling */
 .reward-icon {
     height: var(--reward-icon-size); /* Using variable for size */
