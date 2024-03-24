@@ -423,17 +423,17 @@ ol {
   color: inherit;
 }
 
-.colored-summary-monolith {
+.colored-summary-betrayal {
   background-image: linear-gradient(
     to bottom,
-    purple,
-    rgb(70, 4, 70) 20%,
+    rgb(107,255,197),
+    rgb(16,46,29) 20%,
     transparent 20%
   );
   color: inherit;
 }
 
-.colored-summary-exiledmages {
+.colored-summary-heist {
   background-image: linear-gradient(
     to bottom,
     #a6a6f6,
@@ -443,21 +443,41 @@ ol {
   color: inherit;
 }
 
-.colored-summary-dungeons {
+.colored-summary-incursion {
   background-image: linear-gradient(
     to bottom,
-    green,
-    rgb(2, 63, 2) 20%,
+    #FACF66,
+    #2D0105 20%,
     transparent 20%
   );
   color: inherit;
 }
 
-.colored-summary-factions {
+.colored-summary-essences {
   background-image: linear-gradient(
     to bottom,
-    rgb(140, 61, 49),
+    #37AED7,
     blue 20%,
+    transparent 20%
+  );
+  color: inherit;
+}
+
+.colored-summary-strongbox {
+  background-image: linear-gradient(
+    to bottom,
+    rgb(212,206,198),
+    #705B48 20%,
+    transparent 20%
+  );
+  color: inherit;
+}
+
+.colored-summary-flask {
+  background-image: linear-gradient(
+    to bottom,
+    #DCBA4F,
+    #333333 20%,
     transparent 20%
   );
   color: inherit;
