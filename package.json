@@ -1,5 +1,8 @@
 {
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^5.0.0"
+  },
+  "dependencies": {
+    "prettier": "^3.2.5"
   }
 }
