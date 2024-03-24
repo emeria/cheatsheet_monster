@@ -151,7 +151,7 @@ pre {
   ); /* Default value provided */
   z-index: 2;
   cursor: pointer;
-  padding: 5%;
+  /* padding: 5%; */
 }
 
 /* Tabbed view CSS */
