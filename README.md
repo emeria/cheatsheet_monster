@@ -10,10 +10,14 @@ Cheat Sheet combining various sheets and links into one place
  * more vendor recipes 
 
 # To Do
-* Caption for data tables
+* Caption for data tables icons
 * Avoid spanning column or rows, can be okay at TOP
 * Avoid blank table cell
-* 
+* Refactor to React
+* * Details template
+* * Tables template
+* * Tabbed cheatsheet template
+* * List of links template
 
 
 # Not Doing
