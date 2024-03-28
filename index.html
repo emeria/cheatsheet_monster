@@ -36,17 +36,6 @@
         color: white; /* Ensuring text is visible on the dark background */
       }
 
-      header {
-        background-color: #333;
-        color: white;
-        padding: 1rem;
-        text-align: center;
-      }
-
-      header h1 {
-        margin: 0;
-      }
-
       .game-links {
         display: flex;
         justify-content: center;
@@ -67,19 +56,68 @@
       }
 
       footer {
-        flex-shrink: 0; /* Prevent the footer from shrinking */
-        background-color: #333;
-        color: white;
-        text-align: center;
-        padding: 1rem 0;
-      }
+  flex-shrink: 0;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 1rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-content {
+  /* display: flex; */
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+  position: relative; /* Allows absolute positioning relative to the header */
+  text-align: center;
+}
+
+h1 {
+  margin: 0; /* Centers the title with equal space on both sides */
+}
+
+.header-icons {
+  position: absolute; /* Positions icons absolutely within the header */
+  right: 1rem; /* Positions the icons to the right */
+  top: 50%;
+  transform: translateY(-50%); /* Aligns icons vertically in the center */
+}
+
+.header-icons a img {
+  height: 60px; /* Set the height of the image */
+}
+
+h4 {
+  font-size: 0.9em;
+  margin-top: 0.5em; /* Spacing after the title */
+}
+
+
     </style>
   </head>
   <body>
     <header>
-      <h1>Cheatsheet Monster</h1>
-      <h4>by Thundersphinx</h4>
-    </header>
+        <h1>Cheatsheet Monster</h1>
+        <div class="header-icons">
+            <a href="https://www.buymeacoffee.com/emeria" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+          <a href="https://www.patreon.com/emeria" target="_blank">
+            <img src="PATREON_SYMBOL_1_BLACK_RGB.png" alt="Patreon" />
+          </a>
+        </div>
+        <h4>by Thundersphinx</h4>
+      </header>
+      
+      
+      
 
     <div class="content">
       <div><h2>Choose a game:</h2></div>
@@ -94,7 +132,13 @@
     </div>
 
     <footer>
-        <span style='font-size:12px;'>Version 1.00, Last Updated Wed, Mar 27, 2024.</span>
-        <span style='font-size:12px;'>Copyright © 2024 Cheatsheet Monster, CheatSheet.Monster</span></footer>
+        <div class="footer-content">
+          <div>
+            <span style='font-size:12px;'>Version 1.00, Last Updated Wed, Mar 27, 2024.</span>
+            <span style='font-size:12px;'>Copyright © 2024 Cheatsheet Monster, CheatSheet.Monster</span>
+          </div>
+        </div>
+      </footer>
+      
   </body>
 </html>
