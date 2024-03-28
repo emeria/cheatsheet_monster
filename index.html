@@ -1,546 +1,100 @@
-<!DOCTYPE html>
-<html lang='en'>
-    <head>
-         <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S40E20R8VK"></script>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-S40E20R8VK"
+    ></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-    gtag('config', 'G-S40E20R8VK');
+      gtag("config", "G-S40E20R8VK");
     </script>
-        <meta charset="UTF-8">
-        <title>Cheat Sheet Monster by Thundersphinx</title>
-        <style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cheatsheet Monster by Thundersphinx</title>
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        font-family: Arial, sans-serif;
+      }
 
-/* ----- Buttons ----- */
-    button
-    {
-        height   : 16px;
-        font-size: 12px;
-        line-height: 0;  /* hack to center text vertical */
-    }
+      .content {
+        flex: 1 0 auto; /* The 1 will allow the content to expand */
+        text-align: center;
+        padding: 1rem;
+        background-color: #1a1a1a; /* Dark background color */
+        color: white; /* Ensuring text is visible on the dark background */
+      }
 
-    .collapsed
-    {
-        height    : 0px;
-        max-height: 0px;
-        display   : none;
-    }
+      header {
+        background-color: #333;
+        color: white;
+        padding: 1rem;
+        text-align: center;
+      }
 
-    .collapse
-    {
-        align  : right;
-/*
-        display: inline-block;
-*/
-        float  : right;
-    }
+      header h1 {
+        margin: 0;
+      }
 
-    .in
-    {
-        display       : inline-block;
-        vertical-align: 8px;
-    }
-
-    .out
-    {
-        height     : 30px;
-        line-height: 30px;
-    }
-
-    .rejuvs
-    {
-        content: url("pics/rejuv.png");
-    }
-
-    .rejuvf
-    {
-        content: url("pics/full_rejuv.png");
-    }
-
-span.c{ color: #0f0;}
-
-/* ----- padding ----- */
-
-    /* Resist spacer */
-    .padd
-    {
-        color           : #FFF;
-        padding-left    : 2px;
-        padding-right   : 2px;
-    }
-
-    /* Spacer before Essences */
-    .padd5
-    {
-        padding-left: 5px;
-    }
-
-    /* Section indent */
-    .padd15
-    {
-        padding-left: 15px;
-    }
-
-
-/* ---------- Table ---------- */
-
-    .debug
-    {
-        border: 1px dotted cyan;
-    }
-
-    .column1
-    {
-        min-width: 730px; /* for mobile */
-    }
-
-    .column2
-    {
-        margin-left: 35px;
-    }
-
-    /* Extracted from runetip */
-    .desk-runes2
-    {
-        width: 505px;
-    }
-
-    .pre
-    {
-        white-space: pre;
-    }
-
-/* ----- Device ----- */
-
-    .ios-hidden
-    {
-        display: block;
-    }
-
-    .ios-visible
-    {
-        display: none;
-    }
-
-/* iPhone Plus -- is screen width <= 767px */
-@media screen and (max-width: 991.98px)
-{
-    .ios-hidden
-    {
-        display: none;
-    }
-
-    .ios-runes1
-    {
-        width: 550px; /* 600 Too wide */
-    }
-
-    .ios-visible
-    {
-        display: block;
-    }
-
-    /* Spacer between FCR/FHR/FBR and Runes */
-    .column2
-    {
-        margin-left: 55px;
-    }
-
-    /* Single Column */
-    .runetip
-    {
-        width         : 740px; /* auto, 615, also see: ios-runes  */
-    }
-
-    .runetip:hover .gemtext
-    {
-        left      : 185px; /* Single Column:  32,  185 */
-        top       : 32px;  /* Multi  column: -32, -285 */
-    }
-
-    .tooltip:hover .ttr
-    {
-        left      : 250px;
-        top       : 28px;
-    }
-
-    .tooltip:hover .ttg
-    {
-        left      : 250px;
-        top       : 28px;
-    }
-
-    .tooltip:hover .ttb
-    {
-        left      : 250px;
-        top       : 28px;
-    }
-
-    .tooltip:hover .ttk
-    {
-        left      : 250px;
-        top       : 28px;
-    }
-}
-
-/* ----- General ----- */
-
-    a:visited
-    {
-        color          : #E52A01;
-/*      text-decoration: none; */
-    }
-
-    a:link
-    {
-        color          : #0F0; /* 8F8 */
-/*      text-decoration: none; */
-        font-weight    : bold
-    }
-
-    /* Runeword description: type (Shields, etc) */
-    b
-    {
-        color: #FF8; /* Softer yellow */
-    }
-
-    body
-    {
-        -webkit-text-size-adjust: none; /* stop iOS from resizing th even though font size is specified */
-        color           : #fff;
-        background-color: #000;
-        font-family     : Consolas, Menlo, Monaco, Lucida Console, monospace;
-        font-size       : 16px;
-        width           : 1300px; /* Obediance */
-        max-width       : 1300px;
-    /*
-        overflow-x      : hidden;
-    */
-        overflow-y      : scroll;
-    }
-
-    div.c
-    {
-        display       : inline-block;
+      .game-links {
+        display: flex;
+        justify-content: center;
+        padding: 1rem;
         vertical-align: middle;
-    }
-
-/* ----- Images ----- */
-    img
-    {
-        margin:  0px;
-        padding: 0px;
-    }
-
-    img.blank30x30
-    {
-        content   : url('data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==');
-        width     : 30px;
-        height    : 30px;
-        margin    :  0px;
-        padding   :  0px;
-        visibility: hidden; /* FF needs this other it will render an outline box */
-    }
-
-    /* Stupid FF bug img content in css doesn't work with img */
-    div.wp
-    {
-        content: url('pics/wp.png');
-        width  : 16px;
-        height : 16px;
-        alt    : 'Waypoint';
-    }
-
-pre
-{
-    font-family: Consolas, Menlo, Monaco, Lucida Console, monospace;
-    font-size  : 16px;
-    margin     : 0px;
-}
-
-.ruler
-{
-    background-color: #222;
-    border          : 0.5px dotted skyblue;
-    border-radius   : 0px;
-    color           : #F00;
-    margin          : 0px;
-    padding         : 0px 0px;
-    position        : absolute;
-    top             : 0px;
-    height          : 3700px;
-    width           : 0px;
-    z-index         : 1;
-}
-
-/* figure > img:hover {
-  width: 500px;
-  height: 200px;
-} */
-
-#overlay {
-  position: fixed;
-  display: none;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.5);
-  z-index: 2;
-  cursor: pointer;
-  padding:5%;
-}
-
-/* tabbed view css*/
-/* Style the tab */
-.tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-}
-
-/* Style the buttons that are used to open the tab content */
-.tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-}
-
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
-}
-
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: #ccc;
-}
-
-/* Style the tab content */
-.tabcontent {
-  display: none;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-top: none;
-}
-
-        </style>
-        <script>
-"use strict"; // Stupid hack to turn on type safety
-
-// string: rune name
-// int   : min clev for rune
-
-    //  &check;  \u2713  Check Mark
-    //  &#x2610; \u2610  Ballot Box
-    //  &#x2611; \u2611  Ballot Box with Check
-    const FACE     = [ '-', '+' ], // Button collapse faces
-          FAVS     = [ '\u2610', '\u2611' ],
-          COLLAPSE = [ 'Collapse', 'Expand' ];
-
-
-function commaWrap( text, max )
-{
-    var result = text, sol = 0, next = 0, fits, width, lines = 1;
-
-    // comma-wrap
-    if (text.length > max)
-    {
-        result = '';
-        lines  = 0;
-
-        while (next >= 0)
-        {
-            fits = next;
-            next = text.indexOf( ',', next );
-
-            if (next < 0)
-            {
-                width = (text.length - sol);
-
-                // Handle edge case of overflow on last line
-                if (width >= max)
-                {
-                    result += text.substr( sol, fits-sol ) + '\n';
-                    sol     = fits+1;
-                    lines++;
-                }
-
-                result += text.substr( sol );
-                lines++;
-                break;
-            }
-
-            width = (next - sol);
-            next++;
-
-            if (width >= max)
-            {
-                result += text.substr( sol, fits-sol ) + '\n';
-                sol     = fits+1;
-                lines++;
-            }
-        }
-    }
-
-    if (lines < 2) result += '\n';
-    if (lines < 3) result += '\n';
-    if (lines < 4) result += '\n';
-
-    return result;
-}
-
-
-// Optional: width
-// Optional: character to pad left with, such as '0'; will default to space
-function padLeft( text, width, c )
-{
-    if( !width ) return "";
-    if( !c ) c = ' ';
-    return ("" + new Array( width ).join( c ) + text).slice( -width );
-}
-
-/*
-    https://stackoverflow.com/questions/6850164/get-the-device-width-in-javascript
-*/
-function getScreenSize()
-{
-    var resolutions =
-    {
-        '(min-width: 1200px)'                          : 'xl',
-        '(min-width: 992px) and (max-width: 1199.98px)': 'lg',
-        '(min-width: 768px) and (max-width: 991.98px)' : 'md',
-        '(min-width: 576px) and (max-width: 767.98px)' : 'sm',
-                               '(max-width: 575.98px)' : 'xs'
-    };
-
-    for (let size in resolutions)
-        if (window.matchMedia(size).matches){
-            return resolutions[size];
-        }
-
-    return null;
-}
-
-
-function onColor( button )
-{
-    document.getElementById('content').style = '';
-
-    if( !button.disabled )
-    {
-        button.disabled = true;
-        document.getElementById( 'mono' ).disabled = false;
-    }
-}
-
-function onLoad()
-{
-    onResize();
-
-    // iOS touch / hover
-    document.addEventListener("touchstart", function() {},false);
-
-}
-
-function onMono( button )
-{
-    document.getElementById('content').style = 'filter:grayscale(100%);';
-
-    if( !button.disabled )
-    {
-        button.disabled = true;
-        document.getElementById( 'color' ).disabled = false;
-    }
-}
-
-function onResize()
-{
-    var dim = getScreenSize();
-    console.log( 'Dimension: ' + dim );
-    var debug = document.getElementById( 'screen-size' );
-    debug.innerText = dim;
-    console.log(window.innerHeight);
-    console.log(window.innerWidth);
-    document.getElementById("overlay").style.maxwidth = window.innerWidth;
-    document.getElementById("overlay").style.maxheight = window.innerHeigh;
-}
-
-        </script>
-    </head>
-<body onload='onLoad();' onresize='onResize();'><div id='content'>
-<br>
-<span style='font-size:32px;'><i>Cheat Sheet Monster by Thundersphinx</i></span> <br/>
-<i><a href='https://www.reddit.com/user/emeria'>/u/emeria</a></i>
-
-<!--Overlay swap logic-->
-<script>
-    function on(event) {
-      document.getElementById("overlay").style.display = "block";
-      document.getElementById("overlay").getElementsByTagName('img')[0].src = event.src;//event.src; // 
-      console.log(event.dataset.enlargeHeight);
-      if (event.dataset.enlargeHeight != "") { 
-        document.getElementById("overlay").getElementsByTagName('img')[0].style.maxHeight = event.dataset.enlargeHeight; 
-        } else {
-            document.getElementById("overlay").getElementsByTagName('img')[0].style.maxHeight = "80%"
-        }
-      if (event.dataset.enlargeWidth != "") { 
-        document.getElementById("overlay").getElementsByTagName('img')[0].style.maxWidth = event.dataset.enlargeWidth; 
-        } else {
-            document.getElementById("overlay").getElementsByTagName('img')[0].style.maxWidth = "90%"
-        }
-    }
-    
-    function off() {
-      document.getElementById("overlay").style.display = "none";
-      document.getElementById("overlay").getElementsByTagName('img')[0].src = "";
-    }
-</script>
-<br/><br/>
-
-<script>
-    function openCity(evt, cityName) {
-      var i, tabcontent, tablinks;
-      tabcontent = document.getElementsByClassName("tabcontent");
-      for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
+        align-items: center;
       }
-      tablinks = document.getElementsByClassName("tablinks");
-      for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
+
+      .game-links a {
+        margin: 0 1rem;
+        text-decoration: none;
       }
-      document.getElementById(cityName).style.display = "block";
-      evt.currentTarget.className += " active";
-    }
-    </script>
-<!-- <script>
 
-var fs = require('fs');
-var files = fs.readdirSync('/');
-files.array.forEach(element => {
-    
-});
-</script> -->
-<pre>
-Cheatsheets
-* <a href='./poe/'>Path of Exile</a>
-* <a href='./lastepoch/'>Last Epoch</a>
+      .game-links img {
+        width: 300px; /* Adjust the width as needed */
+        height: auto;
+        border: 1px solid #000; /* For demonstration */
+      }
 
-</pre>
+      footer {
+        flex-shrink: 0; /* Prevent the footer from shrinking */
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 1rem 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Cheatsheet Monster</h1>
+      <h4>by Thundersphinx</h4>
+    </header>
 
-<hr/>
+    <div class="content">
+      <div><h2>Choose a game:</h2></div>
+      <div class="game-links">
+        <a href="https://cheatsheet.monster/poe">
+          <img src="./path-of-exile-necropolis.png" alt="Path of Exile" />
+        </a>
+        <a href="https://cheatsheet.monster/lastepoch">
+          <img src="last-epoch-placeholder.png" alt="Last Epoch" />
+        </a>
+      </div>
+    </div>
 
-<span style='font-size:10px;'>CSS Debug: Screen Size:</span> <span id='screen-size'>?</span>, <span class='ios-hidden' >iOS-hidden</span> <span class='ios-visible'>iOS-visible</span>
-<span style='font-size:12px;'>Version 1.00, Last Updated Thu, Feb 3, 2022.</span>
-<span style='font-size:12px;'>Copyright © 2024 Cheatsheet Monster, CheatSheet.Monster</span>
-</div></body>
+    <footer>
+        <span style='font-size:12px;'>Version 1.00, Last Updated Wed, Mar 27, 2024.</span>
+        <span style='font-size:12px;'>Copyright © 2024 Cheatsheet Monster, CheatSheet.Monster</span></footer>
+  </body>
 </html>
