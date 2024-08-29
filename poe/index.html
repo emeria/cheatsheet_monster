@@ -94,7 +94,7 @@
       <a href="#leveling">Leveling</a> | <a href="#vendor-recipe">Vendor Recipes</a> | <a href="#betrayal">Betrayal</a> |
       <a href="#incursion">Incursion</a> | <a href="#heist">Heist</a> | <a href="#tattoo">Tattoos</a> | 
       <a href="#essences">Essences</a> | <a href="#strongbox">Strongbox</a> |
-      <a href="#flask">Flask</a>
+      <a href="#flask">Flask</a> | <a href="kingsmarch">Kingsmarch</a>
 
       <br /><br />
 
@@ -103,22 +103,166 @@
         <summary class="collapsible colored-summary-leveling" id="leveling">
           Leveling
         </summary>
+        By Act : <a href="#act1">[1]</a> | <a href="#act2">[2]</a> | <a href="#act3">[3]</a> | <a
+        href="#act4">[4]</a> | <a href="#act5">[5]</a> | <a href="#act6">[6]</a> | <a
+        href="#act7">[7]</a> | <a href="#act8">[8]</a> | <a href="#act9">[9]</a> | <a href="#act10">[10]</a>            
+        <br /><br />
+        <!-- Alt Leveling: <a href="#chapterLevelingTLDR">[TLDR]</a> | <a href="#chapterLevelingSkip">[Campaign
+          Skip]</a><br /><br /> -->
+        <button class="styled-button" onclick="collapseActDetails()">[-] Collapse Acts</button><button
+          class="styled-button" onclick="expandActDetails()">[+] Expand Acts</button>
         <figure>
-          <img
+            <!--Lvling Legend-->
+          <details open>
+            <summary class="collapsible" id="actLevelinglegend">Legend</summary>
+            <figure>
+                <img alt='Leveling Legend' src='./pics/PoeLvlingCheatsheetLegend.png'
+                    style='max-width:100%;' onclick="on(this)" data-enlarge-height="80%"
+                    data-enlarge-width="90%">
+            </figure>
+            <br />
+          </details>                
+          <br />
+          <!--Act 1-->
+          <details>
+              <summary class="collapsible" id="act1">Act 1 - Lioneye's Watch<span class="resistances_chapter">Resistances: <img alt="fire resistance" src="./pics/ResistanceFire.png" class="resistance_tag"><img alt="physical resistance" src="./pics/ResistancePhysical.png" class="resistance_tag"></span></summary>
+              <figure>
+                  <img alt='Leveling Act 1' src='pics/Waypoint_map_act_1.jpg'
+                      style='max-width:100%;' onclick="on(this)" data-enlarge-height="80%"
+                      data-enlarge-width="90%">
+                  <div id="act1Section"></div>
+              </figure>
+              <br />
+          </details>
+          <br />
+          <!--Act 2-->
+          <details>
+              <summary class="collapsible" id="act2">Act 2 - The Forest Encampment<span class="resistances_chapter">Resistances: <img alt="fire resistance" src="./pics/ResistanceFire.png" class="resistance_tag"><img alt="physical resistance" src="./pics/ResistancePhysical.png" class="resistance_tag"></span></summary>
+              <figure>
+                  <img alt='Leveling Act 2' src='pics/Waypoint_map_act_2.jpg'
+                      style='max-width:100%;' onclick="on(this)" data-enlarge-height="80%"
+                      data-enlarge-width="90%">
+                  <div id="act2Section"></div>
+              </figure>
+              <br />
+          </details>          
+          <br />
+          <!--Act 3-->
+          <details>
+              <summary class="collapsible" id="act3">Act 3 - The Sarn Encampment<span class="resistances_chapter">Resistances: <img alt="fire resistance" src="./pics/ResistanceFire.png" class="resistance_tag"><img alt="physical resistance" src="./pics/ResistancePhysical.png" class="resistance_tag"></span></summary>
+              <figure>
+                  <img alt='Leveling Act 3' src='pics/Waypoint_map_act_3.jpg'
+                      style='max-width:100%;' onclick="on(this)" data-enlarge-height="80%"
+                      data-enlarge-width="90%">
+                  <div id="act3Section"></div>
+              </figure>
+              <br />
+          </details>
+          <br />
+          <!--Act 4-->
+          <details>
+              <summary class="collapsible" id="act4">Act 4 - Highgate<span class="resistances_chapter">Resistances: <img alt="fire resistance" src="./pics/ResistanceFire.png" class="resistance_tag"><img alt="physical resistance" src="./pics/ResistancePhysical.png" class="resistance_tag"></span></summary>
+              <figure>
+                  <img alt='Leveling Act 4' src='pics/Waypoint_map_act_4.jpg'
+                      style='max-width:100%;' onclick="on(this)" data-enlarge-height="80%"
+                      data-enlarge-width="90%">
+                  <div id="act4Section"></div>
+              </figure>
+              <br />
+          </details>
+          <br />
+          <!--Act 5-->
+          <details>
+              <summary class="collapsible" id="act5">Act 5 - Overseer's Tower<span class="resistances_chapter">Resistances: <img alt="fire resistance" src="./pics/ResistanceFire.png" class="resistance_tag"><img alt="physical resistance" src="./pics/ResistancePhysical.png" class="resistance_tag"></span></summary>
+              <figure>
+                  <img alt='Leveling Act 5' src='pics/Waypoint_map_act_5.jpg'
+                      style='max-width:100%;' onclick="on(this)" data-enlarge-height="80%"
+                      data-enlarge-width="90%">
+                  <div id="act5Section"></div>
+              </figure>
+              <br />
+          </details>
+          <br />
+          <!--Act 6-->
+          <details>
+              <summary class="collapsible" id="act6">Act 6 - Lioneye's Watch<span class="resistances_chapter">Resistances: <img alt="fire resistance" src="./pics/ResistanceFire.png" class="resistance_tag"><img alt="physical resistance" src="./pics/ResistancePhysical.png" class="resistance_tag"></span></summary>
+              <figure>
+                  <img alt='Leveling Act 6' src='pics/Waypoint_map_act_6.jpg'
+                      style='max-width:100%;' onclick="on(this)" data-enlarge-height="80%"
+                      data-enlarge-width="90%">
+                  <div id="act6Section"></div>
+              </figure>
+              <br />
+          </details>
+          <br />
+          <!--Act 7-->
+          <details>
+              <summary class="collapsible" id="act7">Act 7 - The Bridge Encampment<span class="resistances_chapter">Resistances: <img alt="fire resistance" src="./pics/ResistanceFire.png" class="resistance_tag"><img alt="physical resistance" src="./pics/ResistancePhysical.png" class="resistance_tag"></span></summary>
+              <figure>
+                  <img alt='Leveling Act 7' src='pics/Waypoint_map_act_7.jpg'
+                      style='max-width:100%;' onclick="on(this)" data-enlarge-height="80%"
+                      data-enlarge-width="90%">
+                  <div id="act7Section"></div>
+              </figure>
+              <br />
+          </details>
+          <br />
+          <!--Act 8-->
+          <details>
+              <summary class="collapsible" id="act8">Act 8 - The Sarn Encampment<span class="resistances_chapter">Resistances: <img alt="fire resistance" src="./pics/ResistanceFire.png" class="resistance_tag"><img alt="physical resistance" src="./pics/ResistancePhysical.png" class="resistance_tag"></span></summary>
+              <figure>
+                  <img alt='Leveling Act 8' src='pics/Waypoint_map_act_8.jpg'
+                      style='max-width:100%;' onclick="on(this)" data-enlarge-height="80%"
+                      data-enlarge-width="90%">
+                  <div id="act8Section"></div>
+              </figure>
+              <br />
+          </details>
+          <br />
+          <!--Act 9-->
+          <details>
+              <summary class="collapsible" id="act9">Act 9 - Highgate<span class="resistances_chapter">Resistances: <img alt="fire resistance" src="./pics/ResistanceFire.png" class="resistance_tag"><img alt="physical resistance" src="./pics/ResistancePhysical.png" class="resistance_tag"></span></summary>
+              <figure>
+                  <img alt='Leveling Act 9' src='pics/Waypoint_map_act_9.jpg'
+                      style='max-width:100%;' onclick="on(this)" data-enlarge-height="80%"
+                      data-enlarge-width="90%">
+                  <div id="act9Section"></div>
+              </figure>
+              <br />
+          </details>
+          <br />
+          <!--Act 10-->
+          <details>
+              <summary class="collapsible" id="act10">Act 10 - Oriath Docks<span class="resistances_chapter">Resistances: <img alt="fire resistance" src="./pics/ResistanceFire.png" class="resistance_tag"><img alt="physical resistance" src="./pics/ResistancePhysical.png" class="resistance_tag"></span></summary>
+              <figure>
+                  <img alt='Leveling Act 10' src='pics/Waypoint_map_act_10.jpg'
+                      style='max-width:100%;' onclick="on(this)" data-enlarge-height="80%"
+                      data-enlarge-width="90%">
+                  <div id="act10Section"></div>
+              </figure>
+              <br />
+          </details>
+
+
+
+
+
+          <br />
+          <!-- <img
             alt="Leveling Map"
             src="pics/leveling_guide_319.png"
             style="max-width: 100%"
             onclick="on(this)"
             data-enlarge-height="80%"
             data-enlarge-width="90%"
-          />
-          <figcaption>
+          /> -->
+          <!-- <figcaption>
             <a
               href="https://www.reddit.com/r/pathofexile/comments/wrjnsx/comment/ikt2g1q/?utm_source=share&utm_medium=web2x&context=3"
               target="_blank"
               >source</a
             >
-          </figcaption>
+          </figcaption> -->
         </figure>
         <br />
       </details>
@@ -311,6 +455,28 @@
         <br />
       </details>
       <br />
+            <!-- Kingsmarch -->
+            <details>
+              <summary class="collapsible colored-summary-kingsmarch" id="kingsmarch">
+                Kingsmarch
+              </summary>
+              <figure>
+                <img
+                  alt="Kingsmarch Cheat Sheet"
+                  src="pics/325_kingsmarch.png"
+                  style="max-width: 100%"
+                  onclick="on(this)"
+                />
+                <figcaption>
+                  <a
+                    href="https://www.reddit.com/r/pathofexile/comments/1eshj59/kingsmarch_harbour_shipment_cheatsheet/"
+                    target="_blank"
+                    >source</a
+                  >
+                </figcaption>
+              </figure>
+              <br />
+            </details>
       <br />
       <hr />
 
