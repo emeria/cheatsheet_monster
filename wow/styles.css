@@ -74,3 +74,490 @@ input, select {
 input[type="checkbox"] {
     width: auto;
 }
+
+
+/* Define default theme colors */
+:root {
+    --primary-color: #0f0; /* Example primary color */
+    --secondary-color: #e52a01; /* Example secondary color */
+    --background-color: #000; /* Example background color */
+    --text-color: #fff; /* Example text color */
+    --link-visited-color: #e52a01;
+    --link-color: #0f0;
+    --button-bg-color: #ccc;
+    --button-hover-bg-color: #ddd;
+    --button-active-bg-color: #ccc;
+    --table-header-bg-color: #5d3b8e;
+    --table-row-odd-bg-color: #412b58;
+    --table-row-even-bg-color: #1a1a1a;
+    --table-row-hover-bg-color: #302244;
+    --accordion-bg-color: #777;
+    --accordion-hover-bg-color: #555;
+    --accordion-content-bg-color: #050505;
+    --debug-border-color: cyan;
+    --ruler-bg-color: #222;
+    --ruler-border-color: skyblue;
+    --overlay-bg-color: rgba(0, 0, 0, 0.5);
+    --tab-bg-color: #f1f1f1;
+    --tab-border-color: #ccc;
+    --tab-content-border-color: #ccc;
+    --top-btn-bg-color: red;
+    --top-btn-hover-bg-color: #555;
+    --collapsible-bg-color: #777;
+    --collapsible-hover-bg-color: #555;
+    --content-bg-color: #050505;
+    --table-bg-color: #1a1a1a;
+    --th-bg-color: #5d3b8e;
+    --tr-odd-bg-color: #412b58;
+    --tr-even-bg-color: #1a1a1a;
+    --tr-hover-bg-color: #302244;
+    --td-border-color: #333;
+    --reward-icon-size: 20px;
+    --styled-button-bg-color: #302244;
+    --styled-button-hover-bg-color: #45a049;
+    --styled-button-font-size: 16px;
+    --dungeon-bg-color: #f1f1f1;
+    --header: #ff8;
+    --focus-image-text-color: #fff;
+  }
+  
+  .focus-image-text {
+    color: var(--focus-image-text-color);
+  }
+  /* ----- Buttons ----- */
+  button {
+    height: var(--button-height, 16px); /* Default value provided */
+    font-size: var(--button-font-size, 12px); /* Default value provided */
+    line-height: 0; /* hack to center text vertical */
+  }
+  
+  .collapsed {
+    height: 0px;
+    max-height: 0px;
+    display: none;
+  }
+  
+  .collapse {
+    text-align: right;
+    /*
+      display: inline-block;
+      */
+    float: right;
+  }
+  
+  .in {
+    display: inline-block;
+    vertical-align: var(--in-vertical-align, 8px); /* Default value provided */
+  }
+  
+  .out {
+    height: var(--out-height, 30px); /* Default value provided */
+    line-height: var(--out-line-height, 30px); /* Default value provided */
+  }
+  
+  /* ----- General ----- */
+  
+  a:visited {
+    color: var(--link-visited-color);
+    /* text-decoration: none; */
+  }
+  
+  a:link {
+    color: var(--link-color);
+    /* text-decoration: none; */
+    font-weight: bold;
+  }
+  
+  /* Runeword description: type (Shields, etc) */
+  
+  
+  body {
+    /* display:flex; flex-direction:column; justify-content:center; */
+    margin: auto;
+    min-height: 100vh;
+    text-align: center;
+    -webkit-text-size-adjust: none; /* stop iOS from resizing th even though font size is specified */
+    color: var(--text-color);
+    background-color: var(--background-color);
+    font-family: normal x-small verdana, arial, helvetica, sans-serif;
+    font-size: var(--body-font-size, 16px); /* Default value provided */
+    width: var(--body-width, 1300px); /* Default value provided */
+    max-width: var(--body-max-width, 1300px); /* Default value provided */
+    overflow-y: scroll;
+  }
+  
+  div.c {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  pre {
+    font-family: Consolas, Menlo, Monaco, Lucida Console, monospace;
+    font-size: var(
+      --pre-font-size,
+      16px
+    ); /* Default value provided if variable is not defined */
+    margin: 0px;
+  }
+  
+  .ruler {
+    background-color: var(--ruler-bg-color, #222); /* Default value provided */
+    border: 0.5px dotted var(--ruler-border-color, skyblue); /* Default value provided */
+    border-radius: 0px;
+    color: var(--ruler-color, #f00); /* Default value provided */
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    top: 0px;
+    height: 3700px;
+    width: 0px;
+    z-index: 1;
+  }
+  
+  #overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(
+      --overlay-bg-color,
+      rgba(0, 0, 0, 0.5)
+    ); /* Default value provided */
+    z-index: 2;
+    cursor: pointer;
+    /* padding: 5%; */
+  }
+  
+  /* Tabbed view CSS */
+  .tab {
+    overflow: hidden;
+    border: 1px solid var(--tab-border-color, #ccc); /* Default value provided */
+    background-color: var(--tab-bg-color, #f1f1f1); /* Default value provided */
+  }
+  
+  .tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+  }
+  
+  .tab button:hover {
+    background-color: var(
+      --button-hover-bg-color,
+      #ddd
+    ); /* Default value provided */
+  }
+  
+  .tab button.active {
+    background-color: var(
+      --button-active-bg-color,
+      #ccc
+    ); /* Default value provided */
+  }
+  
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid var(--tab-content-border-color, #ccc); /* Default value provided */
+    border-top: none;
+  }
+  
+  #top_btn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: var(--top-btn-bg-color, red); /* Default value provided */
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
+  }
+  
+  #top_btn:hover {
+    background-color: var(
+      --top-btn-hover-bg-color,
+      #555
+    ); /* Default value provided */
+  }
+  
+  /* Accordion sections */
+  .collapsible {
+    background-color: var(--collapsible-bg-color);
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+  }
+  
+  .active,
+  .collapsible:hover {
+    background-color: var(--collapsible-hover-bg-color);
+  }
+  
+  .content {
+    position: relative;
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: var(--accordion-content-bg-color);
+  }
+  
+  /* Styling for tables */
+  
+  /* General Table Styling */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    color: var(--text-color); /* Using variable for text color */
+    background-color: var(
+      --table-bg-color
+    ); /* Using variable for background color */
+    text-align: left;
+  }
+  
+  /* Table Header Styling */
+  th {
+    background-color: var(
+      --th-bg-color
+    ); /* Using variable for header background color */
+    text-align: left;
+    padding: 8px;
+  }
+  
+  /* Table Row Styling */
+  tr:nth-child(even) {
+    background-color: var(
+      --tr-even-bg-color
+    ); /* Using variable for even row background color */
+  }
+  
+  tr:nth-child(odd) {
+    background-color: var(
+      --tr-odd-bg-color
+    ); /* Using variable for odd row background color */
+  }
+  
+  tr:hover {
+    background-color: var(
+      --tr-hover-bg-color
+    ); /* Using variable for row hover background color */
+  }
+  
+  /* Table Cell Styling */
+  td {
+    padding: 4px;
+    border-bottom: 1px solid var(--td-border-color); /* Using variable for cell border color */
+  }
+  
+  /* Responsive Table */
+  @media screen and (max-width: 600px) {
+    table {
+      width: 100%;
+    }
+    thead {
+      display: none; /* Hide headers on small screens */
+    }
+    tr {
+      margin-bottom: 10px;
+      display: block;
+      border-bottom: none;
+    }
+    td {
+      text-align: right;
+      padding-left: 50%;
+      text-align: right;
+      position: relative;
+    }
+    td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 0;
+      width: 50%;
+      padding-left: 15px;
+      font-weight: bold;
+      text-align: left;
+    }
+  }
+  
+  .resistances_chapter {
+    display: flex;
+    align-items: center;
+  }
+  .resistance_tag {
+    height: var(--reward-icon-size); /* Using variable for size */
+    width: var(--reward-icon-size); /* Using variable for size */
+    vertical-align: middle;
+  }
+  /* Icon Styling */
+  .reward-icon {
+    height: var(--reward-icon-size); /* Using variable for size */
+    width: var(--reward-icon-size); /* Using variable for size */
+    /* margin-right: 5px; */
+    /* vertical-align: middle; */
+    vertical-align: middle;
+    display: inline-block;
+  }
+  
+  .empty-reward {
+    display: block;
+    margin-right: 5px;
+    margin-left: 2px;
+    width: var(
+      --reward-icon-size
+    ); /* Assuming this is the width of your reward icons */
+    height: var(
+      --reward-icon-size
+    ); /* Assuming this is the height of your reward icons */
+  }
+  .reward-container {
+    display: inline-flex;
+    vertical-align: center;
+    margin-right: 5px; /* Adjust spacing between reward icons */
+  }
+  
+  .reward-count {
+    margin-left: 2px; /* Adjust spacing between icon and count */
+  }
+  
+  .styled-button {
+    background-color: var(--styled-button-bg-color);
+    border: none;
+    color: var(--styled-button-text-color); /* Variable for text color */
+    padding: 15px 32px; /* Some padding */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: var(--styled-button-font-size); /* Variable for font size */
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px; /* Rounded corners */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for hover effect */
+  }
+  
+  .styled-button:hover {
+    background-color: var(
+      --styled-button-hover-bg-color
+    ); /* Variable for hover background color */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Add a shadow on hover */
+  }
+  
+  #daily-dungeons {
+    text-align: center;
+  }
+  
+  .dungeons {
+    display: flex;
+    flex-flow: row;
+  }
+  
+  .dungeons > div {
+    background-color: var(--dungeon-bg-color); /* Variable for background color */
+    margin: 5px;
+  }
+  
+  .centered-lists {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* This will make the container take the full viewport height */
+  }
+  ul,
+  ol {
+    text-align: left; /* Left aligns the text in the list */
+    display: inline-block; /* This makes the list center in the flex container */
+  }
+  
+  /* 
+  
+  */
+  .colored-summary-leveling {
+    background-image: linear-gradient(
+      to bottom,
+      rgb(140, 61, 49),
+      rgb(73, 49, 3) 20%,
+      transparent 20%
+    );
+    color: inherit;
+  }
+  
+  .colored-summary-betrayal {
+    background-image: linear-gradient(
+      to bottom,
+      rgb(107,255,197),
+      rgb(16,46,29) 20%,
+      transparent 20%
+    );
+    color: inherit;
+  }
+  
+  .colored-summary-heist {
+    background-image: linear-gradient(
+      to bottom,
+      #a6a6f6,
+      #0c0d18 20%,
+      transparent 20%
+    );
+    color: inherit;
+  }
+  
+  .colored-summary-incursion {
+    background-image: linear-gradient(
+      to bottom,
+      #FACF66,
+      #2D0105 20%,
+      transparent 20%
+    );
+    color: inherit;
+  }
+  
+  .colored-summary-essences {
+    background-image: linear-gradient(
+      to bottom,
+      #37AED7,
+      blue 20%,
+      transparent 20%
+    );
+    color: inherit;
+  }
+  
+  .colored-summary-strongbox {
+    background-image: linear-gradient(
+      to bottom,
+      rgb(212,206,198),
+      #705B48 20%,
+      transparent 20%
+    );
+    color: inherit;
+  }
+  
+  .colored-summary-flask {
+    background-image: linear-gradient(
+      to bottom,
+      #DCBA4F,
+      #333333 20%,
+      transparent 20%
+    );
+    color: inherit;
+  }
+  
