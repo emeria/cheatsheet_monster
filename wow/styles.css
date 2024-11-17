@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1e2328; /* TBC dark background */
+    color: #e2e8f0; /* Light text */
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background-color: #2d343e; /* TBC card background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    color: #fbb034; /* TBC yellow highlight */
+    text-align: center;
+}
+
+h2 {
+    color: #1faeff; /* Light blue for Aldor headers */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th {
+    background-color: #1faeff; /* Aldor blue */
+    color: white;
+    padding: 10px;
+}
+
+table td {
+    padding: 10px;
+    border: 1px solid #555;
+}
+
+img {
+    height: 24px;
+    width: 24px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+button {
+    background-color: #fbb034; /* Highlight yellow */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #ffa502; /* Brighter yellow on hover */
+}
+
+input, select {
+    padding: 8px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #2d343e;
+    color: white;
+    margin-bottom: 15px;
+}
+
+input[type="checkbox"] {
+    width: auto;
+}
