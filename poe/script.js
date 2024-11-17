@@ -92,142 +92,25 @@ function topFunction() {
 function fetchLevelingCsvData() {
     let rawData =
         `Act,Step,Task,Reward
-Act 1,1,Go to the Burning Forest -> Rescue Grael,
-Act 1,2,The Keepers -> NPC Keeper Leena,"Experience,Gold,Passive"
-Act 1,3,Go to The Fortress Gardens,
-Act 1,4,Go to the Fortress Walls,
-Act 1,5,Go to The Storerooms -> Storeroom Saboteurs,Passive
-Act 1,6,Go to the The Keeper Vault -> The Keeper Vault,"Experience,Passive"
-Act 1,7,Go to the Northern Road,
-Act 1,8,Town Portal,
-Act 1,9,Go to Ulatri Highlands,
-Act 1,10,Go to The Osprix Warcamp,
-Act 1,11,Go to The Summit,
-Act 2,0,"Max: Phys, Some: Void Resistance",
-Act 2,1,Go to Last Refuge Outskirts -> The Void Assault,"Experience,Gold,Idol"
-Act 2,2,In Last Refuge Outskirts -> Evacuation,"Experience,Gold,Passive"
-Act 2 ,3,Go to The Council Chambers,
-Act 2 ,4,Go to The Last Archive,
-Act 2 ,5,Go to Erza's Library -> Get Ledger,
-Act 2,6,Go to Pannion's Study,
-Act 2,7,Finding Pannion,"Experience,Gold,Passive"
-Act 2,8,Town Portal,
-Act 2 ,9,"Erza = Gloves (Ele Leech), Artem = Amulet (Crit)","Experience,Gold,Passive,Unique"
-Act 2 ,10,Go to The Precipice,
-Act 2 ,11,Go to The Armoury,
-Act 2 ,12,Go to The Lower District,
-Act 2 ,13,Go to The End of Time,
-Act 2 ,14,The Power of Mastery,"Experience,Passive,Mastery"
-Act 3 ,0,"Max: Phys & Void Resistance",
-Act 3 ,0,Skip all Sidequests,
-Act 3 ,1,Go to Council Chamber,
-Act 3 ,2,Go to The Sheltered Wood,
-Act 3 ,3,Go to The Surface,
-Act 3 ,4,Go to The Forsaken Trail,
-Act 3 ,5,Go to Cultist Camp,
-Act 3 ,6,Go to The Ruins of Welryn,
-Act 3 ,7,Go to Welryn Undercity,
-Act 3 ,8,Town Portal,
-Act 3 ,9,Go to Welryn Docks,
-Act 3 ,10,Go to Cultist Camp,
-Act 3,11, Go to The Ritual Site,
-Act 3 ,12,Go to The Shattered Valley (Skip Rift),
-Act 3 ,13,Go to The Courtyard,
-Act 3 ,14,Go to The Temple of Eterra,
-Act 3 ,15,Go to The Lotus Halls,
-Act 3 ,16,Go to The Sanctum Bastille,
-Act 3,17, Go to The End of Time,
-Act 4 ,1,Go to The Outcast Camp -> Speak to Outcast Queen,
-Act 4 ,2,Go to Welryn Outskirts,
-Act 4 ,3,Go to Imperial Welryn,
-Act 4 ,4,Go to The Soul Wardens' Road,
-Act 4 ,5,Go to The Risen Lake -> The Corrupted Lake (Rift),"Experience,Passive,Idol"
-Act 4 ,6,Go to The Fallen Tower,
-Act 4 ,7,Go to Imperial Thetima,
-Act 4 ,8,Go to The Darkling Pier,
-Act 4 ,9,Go to The Imperial Dreadnought,
-Act 4 ,10,Go to The Dreadnought's Deck,
-Act 4 ,11,Jump off the Deck! -> The Admiral's Dreadnought,"Experience,Gold,Idol"
-Act 5 ,1,Go to The Shining Cove,
-Act 5 ,2,Go to The Majasan Desert,
-Act 5 ,3,Go to The Wraith Dunes -> Hidden Gems Pt. 1 (top left),"Experience,Gold,Passive"
-Act 5 ,4,Go to Maj'Elka -> Hidden Gems Pt. 2 (bottom right),
-Act 5 ,5,Go to The Oracles Abode,"Experience,Gold,Passive"
-Act 5 ,6,Go to the Shining Cove and find the Time Rift,
-Act 5 ,7,Go to the Ruined Coast (Rift) -> The Sapphire Tablet,"Experience,Passive,Idol "
-Act 5 ,8,Go to The Temporal Sanctum WP -> Back to The Oracle's Abode,
-Act 5 ,9,Go to The Maj'Elkan Catacombs,
-Act 5 ,10,Go to Titan's Canyon,
-Act 5 ,11,Go to The Maj'Elka Waystation,
-Act 6 ,0,Skip all Sidequests,
-Act 6 ,1,Go to The Desert Waystation,
-Act 6 ,2,Go to The Rust Lands (Skip Rift),
-Act 6 ,3,Go to The Lower Sewers -> Speak Alric,
-Act 6 ,4,Go to The Barren Aqueduct,
-Act 6 ,5,Go to Necropolis of the Deep,
-Act 6 ,6,Go to Yulia's Haven -> Speak with NPC's,
-Act 6 ,7,Go to The Upper Necropolis,
-Act 6 ,8,Go to The Citadel Sewers,
-Act 6 ,9,Go to The Immortal Summit,
-Act 6 ,10,Go to The Immortal Citadel -> The Immortal Citadel,"Experience,Gold,Passive"
-Act 6 ,11,Go to The Gates of Solarum (Rift),
-Act 7 ,0,"Max: Phys,Void, Some: Cold,Light Resistance",
-Act 7 ,1,Go to The Burning Forest,
-Act 7 ,2,Go to The Scorched Grove,
-Act 7 ,3,Go to The Solemn Path,
-Act 7 ,4,Go to Heoborea,
-Act 7 ,5,Go to The Heoborean Forest,
-Act 7 ,6,Go to The Nomad Camp,
-Act 7 ,7,Go to The Wengeri Frotress -> Liberating The Nomads,"Experience,Gold,Idol"
-Act 7 ,8,Town Portal,
-Act 7 ,9,Go to The Tundra,
-Act 7 ,10,Go to The Temple of Heorot,
-Act 7 ,11,Go to Farwood,
-Act 7 ,12,Go to The Frozen Roots,
-Act 7 ,13,Go to The Tomb of Morditas -> The Lance of Heorot,"Experience,Gold,Idol"
-Act 7 ,14,Town Portal,
-Act 7 ,15,Go to The Solemn Path,
-Act 7 ,16,Go to The Scorched Grove -> Speak to Heorot,
-Act 7 ,17,Use Heoborea Waypoint,
-Act 8 ,0,"Max: Phys,Void,Cold,Light Resistance",
-Act 8 ,1,Go to The Northern Stream,
-Act 8 ,2,Go to Deep Harbor,
-Act 8 ,3,Go to The Burning Pier,
-Act 8 ,4,Go to Deep Harbor,
-Act 8 ,5,Go to Lake Liath,
-Act 8 ,6,Go to Liath's Road,
-Act 8 ,7,Go to Thetima,
-Act 8 ,8,Go to Liath's Tower -> Liath's Tower,"Experience,Passive,Idol"
-Act 8 ,9,Go back to Thetima,
-Act 8 ,10,Go to Lagon's Isle,
-Act 8 ,11,Go to Moonlit Shrine,
-Act 8 ,12,Go to The Strand of Storms (fragment),
-Act 8 ,13,Go back to Moonlit Shrine,
-Act 8 ,14,Go to The Coral Pools (fragment),
-Act 8 ,15,Go back to Moonlit Shrine,
-Act 8 ,16,Go to The Temple of Lagon,
-Act 8 ,17,Go to The Temple Depths,
-Act 8 ,18,Go to Sanctum of the Architect,
-Act 8 ,19,Go to Seafloor Colosseum -> Lagon,"Experience,Passive"
-Act 9 ,0,"Max: Phys,Void,Cold,Light,Poison Resistance",
-Act 9 ,1,Go to Soreth'ka,
-Act 9 ,2,Go to The Crossroads,
-Act 9 ,3,Go to The Dry River,
-Act 9 ,4,Go to The Radiant Dunes -> Bottom Right Area-Then Top Right,
-Act 9 ,5,Go to Maj'Elka Upper District,
-Act 9 ,6,Go to Maj'Elka Lower District,
-Act 9 ,7,Go to Maj'Elka Slums -> Desert Treasure (First Top Right Basement),"Experience,Passive,Idol"
-Act 9 ,8,Town Portal,
-Act 9 ,9,Go to The Oasis,
-Act 9 ,10,Go to The Crystal Mines,
-Act 9 ,11,Go to The Aerie,
-Act 9 ,12,Go to Majasan Heights (Flying),
-Act 9 ,13,Go to The Temple Rooftops,
-Act 9 ,14,Go to The Upper Temple,
-Act 9 ,15,Go to The Lower Temple,
-Act 9 ,16,Go to the Chamber of Vessel -> Apophis And Majasa,"Experience,Passive,Attributes"
-Act 9,17,"Max: Phys,Void,Cold,Light,Necrotic Resistance",
-Act 9,18,"HP: ~1k-1.2k starting Monoliths, aim for close to 2k ASAP",
+Act 1,1,Enemy at the Gate (Twilight Strand) -> Kill Hillock,"Gems"
+Act 1,2,The Coast -> Waypoint,
+Act 1,3,Breaking Some Eggs (Mud Flats) -> Find the Glyphs,"Gems"
+Act 1,4,The Submerged Passage -> Waypoint,
+Act 1,5,The Ledge -> Waypoint,
+Act 1,6,Take Waypoint to the Submerged Passage -> Find the Flooded Depths,
+Act 1,7,The Dweller of the Deep (Flooded Depths)-> Kill The Dweller of the Deep and go to town,"Book of Skill"
+Act 1,8,Take Waypoint to The Ledge -> Find the Climb,
+Act 1,9,The Climb -> Waypoint,
+Act 1,10,The Lower Prison -> Waypoint,
+Act 1,11,The Lower Prison -> Do the Trial,
+Act 1,12,The Upper Prison -> Find the Warden's Quarters,
+Act 1,13,The Caged Brute (The Wardens Quarters) -> Kill Brutus and log out,"Gems"
+Act 1,14,Take The Prisoner's Gate Waypoint,
+Act 1,15,The Ship Graveyard -> Waypoint,
+Act 1,16,The Marooned Mariner (The Ship Graveyard Cave) -> Get the AllFlame and log out,"Book of Skill"
+ACt 1,17,Find the Cavern of Wrath -> Waypoint,
+Act 1,18,The Siren's Cadence (The Cavern of Anger) -> Kill Merveil -> Act 2,"Gems"
+
 `;
 
     const data = rawData.trim().split('\n').slice(1).map(row => {
