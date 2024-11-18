@@ -482,27 +482,27 @@ function calculateReputation() {
         currentReputation += rankReputationNeeded;
     }
 
-    // Generate results
-    const resultsDiv = document.getElementById("results");
-    resultsDiv.innerHTML = `
-        <p>Current Reputation: ${startingReputation} / 42000 (Exalted)</p>
-        <p>Reputation Needed: ${42000 - startingReputation}</p>
-        <h3>Total Tokens Required:</h3>
-        <p><em>Mark of Kil'jaeden / Firewing Signet should be used first and cannot be used after Honored.</em></p>
-        <p><em>You can use Mark of Sargeras / Sunfury Signet OR Fel Armament / Arcane Tome to reach Exalted.</em></p>
-        <hr/>
-        ${Object.entries(totalTokensRequired)
-            .map(([key, value]) => {
-                if ((key === "aldorScryerT1Token" && dontUseKiljaeden) || (key === "aldorScryerT1Token" && startingReputation >= 9000)) {
-                    return ""; // Hide Kil'jaeden/Firewing Signet if not usable
-                }
-                return `<p>${formatTokenName(key)}: ${value}</p>`;
-            })
-            .join("")}
-        <hr/>
-        ${tokensRequiredByRank
-            .map(
-                ({ rank, tokens }) => `
+ // Generate results
+const resultsDiv = document.getElementById("results");
+resultsDiv.innerHTML = `
+    <p>Current Reputation: ${startingReputation} / 42000 (Exalted)</p>
+    <p>Reputation Needed: ${42000 - startingReputation}</p>
+    <h3>Total Tokens Required:</h3>
+    <p><em>Mark of Kil'jaeden / Firewing Signet should be used first and cannot be used after Honored.</em></p>
+    <p><em>You can use Mark of Sargeras / Sunfury Signet OR Fel Armament / Arcane Tome to reach Exalted.</em></p>
+    <hr/>
+    ${Object.entries(totalTokensRequired)
+        .map(([key, value]) => {
+            if ((key === "aldorScryerT1Token" && dontUseKiljaeden) || (key === "aldorScryerT1Token" && startingReputation >= 9000)) {
+                return ""; // Hide Kil'jaeden/Firewing Signet if not usable
+            }
+            return `<p>${formatTokenName(key)}: ${value}</p>`;
+        })
+        .join("")}
+    <hr/>
+    ${tokensRequiredByRank
+        .map(
+            ({ rank, tokens }) => `
                 <details>
                     <summary>Tokens Required for ${rank.charAt(0).toUpperCase() + rank.slice(1)}</summary>
                     ${Object.entries(tokens)
@@ -510,14 +510,15 @@ function calculateReputation() {
                             if ((key === "aldorScryerT1Token" && dontUseKiljaeden) || (key === "aldorScryerT1Token" && (rank === "revered" || rank === "exalted"))) {
                                 return ""; // Hide Kil'jaeden/Firewing for Revered and Exalted or when checkbox is checked
                             }
-                            return `<p>${key}: ${value}</p>`;
+                            return `<p>${formatTokenName(key)}: ${value}</p>`;
                         })
                         .join("")}
                 </details>
             `
-            )
-            .join("")}
-    `;
+        )
+        .join("")}
+`;
+
 }
 
 // Helper function to format token names
