@@ -1,11 +1,11 @@
 // Token images centralized for easy updates
 const tokenIcons = {
-    "kiljaeden": "./kiljaeden-icon.png",
-    "sargeras": "./sargeras-icon.png",
-    "felArmament": "./fel-armament-icon.png",
-    "arcaneTome": "./arcane-tome-icon.png",
-    "firewing": "./firewing-icon.png",
-    "sunfury": "./sunfury-icon.png",
+    "kiljaeden": "./pics/kiljaeden-icon.png",
+    "sargeras": "./pics/sargeras-icon.png",
+    "felArmament": "./pics/fel-armament-icon.png",
+    "arcaneTome": "./pics/arcane-tome-icon.png",
+    "firewing": "./pics/firewing-icon.png",
+    "sunfury": "./pics/sunfury-icon.png",
 };
 
 // Dynamically set token images
