@@ -388,6 +388,7 @@ const tokenGroups = {
     aldorScryerT2Token: { points: 25, maxTier: "exalted" },
     aldorScryerT3Token: { points: 350, maxTier: "exalted" },
 };
+
 function calculateReputation() {
     const currentLevel = document.getElementById("currentReputationLevel").value;
     const pointsInCurrentLevel = parseInt(document.getElementById("pointsInCurrentLevel").value) || 0;
@@ -417,9 +418,6 @@ function calculateReputation() {
         aldorScryerT3Token: 0,
     };
 
-    let totalSargerasMarks = 0;
-    let totalFelTomes = 0;
-
     // Loop through reputation levels
     for (let i = reputationLevels.findIndex((level) => level.name === currentLevel);
         i < reputationLevels.length - 1 && remainingReputation > 0;
@@ -435,18 +433,20 @@ function calculateReputation() {
         let rankReputationRemaining = rankReputationNeeded;
         const tokensForTier = {};
 
-        // Calculate token requirements
         let sargerasMarks = 0;
         let felTomes = 0;
 
+        // Calculate token requirements
         for (const [tokenKey, data] of Object.entries(tokenGroups)) {
             if (data.maxTier === "honored" && nextTier.name !== "friendly" && nextTier.name !== "honored") {
+                if (tokenKey === "aldorScryerT1Token") continue; // Skip Kil'jaeden/Firewing Signet for Revered and Exalted
                 tokensForTier[tokenKey] = "Not usable";
                 continue;
             }
 
             const tokensNeeded = Math.ceil(rankReputationRemaining / data.points);
 
+            // Handle interchangeable tokens
             if (tokenKey === "aldorScryerT2Token") {
                 sargerasMarks = tokensNeeded;
             } else if (tokenKey === "aldorScryerT3Token") {
@@ -458,12 +458,17 @@ function calculateReputation() {
             }
         }
 
-        // For interchangeable tokens, calculate totals
+        // For interchangeable tokens, use the minimum count
         const minTokens = Math.min(sargerasMarks, felTomes);
-        totalSargerasMarks += sargerasMarks;
-        totalFelTomes += felTomes;
 
-        tokensForTier["aldorScryerT2Token / aldorScryerT3Token"] = `${sargerasMarks} Marks OR ${felTomes} Tomes`;
+        if (sargerasMarks > 0 || felTomes > 0) {
+            totalTokensRequired["aldorScryerT2Token"] += sargerasMarks;
+            totalTokensRequired["aldorScryerT3Token"] += felTomes;
+
+            tokensForTier["Mark of Sargeras / Sunfury Signet OR Fel Armament / Arcane Tome"] = `${sargerasMarks} Marks/Signet OR ${felTomes} Armament/Tome`;
+        } else {
+            tokensForTier["Mark of Sargeras / Sunfury Signet OR Fel Armament / Arcane Tome"] = "Not needed";
+        }
 
         tokensRequiredByRank.push({ rank: nextTier.name, tokens: tokensForTier });
         remainingReputation -= rankReputationNeeded;
@@ -479,9 +484,12 @@ function calculateReputation() {
         <p><em>Mark of Kil'jaeden / Firewing Signet should be used first and cannot be used after Honored.</em></p>
         <p><em>You can use Mark of Sargeras / Sunfury Signet OR Fel Armament / Arcane Tome to reach Exalted.</em></p>
         <hr/>
-        <p>Mark of Kil'jaeden / Firewing Signet: ${totalTokensRequired.aldorScryerT1Token}</p>
-        <p>Mark of Sargeras / Sunfury Signet: ${totalSargerasMarks}</p>
-        <p>Fel Armament / Arcane Tome: ${totalFelTomes}</p>
+        ${Object.entries(totalTokensRequired)
+            .map(([key, value]) => {
+                if (key === "aldorScryerT1Token" && startingReputation >= 9000) return ""; // Hide Kil'jaeden/Firewing for Revered and Exalted
+                return `<p>${formatTokenName(key)}: ${value}</p>`;
+            })
+            .join("")}
         <hr/>
         ${tokensRequiredByRank
             .map(
@@ -489,7 +497,10 @@ function calculateReputation() {
                 <details>
                     <summary>Tokens Required for ${rank.charAt(0).toUpperCase() + rank.slice(1)}</summary>
                     ${Object.entries(tokens)
-                        .map(([key, value]) => `<p>${formatTokenName(key)}: ${value}</p>`)
+                        .map(([key, value]) => {
+                            if (key === "aldorScryerT1Token" && (rank === "revered" || rank === "exalted")) return ""; // Hide Kil'jaeden/Firewing for Revered and Exalted
+                            return `<p>${key}: ${value}</p>`;
+                        })
                         .join("")}
                 </details>
             `
@@ -497,19 +508,6 @@ function calculateReputation() {
             .join("")}
     `;
 }
-
-// Helper function to format token names
-function formatTokenName(tokenKey) {
-    const tokenNames = {
-        aldorScryerT1Token: "Mark of Kil'jaeden / Firewing Signet",
-        aldorScryerT2Token: "Mark of Sargeras / Sunfury Signet",
-        aldorScryerT3Token: "Fel Armament / Arcane Tome",
-        "aldorScryerT2Token / aldorScryerT3Token": "Mark of Sargeras / Sunfury Signet OR Fel Armament / Arcane Tome",
-    };
-    return tokenNames[tokenKey] || tokenKey;
-}
-
-
 
 // Helper function to format token names
 function formatTokenName(tokenKey) {
