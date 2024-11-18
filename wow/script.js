@@ -350,22 +350,22 @@ const tokenIcons = {
 };
 
 // Dynamically set token images
-document.querySelectorAll("kiljaedenIcon").forEach((element) => {
+document.querySelectorAll(".kiljaedenIcon").forEach((element) => {
     element.src = tokenIcons.kiljaeden;
 });
-document.querySelectorAll("sargerasIcon").forEach((element) => {
+document.querySelectorAll(".sargerasIcon").forEach((element) => {
     element.src = tokenIcons.sargeras;
 });
-document.querySelectorAll("felArmamentIcon").forEach((element) => {
+document.querySelectorAll(".felArmamentIcon").forEach((element) => {
     element.src = tokenIcons.felArmament;
 });
-document.querySelectorAll("arcaneTomeIcon").forEach((element) => {
+document.querySelectorAll(".arcaneTomeIcon").forEach((element) => {
     element.src = tokenIcons.arcaneTome;
 });
-document.querySelectorAll("sunfuryIcon").forEach((element) => {
+document.querySelectorAll(".sunfuryIcon").forEach((element) => {
     element.src = tokenIcons.sunfury;
 });
-document.querySelectorAll("firewingIcon").forEach((element) => {
+document.querySelectorAll(".firewingIcon").forEach((element) => {
     element.src = tokenIcons.firewing;
 });
 
@@ -383,82 +383,140 @@ const baseTokenGroups = {
     "Fel Armament / Arcane Tome": { points: 350, maxTier: "exalted" }
 };
 
+const tokenGroups = {
+    aldorScryerT1Token: { points: 25, maxTier: "honored" },
+    aldorScryerT2Token: { points: 25, maxTier: "exalted" },
+    aldorScryerT3Token: { points: 350, maxTier: "exalted" },
+};
 function calculateReputation() {
-    const currentLevel = document.getElementById('currentReputationLevel').value;
-    const pointsInCurrentLevel = parseInt(document.getElementById('pointsInCurrentLevel').value) || 0;
-    const doubleMultiplier = document.getElementById('doubleMultiplier').checked;
+    const currentLevel = document.getElementById("currentReputationLevel").value;
+    const pointsInCurrentLevel = parseInt(document.getElementById("pointsInCurrentLevel").value) || 0;
+    const doubleMultiplier = document.getElementById("doubleMultiplier").checked;
 
-    // Adjust token values based on multiplier
-    const tokenGroups = {};
-    for (const [key, value] of Object.entries(baseTokenGroups)) {
-        tokenGroups[key] = {
-            points: value.points * (doubleMultiplier ? 2 : 1),
-            maxTier: value.maxTier
-        };
+    // Apply multiplier to token values
+    for (const token in tokenGroups) {
+        tokenGroups[token].points *= doubleMultiplier ? 2 : 1;
     }
 
-    let currentReputation = reputationLevels.find(level => level.name === currentLevel).points + pointsInCurrentLevel;
-    let requiredReputation = 42000 - currentReputation;
+    let currentReputation =
+        reputationLevels.find((level) => level.name === currentLevel).points +
+        pointsInCurrentLevel;
+    let startingReputation = currentReputation;
 
-    if (requiredReputation <= 0) {
-        document.getElementById('results').innerHTML = `<p>You are already at Exalted!</p>`;
+    if (currentReputation >= 42000) {
+        document.getElementById("results").innerHTML = `<p>You are already at Exalted!</p>`;
         return;
     }
 
+    let remainingReputation = 42000 - currentReputation;
+
     const tokensRequiredByRank = [];
-    let totalTokens = {}; // Object to accumulate total tokens required
-    let remainingReputation = requiredReputation;
+    const totalTokensRequired = {
+        aldorScryerT1Token: 0,
+        aldorScryerT2Token: 0,
+        aldorScryerT3Token: 0,
+    };
 
-    // Initialize totalTokens object with zero counts
-    for (const token in tokenGroups) {
-        totalTokens[token] = 0;
-    }
+    let totalSargerasMarks = 0;
+    let totalFelTomes = 0;
 
-    for (let i = 0; i < reputationLevels.length - 1 && remainingReputation > 0; i++) {
+    // Loop through reputation levels
+    for (let i = reputationLevels.findIndex((level) => level.name === currentLevel);
+        i < reputationLevels.length - 1 && remainingReputation > 0;
+        i++
+    ) {
         const currentTier = reputationLevels[i];
         const nextTier = reputationLevels[i + 1];
+        const rankReputationNeeded = Math.min(
+            remainingReputation,
+            nextTier.points - currentReputation
+        );
 
-        if (currentReputation >= nextTier.points) continue;
-
-        const rankReputationNeeded = Math.min(remainingReputation, nextTier.points - currentReputation);
-
+        let rankReputationRemaining = rankReputationNeeded;
         const tokensForTier = {};
-        for (const [group, data] of Object.entries(tokenGroups)) {
-            if (data.maxTier === "honored" && nextTier.name !== "friendly" && nextTier.name !== "honored") {
-                tokensForTier[group] = "Not usable";
-            } else {
-                const tokensNeeded = Math.ceil(rankReputationNeeded / data.points);
-                tokensForTier[group] = tokensNeeded;
 
-                // Add to the total count if usable
-                if (tokensNeeded !== "Not usable") {
-                    totalTokens[group] += tokensNeeded;
-                }
+        // Calculate token requirements
+        let sargerasMarks = 0;
+        let felTomes = 0;
+
+        for (const [tokenKey, data] of Object.entries(tokenGroups)) {
+            if (data.maxTier === "honored" && nextTier.name !== "friendly" && nextTier.name !== "honored") {
+                tokensForTier[tokenKey] = "Not usable";
+                continue;
+            }
+
+            const tokensNeeded = Math.ceil(rankReputationRemaining / data.points);
+
+            if (tokenKey === "aldorScryerT2Token") {
+                sargerasMarks = tokensNeeded;
+            } else if (tokenKey === "aldorScryerT3Token") {
+                felTomes = tokensNeeded;
+            } else {
+                rankReputationRemaining -= tokensNeeded * data.points;
+                totalTokensRequired[tokenKey] += tokensNeeded;
+                tokensForTier[tokenKey] = tokensNeeded;
             }
         }
 
+        // For interchangeable tokens, calculate totals
+        const minTokens = Math.min(sargerasMarks, felTomes);
+        totalSargerasMarks += sargerasMarks;
+        totalFelTomes += felTomes;
+
+        tokensForTier["aldorScryerT2Token / aldorScryerT3Token"] = `${sargerasMarks} Marks OR ${felTomes} Tomes`;
+
         tokensRequiredByRank.push({ rank: nextTier.name, tokens: tokensForTier });
         remainingReputation -= rankReputationNeeded;
-        currentReputation = nextTier.points;
+        currentReputation += rankReputationNeeded;
     }
 
-    const resultsDiv = document.getElementById('results');
+    // Generate results
+    const resultsDiv = document.getElementById("results");
     resultsDiv.innerHTML = `
-        <p>Current Reputation: ${currentReputation - remainingReputation} / 42000 (Exalted)</p>
-        <p>Reputation Needed: ${requiredReputation}</p>
+        <p>Current Reputation: ${startingReputation} / 42000 (Exalted)</p>
+        <p>Reputation Needed: ${42000 - startingReputation}</p>
+        <h3>Total Tokens Required:</h3>
+        <p><em>Mark of Kil'jaeden / Firewing Signet should be used first and cannot be used after Honored.</em></p>
+        <p><em>You can use Mark of Sargeras / Sunfury Signet OR Fel Armament / Arcane Tome to reach Exalted.</em></p>
+        <hr/>
+        <p>Mark of Kil'jaeden / Firewing Signet: ${totalTokensRequired.aldorScryerT1Token}</p>
+        <p>Mark of Sargeras / Sunfury Signet: ${totalSargerasMarks}</p>
+        <p>Fel Armament / Arcane Tome: ${totalFelTomes}</p>
+        <hr/>
         ${tokensRequiredByRank
             .map(
                 ({ rank, tokens }) => `
-                <h3>Tokens Required for ${rank.charAt(0).toUpperCase() + rank.slice(1)}:</h3>
-                ${Object.entries(tokens)
-                    .map(([key, value]) => `<p>${key}: ${value}</p>`)
-                    .join("")}
+                <details>
+                    <summary>Tokens Required for ${rank.charAt(0).toUpperCase() + rank.slice(1)}</summary>
+                    ${Object.entries(tokens)
+                        .map(([key, value]) => `<p>${formatTokenName(key)}: ${value}</p>`)
+                        .join("")}
+                </details>
             `
             )
             .join("")}
-        <h3>Total Tokens Required:</h3>
-        ${Object.entries(totalTokens)
-            .map(([key, value]) => `<p>${key}: ${value}</p>`)
-            .join("")}
     `;
+}
+
+// Helper function to format token names
+function formatTokenName(tokenKey) {
+    const tokenNames = {
+        aldorScryerT1Token: "Mark of Kil'jaeden / Firewing Signet",
+        aldorScryerT2Token: "Mark of Sargeras / Sunfury Signet",
+        aldorScryerT3Token: "Fel Armament / Arcane Tome",
+        "aldorScryerT2Token / aldorScryerT3Token": "Mark of Sargeras / Sunfury Signet OR Fel Armament / Arcane Tome",
+    };
+    return tokenNames[tokenKey] || tokenKey;
+}
+
+
+
+// Helper function to format token names
+function formatTokenName(tokenKey) {
+    const tokenNames = {
+        aldorScryerT1Token: "Mark of Kil'jaeden / Firewing Signet",
+        aldorScryerT2Token: "Mark of Sargeras / Sunfury Signet",
+        aldorScryerT3Token: "Fel Armament / Arcane Tome",
+    };
+    return tokenNames[tokenKey] || tokenKey;
 }
