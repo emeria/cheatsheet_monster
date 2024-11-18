@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-S40E20R8VK"
@@ -21,9 +20,38 @@
     <title>WoW Classic Cheat Sheet by Thundersphinx</title>
 
     <link rel="stylesheet" type="text/css" href="styles.css" />
+    <style>
+      .tab {
+        overflow: hidden;
+        border-bottom: 1px solid #ccc;
+        margin-top: 10px;
+      }
+      .tab button {
+        background-color: inherit;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: background-color 0.3s;
+      }
+      .tab button:hover {
+        background-color: #ddd;
+      }
+      .tab button.active {
+        background-color: #ccc;
+      }
+      .tab-content {
+        display: none;
+        padding: 20px;
+        border-top: none;
+      }
+      .tab-content.active {
+        display: block;
+      }
+    </style>
   </head>
 
-  <body onload="onLoad();" onresize="onResize();">
+  <body onload="onLoad(); onResize();">
     <div id="content">
       <div class="header">
         <h1>Cheatsheet.Monster</h1>
@@ -38,60 +66,26 @@
       <i><a href="https://www.patreon.com/emeria">Patreon</a></i> |
       <i><a href="https://www.buymeacoffee.com/emeria">Buy Me a Coffee</a></i>
       <br /><br />
-      <!-- <button
-        id="theme-switch-light"
-        class="styled-button"
-        onclick="switchTheme('lightTheme')"
-      >
-        Light Theme
-      </button>
-      |
-      <button
-        id="theme-switch-normal"
-        class="styled-button"
-        onclick="switchTheme('normalTheme')"
-      >
-        Normal Theme
-      </button>
-      |
-      <button
-        id="theme-switch-dark"
-        class="styled-button"
-        onclick="switchTheme('darkTheme')"
-      >
-        Dark Theme
-      </button> -->
 
-      <!--Back to top button-->
       <button onclick="topFunction()" id="top_btn" title="Go to top">
         Back to Top
       </button>
 
       <br /><br />
-      <a href="../">Back Home</a> | <a href="#cheatsheets">Cheatsheets</a>|
+      <a href="../">Back Home</a> | <a href="#cheatsheets">Cheatsheets</a> |
 
       <br /><br />
       <hr />
-      <!--Cheat sheet section-->
       <h2 id="cheatsheets"><b>Cheatsheets</b></h2>
       <span id="focus-image-text" style="font-size: 14px">
         Click an Image to Focus (enlarge for some)</span
       >
-      <div id="overlay" onclick="off()">
-        <img
-          src=""
-          style="max-height: 80%; max-width: 90%"
-          onclick="on(this)"
-          alt=""
-          class="center"
-        />
-      </div>
       <br />
-      <a href="#tbc-scryer-aldor">Scryer/Aldor Calculator</a> | <a href="#tbd">TBD</a> |
+      <a href="#tbc-scryer-aldor">Scryer/Aldor</a> | <a href="#cenarion">Cenarion Expedition</a> |
 
-      <br /><br />
+      <br/>  <br/>
       <details open>
-        <summary class="collapsible">Scryer/Aldor Calculator</summary>
+        <summary class="collapsible" id="tbc-scryer-aldor">Scryer/Aldor Calculator</summary>
 
         <div class="container">
           <h1>WoW TBC Reputation Calculator</h1>
@@ -242,23 +236,112 @@
           <div id="results"></div>
         </div>
       </details>
+<br/><br/>
+      <details open>
+        <summary class="collapsible" id="cenarion">Cenarion Expedition Calculator</summary>
+        <div class="container">
+          <h1>Cenarion Expedition Reputation Calculator</h1>
 
-      <br />
-      <b>Feedback:</b>
-      <pre>
-        Please leave feedback in my reddit <a href="https://www.reddit.com/r/pathofexile/comments/sjx6wi/poe_cheat_sheet_collection_of_links_and_cheat/" target="_blank">thread</a>.
-      </pre>
-      <span style="font-size: 10px">CSS Debug: Screen Size:</span>
-      <span id="screen-size">?</span>
-      <span class="ios-hidden">iOS-hidden</span>
-      <span class="ios-visible">iOS-visible</span>
-      <span style="font-size: 12px"
-        >Version 1.00, Last Updated Sun, Feb, 18, 2024.</span
-      >
-      <span style="font-size: 12px"
-        >Copyright © 2024 Cheatsheet Monster, CheatSheet.Monster</span
-      >
+          <h2>Reputation Tiers</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Reputation Level</th>
+                <th>Points Required to Reach</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Neutral</td><td>0</td></tr>
+              <tr><td>Friendly</td><td>3,000</td></tr>
+              <tr><td>Honored</td><td>9,000</td></tr>
+              <tr><td>Revered</td><td>21,000</td></tr>
+              <tr><td>Exalted</td><td>42,000</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Token Contribution</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Token</th>
+                <th>Reputation Points</th>
+                <th>Usable Up To</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Unidentified Plant Parts</td>
+                <td>250 (10 Tokens)</td>
+                <td>Friendly</td>
+              </tr>
+              <tr>
+                <td>Coilfang Armaments</td>
+                <td>75 (1 Token)</td>
+                <td>Exalted</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>Reputation Calculator</h2>
+          <form id="cenarionForm">
+            <label for="currentRepLevel">Current Reputation Level:</label>
+            <select id="currentRepLevel">
+              <option value="neutral">Neutral</option>
+              <option value="friendly">Friendly</option>
+              <option value="honored">Honored</option>
+              <option value="revered">Revered</option>
+            </select>
+            <br /><br />
+
+            <label for="currentPoints">Points in Current Level:</label>
+            <input type="number" id="currentPoints" min="0" value="0" />
+            <br /><br />
+
+            <h3>How many tokens I have</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Token</th>
+                  <th>Current Tokens</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Unidentified Plant Parts</td>
+                  <td><input type="number" id="plantParts" min="0" value="0" /></td>
+                </tr>
+                <tr>
+                  <td>Coilfang Armaments</td>
+                  <td><input type="number" id="coilfangArmaments" min="0" value="0" /></td>
+                </tr>
+              </tbody>
+            </table>
+            <br />
+            <button type="button" onclick="calculateCenarionRep()">Calculate</button>
+          </form>
+
+          <h2>Results</h2>
+          <div id="cenarionResults"></div>
+        </div>
+      </details>
     </div>
-    <script src="script.js"></script>
+
+    <br />
+    <!-- <b>Feedback:</b>
+    <pre>
+      Please leave feedback in my reddit <a href="https://www.reddit.com/r/pathofexile/comments/sjx6wi/poe_cheat_sheet_collection_of_links_and_cheat/" target="_blank">thread</a>.
+    </pre> -->
+    <span style="font-size: 10px">CSS Debug: Screen Size:</span>
+    <span id="screen-size">?</span>
+    <span class="ios-hidden">iOS-hidden</span>
+    <span class="ios-visible">iOS-visible</span>
+    <span style="font-size: 12px"
+      >Version 1.00, Last Updated Sun, Feb, 18, 2024.</span
+    >
+    <span style="font-size: 12px"
+      >Copyright © 2024 Cheatsheet Monster, CheatSheet.Monster</span
+    >
+  </div>
+  <script src="script.js"></script>
   </body>
 </html>

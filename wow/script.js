@@ -26,7 +26,7 @@ function getScreenSize() {
 }
 
 function onLoad() {
-    onResize();
+    // onResize();
 
     // iOS touch / hover
     document.addEventListener("touchstart", function () { }, false);
@@ -530,3 +530,122 @@ function formatTokenName(tokenKey) {
     };
     return tokenNames[tokenKey] || tokenKey;
 }
+
+
+function calculateCenarionRep() {
+    const reputationLevels = {
+      neutral: 0,
+      friendly: 3000,
+      honored: 9000,
+      revered: 21000,
+      exalted: 42000,
+    };
+  
+    const level = document.getElementById("currentRepLevel").value;
+    const currentPoints = parseInt(document.getElementById("currentPoints").value, 10);
+    let plantParts = parseInt(document.getElementById("plantParts").value, 10);
+    let coilfangArmaments = parseInt(document.getElementById("coilfangArmaments").value, 10);
+  
+    // Token contribution values
+    const plantPartsRep = 25; // 25 rep per plant part
+    const coilfangRep = 75; // 75 rep per armament
+  
+    // Start with current total reputation
+    let currentrep = reputationLevels[level] + currentPoints;
+    let totalRep = currentrep;
+  
+    // Track tokens required
+    let totalPlantPartsRequired = 0;
+    let totalCoilfangRequired = 0;
+  
+    // Breakdown for each tier
+    const breakdown = [];
+  
+    // Friendly Tier (Neutral to Friendly)
+    if (currentrep < reputationLevels.friendly) {
+      const repToFriendly = reputationLevels.friendly - currentrep;
+      let plantPartsNeeded = Math.ceil(repToFriendly / plantPartsRep);
+
+      let remainingPlants = plantParts - plantPartsNeeded;
+      plantPartsNeeded = Math.max(0, plantPartsNeeded - plantParts);
+      plantParts = Math.max(0, remainingPlants); // Update remaining Coilfang Armaments
+
+      breakdown.push(
+        `Tokens Required for Friendly:
+          - Unidentified Plant Parts: ${Math.max(0, plantPartsNeeded - plantParts)}`
+      );
+  
+      totalPlantPartsRequired = plantPartsNeeded; // Total required for Friendly
+      totalRep = reputationLevels.friendly; // Update to Friendly tier
+    }
+  
+    // Honored Tier (Friendly to Honored)
+    if (currentrep < reputationLevels.honored) {
+      const repToHonored = reputationLevels.honored - totalRep;
+      let coilfangNeeded = Math.ceil(repToHonored / coilfangRep);
+  
+      // Calculate remaining tokens after applying current tier
+      let remainingCoilfang = coilfangArmaments - coilfangNeeded;
+      coilfangNeeded = Math.max(0, coilfangNeeded - coilfangArmaments);
+      coilfangArmaments = Math.max(0, remainingCoilfang); // Update remaining Coilfang Armaments
+  
+      breakdown.push(
+        `Tokens Required for Honored:
+          - Coilfang Armaments: ${coilfangNeeded}`
+      );
+  
+      totalCoilfangRequired += coilfangNeeded;
+      totalRep = reputationLevels.honored; // Update to Honored tier
+    }
+  
+    // Revered Tier (Honored to Revered)
+    if (currentrep < reputationLevels.revered) {
+      const repToRevered = reputationLevels.revered - totalRep;
+      let coilfangNeeded = Math.ceil(repToRevered / coilfangRep);
+  
+      // Calculate remaining tokens after applying current tier
+      let remainingCoilfang = coilfangArmaments - coilfangNeeded;
+      coilfangNeeded = Math.max(0, coilfangNeeded - coilfangArmaments);
+      coilfangArmaments = Math.max(0, remainingCoilfang); // Update remaining Coilfang Armaments
+  
+      breakdown.push(
+        `Tokens Required for Revered:
+          - Coilfang Armaments: ${coilfangNeeded}`
+      );
+  
+      totalCoilfangRequired += coilfangNeeded;
+      totalRep = reputationLevels.revered; // Update to Revered tier
+    }
+  
+    // Exalted Tier (Revered to Exalted)
+    if (currentrep < reputationLevels.exalted) {
+      const repToExalted = reputationLevels.exalted - totalRep;
+      let coilfangNeeded = Math.ceil(repToExalted / coilfangRep);
+  
+      // Calculate remaining tokens after applying current tier
+      let remainingCoilfang = coilfangArmaments - coilfangNeeded;
+      coilfangNeeded = Math.max(0, coilfangNeeded - coilfangArmaments);
+      coilfangArmaments = Math.max(0, remainingCoilfang); // Update remaining Coilfang Armaments
+  
+      breakdown.push(
+        `Tokens Required for Exalted:
+          - Coilfang Armaments: ${coilfangNeeded}`
+      );
+  
+      totalCoilfangRequired += coilfangNeeded;
+    }
+  
+    // Display the results
+    const resultsDiv = document.getElementById("cenarionResults");
+    resultsDiv.innerHTML = `
+      <h3>Results</h3>
+      <p>Current Reputation: ${totalRep} / 42000 (Exalted)</p>
+      <p>Reputation Needed: ${Math.max(0, reputationLevels.exalted - totalRep)}</p>
+      <h4>Total Tokens Required:</h4>
+      <p>- Unidentified Plant Parts: ${totalPlantPartsRequired}</p>
+      <p>- Coilfang Armaments: ${totalCoilfangRequired}</p>
+      <h4>Detailed Breakdown:</h4>
+      <pre>${breakdown.join("\n")}</pre>
+    `;
+  }
+  
