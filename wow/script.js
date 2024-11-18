@@ -393,6 +393,7 @@ function calculateReputation() {
     const currentLevel = document.getElementById("currentReputationLevel").value;
     const pointsInCurrentLevel = parseInt(document.getElementById("pointsInCurrentLevel").value) || 0;
     const doubleMultiplier = document.getElementById("doubleMultiplier").checked;
+    const dontUseKiljaeden = document.getElementById("dontUseKiljaeden").checked;
 
     // Apply multiplier to token values
     for (const token in tokenGroups) {
@@ -438,6 +439,12 @@ function calculateReputation() {
 
         // Calculate token requirements
         for (const [tokenKey, data] of Object.entries(tokenGroups)) {
+            // Skip Kil'jaeden/Firewing Signet if the checkbox is checked
+            if (dontUseKiljaeden && tokenKey === "aldorScryerT1Token") {
+                continue;
+            }
+
+            // Skip tokens not usable in this tier
             if (data.maxTier === "honored" && nextTier.name !== "friendly" && nextTier.name !== "honored") {
                 if (tokenKey === "aldorScryerT1Token") continue; // Skip Kil'jaeden/Firewing Signet for Revered and Exalted
                 tokensForTier[tokenKey] = "Not usable";
@@ -486,7 +493,9 @@ function calculateReputation() {
         <hr/>
         ${Object.entries(totalTokensRequired)
             .map(([key, value]) => {
-                if (key === "aldorScryerT1Token" && startingReputation >= 9000) return ""; // Hide Kil'jaeden/Firewing for Revered and Exalted
+                if ((key === "aldorScryerT1Token" && dontUseKiljaeden) || (key === "aldorScryerT1Token" && startingReputation >= 9000)) {
+                    return ""; // Hide Kil'jaeden/Firewing Signet if not usable
+                }
                 return `<p>${formatTokenName(key)}: ${value}</p>`;
             })
             .join("")}
@@ -498,7 +507,9 @@ function calculateReputation() {
                     <summary>Tokens Required for ${rank.charAt(0).toUpperCase() + rank.slice(1)}</summary>
                     ${Object.entries(tokens)
                         .map(([key, value]) => {
-                            if (key === "aldorScryerT1Token" && (rank === "revered" || rank === "exalted")) return ""; // Hide Kil'jaeden/Firewing for Revered and Exalted
+                            if ((key === "aldorScryerT1Token" && dontUseKiljaeden) || (key === "aldorScryerT1Token" && (rank === "revered" || rank === "exalted"))) {
+                                return ""; // Hide Kil'jaeden/Firewing for Revered and Exalted or when checkbox is checked
+                            }
                             return `<p>${key}: ${value}</p>`;
                         })
                         .join("")}
