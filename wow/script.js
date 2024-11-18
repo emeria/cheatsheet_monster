@@ -350,12 +350,24 @@ const tokenIcons = {
 };
 
 // Dynamically set token images
-document.querySelectorAll("kiljaedenIcon").src = tokenIcons.kiljaeden;
-document.querySelectorAll("sargerasIcon").src = tokenIcons.sargeras;
-document.querySelectorAll("felArmamentIcon").src = tokenIcons.felArmament;
-document.querySelectorAll("arcaneTomeIcon").src = tokenIcons.arcaneTome;
-document.querySelectorAll("sunfuryIcon").src = tokenIcons.sunfury;
-document.querySelectorAll("firewingIcon").src = tokenIcons.firewing;
+document.querySelectorAll("kiljaedenIcon").forEach((element) => {
+    element.src = tokenIcons.kiljaeden;
+});
+document.querySelectorAll("sargerasIcon").forEach((element) => {
+    element.src = tokenIcons.sargeras;
+});
+document.querySelectorAll("felArmamentIcon").forEach((element) => {
+    element.src = tokenIcons.felArmament;
+});
+document.querySelectorAll("arcaneTomeIcon").forEach((element) => {
+    element.src = tokenIcons.arcaneTome;
+});
+document.querySelectorAll("sunfuryIcon").forEach((element) => {
+    element.src = tokenIcons.sunfury;
+});
+document.querySelectorAll("firewingIcon").forEach((element) => {
+    element.src = tokenIcons.firewing;
+});
 
 const reputationLevels = [
     { name: "neutral", points: 0 },
