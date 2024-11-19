@@ -389,15 +389,23 @@ const tokenGroups = {
     aldorScryerT3Token: { points: 350, maxTier: "exalted" },
 };
 
+//calculate scryer/aldor rep
 function calculateReputation() {
     const currentLevel = document.getElementById("currentReputationLevel").value;
     const pointsInCurrentLevel = parseInt(document.getElementById("pointsInCurrentLevel").value) || 0;
     const doubleMultiplier = document.getElementById("doubleMultiplier").checked;
     const dontUseKiljaeden = document.getElementById("dontUseKiljaeden").checked;
 
-    // Apply multiplier to token values
-    for (const token in tokenGroups) {
-        tokenGroups[token].points *= doubleMultiplier ? 2 : 1;
+    // Reset token values to base before applying multiplier
+    Object.keys(tokenGroups).forEach((token) => {
+        tokenGroups[token].points = baseTokenGroups[formatTokenName(token)].points;
+    });
+
+    // Apply multiplier to token values if selected
+    if (doubleMultiplier) {
+        Object.keys(tokenGroups).forEach((token) => {
+            tokenGroups[token].points *= 2;
+        });
     }
 
     let currentReputation =
@@ -417,6 +425,13 @@ function calculateReputation() {
         aldorScryerT1Token: 0,
         aldorScryerT2Token: 0,
         aldorScryerT3Token: 0,
+    };
+
+    // Get current tokens from user inputs
+    const currentTokensOwned = {
+        aldorScryerT1Token: parseInt(document.getElementById("aldorScryerT1Token").value) || 0,
+        aldorScryerT2Token: parseInt(document.getElementById("aldorScryerT2Token").value) || 0,
+        aldorScryerT3Token: parseInt(document.getElementById("aldorScryerT3Token").value) || 0,
     };
 
     // Loop through reputation levels
@@ -451,17 +466,21 @@ function calculateReputation() {
                 continue;
             }
 
-            const tokensNeeded = Math.ceil(rankReputationRemaining / data.points);
+            let tokensNeeded = Math.ceil(rankReputationRemaining / data.points);
+
+            // Subtract current tokens before adding to totals
+            const tokensAfterCurrent = Math.max(0, tokensNeeded - currentTokensOwned[tokenKey]);
+            currentTokensOwned[tokenKey] -= Math.min(tokensNeeded, currentTokensOwned[tokenKey]);
 
             // Handle interchangeable tokens
             if (tokenKey === "aldorScryerT2Token") {
-                sargerasMarks = tokensNeeded;
+                sargerasMarks = tokensAfterCurrent;
             } else if (tokenKey === "aldorScryerT3Token") {
-                felTomes = tokensNeeded;
+                felTomes = tokensAfterCurrent;
             } else {
-                rankReputationRemaining -= tokensNeeded * data.points;
-                totalTokensRequired[tokenKey] += tokensNeeded;
-                tokensForTier[tokenKey] = tokensNeeded;
+                rankReputationRemaining -= tokensAfterCurrent * data.points;
+                totalTokensRequired[tokenKey] += tokensAfterCurrent;
+                tokensForTier[tokenKey] = tokensAfterCurrent;
             }
         }
 
@@ -482,44 +501,69 @@ function calculateReputation() {
         currentReputation += rankReputationNeeded;
     }
 
- // Generate results
-const resultsDiv = document.getElementById("results");
-resultsDiv.innerHTML = `
-    <p>Current Reputation: ${startingReputation} / 42000 (Exalted)</p>
-    <p>Reputation Needed: ${42000 - startingReputation}</p>
-    <h3>Total Tokens Required:</h3>
-    <p><em>Mark of Kil'jaeden / Firewing Signet should be used first and cannot be used after Honored.</em></p>
-    <p><em>You can use Mark of Sargeras / Sunfury Signet OR Fel Armament / Arcane Tome to reach Exalted.</em></p>
-    <hr/>
-    ${Object.entries(totalTokensRequired)
-        .map(([key, value]) => {
-            if ((key === "aldorScryerT1Token" && dontUseKiljaeden) || (key === "aldorScryerT1Token" && startingReputation >= 9000)) {
-                return ""; // Hide Kil'jaeden/Firewing Signet if not usable
-            }
-            return `<p>${formatTokenName(key)}: ${value}</p>`;
-        })
-        .join("")}
-    <hr/>
-    ${tokensRequiredByRank
-        .map(
-            ({ rank, tokens }) => `
-                <details>
-                    <summary>Tokens Required for ${rank.charAt(0).toUpperCase() + rank.slice(1)}</summary>
-                    ${Object.entries(tokens)
-                        .map(([key, value]) => {
-                            if ((key === "aldorScryerT1Token" && dontUseKiljaeden) || (key === "aldorScryerT1Token" && (rank === "revered" || rank === "exalted"))) {
-                                return ""; // Hide Kil'jaeden/Firewing for Revered and Exalted or when checkbox is checked
-                            }
-                            return `<p>${formatTokenName(key)}: ${value}</p>`;
-                        })
-                        .join("")}
-                </details>
-            `
-        )
-        .join("")}
-`;
-
+    // Generate results
+    const resultsDiv = document.getElementById("results");
+    resultsDiv.innerHTML = `
+        <p>Current Reputation: ${startingReputation} / 42000 (Exalted)</p>
+        <p>Reputation Needed: ${42000 - startingReputation}</p>
+        <h3>Total Tokens Required:</h3>
+        <p><em>Mark of Kil'jaeden / Firewing Signet should be used first and cannot be used after Honored.</em></p>
+        <p><em>You can use Mark of Sargeras / Sunfury Signet OR Fel Armament / Arcane Tome to reach Exalted.</em></p>
+        <hr/>
+        ${Object.entries(totalTokensRequired)
+            .map(([key, value]) => {
+                if ((key === "aldorScryerT1Token" && dontUseKiljaeden) || (key === "aldorScryerT1Token" && startingReputation >= 9000)) {
+                    return ""; // Hide Kil'jaeden/Firewing Signet if not usable
+                }
+                return `<p>${formatTokenName(key)}: ${value}</p>`;
+            })
+            .join("")}
+        <hr/>
+        ${tokensRequiredByRank
+            .map(
+                ({ rank, tokens }) => `
+                    <details>
+                        <summary>Tokens Required for ${rank.charAt(0).toUpperCase() + rank.slice(1)}</summary>
+                        ${Object.entries(tokens)
+                            .map(([key, value]) => {
+                                if ((key === "aldorScryerT1Token" && dontUseKiljaeden) || (key === "aldorScryerT1Token" && (rank === "revered" || rank === "exalted"))) {
+                                    return ""; // Hide Kil'jaeden/Firewing for Revered and Exalted or when checkbox is checked
+                                }
+                                return `<p>${formatTokenName(key)}: ${value}</p>`;
+                            })
+                            .join("")}
+                    </details>
+                `
+            )
+            .join("")}
+    `;
 }
+
+
+// Helper function to subtract current tokens
+function subtractCurrentTokens(totalTokensRequired) {
+    const tokenKeys = ["aldorScryerT1Token", "aldorScryerT2Token", "aldorScryerT3Token"];
+
+    tokenKeys.forEach((tokenKey) => {
+        const currentTokenInput = document.getElementById(`${tokenKey}Input`);
+        const currentTokensOwned = parseInt(currentTokenInput?.value || 0);
+
+        if (currentTokensOwned > 0) {
+            totalTokensRequired[tokenKey] = Math.max(0, totalTokensRequired[tokenKey] - currentTokensOwned);
+        }
+    });
+}
+
+// Helper function to format token names
+function formatTokenName(tokenKey) {
+    const tokenNames = {
+        aldorScryerT1Token: "Mark of Kil'jaeden / Firewing Signet",
+        aldorScryerT2Token: "Mark of Sargeras / Sunfury Signet",
+        aldorScryerT3Token: "Fel Armament / Arcane Tome",
+    };
+    return tokenNames[tokenKey] || tokenKey;
+}
+
 
 // Helper function to format token names
 function formatTokenName(tokenKey) {
@@ -639,8 +683,8 @@ function calculateCenarionRep() {
     const resultsDiv = document.getElementById("cenarionResults");
     resultsDiv.innerHTML = `
       <h3>Results</h3>
-      <p>Current Reputation: ${totalRep} / 42000 (Exalted)</p>
-      <p>Reputation Needed: ${Math.max(0, reputationLevels.exalted - totalRep)}</p>
+      <p>Current Reputation: ${currentrep} / 42000 (Exalted)</p>
+      <p>Reputation Needed: ${Math.max(0, reputationLevels.exalted - currentrep)}</p>
       <h4>Total Tokens Required:</h4>
       <p>- Unidentified Plant Parts: ${totalPlantPartsRequired}</p>
       <p>- Coilfang Armaments: ${totalCoilfangRequired}</p>
