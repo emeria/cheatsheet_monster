@@ -552,17 +552,17 @@ const supporterPackData = [
         { "name": "Sandwraith Assassin", "price": 480 }
       ]
     },
-    {
-      "series": "Path of Exile 2",
-      "packs": [
-        { "name": "Early Access", "price": 30 },
-        { "name": "Lord of Ogham", "price": 60 },
-        { "name": "King of the Faridun", "price": 100 },
-        { "name": "Thaumaturge of the Vaal", "price": 160 },
-        { "name": "Warlord of the Karui", "price": 240 },
-        { "name": "Liberator of Wraeclast", "price": 480 }
-      ]
-    },
+    // {
+    //   "series": "Path of Exile 2",
+    //   "packs": [
+    //     { "name": "Early Access", "price": 30 },
+    //     { "name": "Lord of Ogham", "price": 60 },
+    //     { "name": "King of the Faridun", "price": 100 },
+    //     { "name": "Thaumaturge of the Vaal", "price": 160 },
+    //     { "name": "Warlord of the Karui", "price": 240 },
+    //     { "name": "Liberator of Wraeclast", "price": 480 }
+    //   ]
+    // },
     {
       "series": "2023 Core",
       "packs": [
