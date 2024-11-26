@@ -33,6 +33,10 @@ function onLoad() {
 
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    renderSupporterPackTable(supporterPackData);
+});
+
 function onResize() {
     var dim = getScreenSize();
     console.log('Dimension: ' + dim);
@@ -535,4 +539,219 @@ function switchTheme(targetTheme) {
     root.style.setProperty('--header', currentTheme.header);
     root.style.setProperty('--focus-image-text-color', currentTheme.focusImageTextColor);
 
+}
+
+const supporterPackData = [
+    {
+      "series": "2024 Core",
+      "packs": [
+        { "name": "Kalguuran Runesmith", "price": 60 },
+        { "name": "Shackled Immortal", "price": 100 },
+        { "name": "Vaal Serpent-God", "price": 160 },
+        { "name": "Karui Elemancer", "price": 240 },
+        { "name": "Sandwraith Assassin", "price": 480 }
+      ]
+    },
+    {
+      "series": "Path of Exile 2",
+      "packs": [
+        { "name": "Early Access", "price": 30 },
+        { "name": "Lord of Ogham", "price": 60 },
+        { "name": "King of the Faridun", "price": 100 },
+        { "name": "Thaumaturge of the Vaal", "price": 160 },
+        { "name": "Warlord of the Karui", "price": 240 },
+        { "name": "Liberator of Wraeclast", "price": 480 }
+      ]
+    },
+    {
+      "series": "2023 Core",
+      "packs": [
+        { "name": "Tormentor", "price": 60 },
+        { "name": "Hellfire", "price": 100 },
+        { "name": "Bloodthirsty", "price": 160 },
+        { "name": "Chronomancer", "price": 240 },
+        { "name": "Voidborn", "price": 480 }
+      ]
+    },
+    {
+      "series": "2022 Core",
+      "packs": [
+        { "name": "Imperator", "price": 60 },
+        { "name": "Nullifier", "price": 100 },
+        { "name": "Annihilator", "price": 160 },
+        { "name": "Ravager", "price": 240 },
+        { "name": "Incinerator", "price": 480 }
+      ]
+    },
+    {
+      "series": "2021 Core",
+      "packs": [
+        { "name": "Delve", "price": 60 },
+        { "name": "Breach", "price": 100 },
+        { "name": "Abyss", "price": 160 },
+        { "name": "Harvest", "price": 240 },
+        { "name": "Heist", "price": 480 }
+      ]
+    },
+    {
+      "series": "2020 Core",
+      "packs": [
+        { "name": "Orion", "price": 60 },
+        { "name": "Basilisk", "price": 100 },
+        { "name": "Hydra", "price": 160 },
+        { "name": "Phoenix", "price": 240 },
+        { "name": "Minotaur", "price": 480 }
+      ]
+    },
+    {
+      "series": "2019 Core",
+      "packs": [
+        { "name": "Sunspire", "price": 60 },
+        { "name": "Doomguard", "price": 100 },
+        { "name": "Crucible", "price": 160 },
+        { "name": "Eyrie", "price": 240 },
+        { "name": "Council", "price": 480 }
+      ]
+    },
+    {
+      "series": "2018 Core",
+      "packs": [
+        { "name": "Conquest", "price": 60 },
+        { "name": "Crucible", "price": 100 },
+        { "name": "Eyrie", "price": 160 },
+        { "name": "Council", "price": 240 },
+        { "name": "Empyrean", "price": 480 }
+      ]
+    },
+    {
+      "series": "2017 Core",
+      "packs": [
+        { "name": "Orion", "price": 60 },
+        { "name": "Basilisk", "price": 100 },
+        { "name": "Hydra", "price": 160 },
+        { "name": "Phoenix", "price": 240 },
+        { "name": "Minotaur", "price": 480 }
+      ]
+    },
+    {
+      "series": "2016 Core",
+      "packs": [
+        { "name": "Sunspire", "price": 60 },
+        { "name": "Doomguard", "price": 100 },
+        { "name": "Crucible", "price": 160 },
+        { "name": "Eyrie", "price": 240 },
+        { "name": "Council", "price": 480 }
+      ]
+    },
+    {
+      "series": "2015 Core",
+      "packs": [
+        { "name": "Conquest", "price": 60 },
+        { "name": "Crucible", "price": 100 },
+        { "name": "Eyrie", "price": 160 },
+        { "name": "Council", "price": 240 },
+        { "name": "Empyrean", "price": 480 }
+      ]
+    },
+    {
+      "series": "2014 Core",
+      "packs": [
+        { "name": "Orion", "price": 60 },
+        { "name": "Basilisk", "price": 100 },
+        { "name": "Hydra", "price": 160 },
+        { "name": "Phoenix", "price": 240 },
+        { "name": "Minotaur", "price": 480 }
+      ]
+    },
+    {
+      "series": "2013 Core",
+      "packs": [
+        { "name": "Sunspire", "price": 60 },
+        { "name": "Doomguard", "price": 100 },
+        { "name": "Crucible", "price": 160 },
+        { "name": "Eyrie", "price": 240 },
+        { "name": "Council", "price": 480 }
+      ]
+    },
+    {
+      "series": "Closed Beta (2012)",
+      "packs": [
+        { "name": "Kiwi Pack", "price": 10 },
+        { "name": "Bronze Pack", "price": 25 },
+        { "name": "Silver Pack", "price": 50 },
+        { "name": "Gold Pack", "price": 100 },
+        { "name": "Diamond Pack", "price": 1000 }
+      ]
+    },
+    {
+      "series": "Open Beta (2013)",
+      "packs": [
+        { "name": "Open Beta Supporter $10", "price": 10 },
+        { "name": "Open Beta Supporter $25", "price": 25 },
+        { "name": "Open Beta Supporter $50", "price": 50 },
+        { "name": "Open Beta Supporter $100", "price": 100 },
+        { "name": "Open Beta Supporter $250", "price": 250 },
+        { "name": "Open Beta Supporter $1,000", "price": 1000 }
+      ]
+    }
+  ];
+
+const packList = document.getElementById("packList");
+const totalCostElement = document.getElementById("totalCost");
+
+
+// Calculate and update the total cost
+function updateLifetimeTotal() {
+    const checkboxes = document.querySelectorAll("#supporterPackTable input[type='checkbox']");
+    let total = 0;
+
+    checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            total += parseFloat(checkbox.dataset.price); // Use the price stored in the `data-price` attribute
+        }
+    });
+
+    const totalCostElement = document.getElementById("totalCost");
+    if (totalCostElement) {
+        totalCostElement.textContent = total.toFixed(2); // Update the displayed total
+    }
+}
+
+
+function renderSupporterPackTable(data) {
+    const tableContainer = document.getElementById('supporterPackTable');
+    if (!tableContainer) {
+        console.error("Container with ID 'supporterPackTable' not found!");
+        return;
+    }
+
+    // Build the table HTML
+    const tableHtml = `
+    <table>
+        <thead>
+            <tr>
+                <th>Supporter Pack Series</th>
+                <th>Pack Name</th>
+                <th>Price (USD)</th>
+                <th>Select</th>
+            </tr>
+        </thead>
+        <tbody>
+            ${data.map(series =>
+                series.packs.map(pack => `
+                    <tr>
+                        <td>${series.series}</td>
+                        <td>${pack.name}</td>
+                        <td>$${pack.price.toFixed(2)}</td>
+                        <td><input type="checkbox" data-price="${pack.price}" onchange="updateLifetimeTotal()"></td>
+                    </tr>
+                `).join('')
+            ).join('')}
+        </tbody>
+    </table>
+`;
+
+
+    // Insert the table into the container
+    tableContainer.innerHTML = tableHtml;
 }

@@ -21,7 +21,6 @@
     <title>Path of Exile Cheat Sheet by Thundersphinx</title>
 
     <link rel="stylesheet" type="text/css" href="styles.css" />
-    <script src="script.js"></script>
   </head>
 
   <body onload="onLoad();" onresize="onResize();">
@@ -94,7 +93,7 @@
       <a href="#leveling">Leveling</a> | <a href="#vendor-recipe">Vendor Recipes</a> | <a href="#betrayal">Betrayal</a> |
       <a href="#incursion">Incursion</a> | <a href="#heist">Heist</a> | <a href="#tattoo">Tattoos</a> | 
       <a href="#essences">Essences</a> | <a href="#strongbox">Strongbox</a> |
-      <a href="#flask">Flask</a> | <a href="#kingsmarch">Kingsmarch</a>
+      <a href="#flask">Flask</a> | <a href="#kingsmarch">Kingsmarch</a> | <a href="#lifetime-calc">Lifetime Spent Calc.</a> 
 
       <br /><br />
 
@@ -477,7 +476,23 @@
               </figure>
               <br />
             </details>
+            
       <br />
+      <!-- lifetime-calc -->
+      <details>
+        <summary class="collapsible colored-summary-lifetime-calc" id="lifetime-calc">
+          Path of Exile Supporter Pack Calculator
+        </summary>
+        <figure>
+          <p>Select the supporter packs you own to calculate the total cost:</p>
+          
+          <div id="supporterPackTable"></div>
+
+          <div>Total Lifetime Cost: $<span id="totalCost">0</span></div>
+      
+        </figure>
+        <br />
+      </details>
       <hr />
 
       <!-- Links -->
@@ -927,5 +942,7 @@
         >Copyright © 2024 Cheatsheet Monster, CheatSheet.Monster</span
       >
     </div>
+    
+    <script src="script.js"></script>
   </body>
 </html>
