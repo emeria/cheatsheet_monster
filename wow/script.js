@@ -392,7 +392,7 @@ const tokenGroups = {
 //calculate scryer/aldor rep
 function calculateReputation() {
     const currentLevel = document.getElementById("currentReputationLevel").value;
-    const pointsInCurrentLevel = parseInt(document.getElementById("pointsInCurrentLevel").value) || 0;
+    const pointsInCurrentLevel = parseInt(document.getElementById("pointsInCurrentLevelAldorScryer").value) || 0;
     const doubleMultiplier = document.getElementById("doubleMultiplier").checked;
     const dontUseKiljaeden = document.getElementById("dontUseKiljaeden").checked;
 
@@ -584,6 +584,7 @@ function calculateCenarionRep() {
       revered: 21000,
       exalted: 42000,
     };
+    
   
     const level = document.getElementById("currentRepLevel").value;
     const currentPoints = parseInt(document.getElementById("currentPoints").value, 10);
@@ -691,5 +692,442 @@ function calculateCenarionRep() {
       <h4>Detailed Breakdown:</h4>
       <pre>${breakdown.join("\n")}</pre>
     `;
+  }
+ 
+//   function calculateSporeggarReputation() {
+//     const currentLevel = document.getElementById("currentReputationLevelSporeggar").value;
+//     const pointsInCurrentLevel = parseInt(document.getElementById("pointsInCurrentLevelSporeggar").value) || 0;
+//     const doubleMultiplier = document.getElementById("doubleMultiplierSporeggar").checked;
+//     const prioritizeGlowcap = document.getElementById("prioritizeGlowcap").checked;
+  
+//     const reputationLevels = [
+//       { name: "neutral", points: 0 },
+//       { name: "unfriendly", points: 3000 },
+//       { name: "friendly", points: 6000 },
+//       { name: "honored", points: 12000 },
+//       { name: "revered", points: 24000 },
+//       { name: "exalted", points: 42000 },
+//     ];
+  
+//     let currentReputation =
+//       reputationLevels.find((level) => level.name === currentLevel).points + pointsInCurrentLevel;
+  
+//     if (currentReputation >= 42000) {
+//       document.getElementById("resultsSporeggar").innerHTML = `<p>You are already at Exalted!</p>`;
+//       return;
+//     }
+  
+//     const tokens = {
+//       glowcap: {
+//         points: doubleMultiplier ? 30 : 15,
+//         usable: (tier) => tier !== "neutral" && tier !== "unfriendly", // Glowcap usable from Unfriendly onward
+//         current: parseInt(document.getElementById("glowcap").value) || 0,
+//       },
+//       matureSporeSac: {
+//         points: doubleMultiplier ? 150 : 75,
+//         usable: (tier) => tier === "friendly" || tier === "revered",
+//         current: parseInt(document.getElementById("matureSporeSac").value) || 0,
+//       },
+//       fertileSpore: {
+//         points: doubleMultiplier ? 150 : 75,
+//         usable: (tier) => tier === "exalted",
+//         current: parseInt(document.getElementById("fertileSpore").value) || 0,
+//       },
+//       bogLordTendril: {
+//         points: doubleMultiplier ? 20 : 10,
+//         usable: (tier) => tier === "friendly" || tier === "honored",
+//         current: parseInt(document.getElementById("bogLordTendril").value) || 0,
+//       },
+//     };
+  
+//     const tierTokenOptions = {
+//       unfriendly: ["glowcap"],
+//       friendly: prioritizeGlowcap ? ["glowcap"] : ["bogLordTendril", "matureSporeSac"],
+//       honored: prioritizeGlowcap ? ["glowcap"] : ["bogLordTendril", "glowcap"],
+//       revered: prioritizeGlowcap ? ["glowcap"] : ["glowcap", "matureSporeSac"],
+//       exalted: prioritizeGlowcap ? ["glowcap"] : ["glowcap", "fertileSpore"],
+//     };
+  
+//     const results = [];
+//     for (let i = reputationLevels.findIndex((level) => level.name === currentLevel); i < reputationLevels.length - 1; i++) {
+//       const currentTier = reputationLevels[i];
+//       const nextTier = reputationLevels[i + 1];
+//       const pointsToNextTier = Math.max(0, nextTier.points - currentReputation);
+  
+//       const tokenOptions = tierTokenOptions[nextTier.name] || [];
+//       let tierResults = { tier: nextTier.name, tokenUsage: [] };
+  
+//       let remainingReputation = pointsToNextTier;
+  
+//       for (const tokenKey of tokenOptions) {
+//         const token = tokens[tokenKey];
+//         if (!token.usable(nextTier.name)) continue;
+  
+//         const tokensFromInventory = Math.min(
+//           Math.ceil(remainingReputation / token.points),
+//           token.current
+//         );
+//         remainingReputation -= tokensFromInventory * token.points;
+//         token.current -= tokensFromInventory;
+  
+//         const additionalTokensNeeded = Math.max(
+//           0,
+//           Math.ceil(remainingReputation / token.points)
+//         );
+  
+//         tierResults.tokenUsage.push({
+//           token: tokenKey,
+//           fromOwned: tokensFromInventory,
+//           additionalRequired: additionalTokensNeeded,
+//           totalNeeded: tokensFromInventory + additionalTokensNeeded,
+//         });
+  
+//         if (remainingReputation <= 0) break;
+//       }
+  
+//       results.push(tierResults);
+//       currentReputation = nextTier.points - remainingReputation;
+//     }
+  
+//     const resultsDiv = document.getElementById("resultsSporeggar");
+//     resultsDiv.innerHTML = `
+//       <h3>Reputation Progress</h3>
+//       ${results
+//         .map(
+//           ({ tier, tokenUsage }) =>
+//             `<details>
+//                <summary>${tier.charAt(0).toUpperCase() + tier.slice(1)}</summary>
+//                ${tokenUsage.length > 0
+//                  ? tokenUsage
+//                      .map(
+//                        ({ token, fromOwned, additionalRequired, totalNeeded }) =>
+//                          `<p>${formatTokenNameS(token)}: 
+//                             <strong>${totalNeeded}</strong> 
+//                             (Owned: ${fromOwned}, Additional: ${additionalRequired})</p>`
+//                      )
+//                      .join("")
+//                  : `<p>No tokens usable for this tier.</p>`}
+//              </details>`
+//         )
+//         .join("")}
+//     `;
+//   }
+  
+//   function formatTokenNameS(tokenKey) {
+//     const tokenNames = {
+//       glowcap: "Glowcap",
+//       matureSporeSac: "Mature Spore Sac",
+//       fertileSpore: "Fertile Spore",
+//       bogLordTendril: "Bog Lord Tendril",
+//     };
+//     return tokenNames[tokenKey] || tokenKey;
+//   }
+
+
+// // version 2
+// function calculateSporeggarReputation() {
+//     const currentLevel = document.getElementById("currentReputationLevelSporeggar").value;
+//     const pointsInCurrentLevel = parseInt(document.getElementById("pointsInCurrentLevelSporeggar").value) || 0;
+//     const doubleMultiplier = document.getElementById("doubleMultiplierSporeggar").checked;
+  
+//     const tokens = {
+//       bogLordTendril: {
+//         name: "Bog Lord Tendrils",
+//         points: doubleMultiplier ? 1500 / 6 : 750 / 6,
+//         usable: (tier) => tier === "unfriendly" || tier === "neutral",
+//         current: parseInt(document.getElementById("bogLordTendril").value) || 0,
+//       },
+//       matureSporeSac: {
+//         name: "Mature Spore Sacs",
+//         points: doubleMultiplier ? 1500 / 10 : 750 / 10,
+//         usable: (tier) => tier === "unfriendly" || tier === "neutral",
+//         current: parseInt(document.getElementById("matureSporeSac").value) || 0,
+//       },
+//       fertileSpore: {
+//         name: "Fertile Spores",
+//         points: doubleMultiplier ? 1500 / 6 : 750 / 6,
+//         usable: (tier) => tier !== "unfriendly",
+//         current: parseInt(document.getElementById("fertileSpore").value) || 0,
+//       },
+//       sanguineHibiscus: {
+//         name: "Sanguine Hibiscus",
+//         points: doubleMultiplier ? 1500 / 5 : 750 / 5,
+//         usable: (tier) => tier !== "unfriendly" && tier !== "neutral",
+//         current: parseInt(document.getElementById("sanguineHibiscus").value) || 0,
+//       },
+//       nowThatWereFriends: {
+//         name: "Now That We're Friends...",
+//         points: doubleMultiplier ? 1500 : 750,
+//         usable: (tier) => tier === "honored" || tier === "revered",
+//         current: parseInt(document.getElementById("nowThatWereFriends").value) || 0,
+//       },
+//     };
+  
+//     const reputationLevels = [
+//       { name: "unfriendly", points: 0 },
+//       { name: "neutral", points: 3000 },
+//       { name: "friendly", points: 6000 },
+//       { name: "honored", points: 12000 },
+//       { name: "revered", points: 21000 },
+//       { name: "exalted", points: 42000 },
+//     ];
+  
+//     let currentReputation =
+//       reputationLevels.find((level) => level.name === currentLevel).points + pointsInCurrentLevel;
+  
+//     if (currentReputation >= 42000) {
+//       document.getElementById("resultsSporeggar").innerHTML = `<p>You are already at Exalted!</p>`;
+//       return;
+//     }
+  
+//     const totalTokens = {}; // Object to aggregate total tokens used
+//     const results = [];
+//     const tokenInventory = { ...tokens }; // Track tokens for incremental updates across tiers
+  
+//     for (let i = reputationLevels.findIndex((level) => level.name === currentLevel); i < reputationLevels.length - 1; i++) {
+//       const currentTier = reputationLevels[i];
+//       const nextTier = reputationLevels[i + 1];
+//       const pointsToNextTier = Math.max(0, nextTier.points - currentReputation);
+  
+//       const tokenOptions = Object.keys(tokens).filter((key) =>
+//         tokens[key].usable(nextTier.name)
+//       );
+//       let tierResults = { tier: nextTier.name, tokenUsage: [] };
+  
+//       let remainingReputation = pointsToNextTier;
+  
+//       for (const tokenKey of tokenOptions) {
+//         const token = tokenInventory[tokenKey];
+  
+//         const tokensFromInventory = Math.min(
+//           Math.ceil(remainingReputation / token.points),
+//           token.current
+//         );
+//         remainingReputation -= tokensFromInventory * token.points;
+  
+//         // Update token inventory for future tiers
+//         tokenInventory[tokenKey].current -= tokensFromInventory;
+  
+//         // Calculate additional tokens required for this tier
+//         const additionalTokensNeeded = Math.max(
+//           0,
+//           Math.ceil(remainingReputation / token.points)
+//         );
+  
+//         const totalNeeded = tokensFromInventory + additionalTokensNeeded;
+  
+//         if (!totalTokens[tokenKey]) {
+//           totalTokens[tokenKey] = totalNeeded;
+//         } else {
+//           totalTokens[tokenKey] += totalNeeded;
+//         }
+  
+//         tierResults.tokenUsage.push({
+//           token: tokenKey,
+//           fromOwned: tokensFromInventory,
+//           additionalRequired: additionalTokensNeeded,
+//           totalNeeded,
+//         });
+  
+//         if (remainingReputation <= 0) break;
+//       }
+  
+//       results.push(tierResults);
+//       currentReputation = nextTier.points - remainingReputation;
+//     }
+  
+//     const resultsDiv = document.getElementById("resultsSporeggar");
+//     resultsDiv.innerHTML = `
+//       <h3>Reputation Progress</h3>
+//       ${results
+//         .map(
+//           ({ tier, tokenUsage }) =>
+//             `<details>
+//                <summary>Tokens Required for ${tier.charAt(0).toUpperCase() + tier.slice(1)}</summary>
+//                ${tokenUsage
+//                  .map(
+//                    ({ token, fromOwned, additionalRequired, totalNeeded }) =>
+//                      `<p>${formatTokenNameSporeggar(token)}: 
+//                         <strong>${totalNeeded}</strong> 
+//                         (Owned: ${fromOwned}, Additional: ${additionalRequired})</p>`
+//                  )
+//                  .join("")}
+//              </details>`
+//         )
+//         .join("")}
+//       <h3>Total Tokens Required</h3>
+//       <ul>
+//         ${Object.entries(totalTokens)
+//           .map(
+//             ([tokenKey, total]) =>
+//               `<li>${formatTokenNameSporeggar(tokenKey)}: <strong>${total}</strong></li>`
+//           )
+//           .join("")}
+//       </ul>
+//     `;
+//   }
+  
+//   function formatTokenNameSporeggar(tokenKey) {
+//     const tokenNames = {
+//       bogLordTendril: "Bog Lord Tendrils",
+//       matureSporeSac: "Mature Spore Sacs",
+//       fertileSpore: "Fertile Spores",
+//       sanguineHibiscus: "Sanguine Hibiscus",
+//       nowThatWereFriends: "Now That We're Friends...",
+//     };
+//     return tokenNames[tokenKey] || tokenKey;
+//   }
+function calculateSporeggarReputation() {
+    const currentLevel = document.getElementById("currentReputationLevelSporeggar").value;
+    const pointsInCurrentLevel = parseInt(document.getElementById("pointsInCurrentLevelSporeggar").value) || 0;
+    const doubleMultiplier = document.getElementById("doubleMultiplierSporeggar").checked;
+  
+    const tokens = {
+      bogLordTendril: {
+        name: "Bog Lord Tendrils",
+        points: doubleMultiplier ? 1500 / 6 : 750 / 6,
+        usable: (tier) => tier === "unfriendly" || tier === "neutral",
+        current: parseInt(document.getElementById("bogLordTendril").value) || 0,
+      },
+      matureSporeSac: {
+        name: "Mature Spore Sacs",
+        points: doubleMultiplier ? 1500 / 10 : 750 / 10,
+        usable: (tier) => tier === "unfriendly" || tier === "neutral",
+        current: parseInt(document.getElementById("matureSporeSac").value) || 0,
+      },
+      fertileSpore: {
+        name: "Fertile Spores",
+        points: doubleMultiplier ? 1500 / 6 : 750 / 6,
+        usable: (tier) => tier !== "unfriendly",
+        current: parseInt(document.getElementById("fertileSpore").value) || 0,
+      },
+      sanguineHibiscus: {
+        name: "Sanguine Hibiscus",
+        points: doubleMultiplier ? 1500 / 5 : 750 / 5,
+        usable: (tier) => tier !== "unfriendly" && tier !== "neutral",
+        current: parseInt(document.getElementById("sanguineHibiscus").value) || 0,
+      },
+      nowThatWereFriends: {
+        name: "Now That We're Friends...",
+        points: doubleMultiplier ? 1500 : 750,
+        usable: (tier) => tier === "honored" || tier === "revered",
+        current: parseInt(document.getElementById("nowThatWereFriends").value) || 0,
+      },
+    };
+  
+    const reputationLevels = [
+      { name: "unfriendly", points: 0 },
+      { name: "neutral", points: 3000 },
+      { name: "friendly", points: 6000 },
+      { name: "honored", points: 12000 },
+      { name: "revered", points: 21000 },
+      { name: "exalted", points: 42000 },
+    ];
+  
+    let currentReputation =
+      reputationLevels.find((level) => level.name === currentLevel).points + pointsInCurrentLevel;
+  
+    if (currentReputation >= 42000) {
+      document.getElementById("resultsSporeggar").innerHTML = `<p>You are already at Exalted!</p>`;
+      return;
+    }
+  
+    const totalTokens = {}; // Object to aggregate total tokens used
+    const results = [];
+    const tokenInventory = { ...tokens }; // Track tokens independently for each tier
+  
+    for (let i = reputationLevels.findIndex((level) => level.name === currentLevel); i < reputationLevels.length - 1; i++) {
+      const currentTier = reputationLevels[i];
+      const nextTier = reputationLevels[i + 1];
+      const pointsToNextTier = Math.max(0, nextTier.points - currentReputation);
+  
+      const tokenOptions = Object.keys(tokens).filter((key) =>
+        tokens[key].usable(nextTier.name)
+      );
+      let tierResults = { tier: nextTier.name, tokenUsage: [] };
+  
+      let remainingReputation = pointsToNextTier;
+  
+      for (const tokenKey of tokenOptions) {
+        const token = tokenInventory[tokenKey];
+  
+        // Fixed token requirement for this tier
+        const tokensRequiredForTier = Math.ceil(pointsToNextTier / token.points);
+  
+        // Tokens used from inventory for this tier only
+        const tokensFromInventory = Math.min(tokensRequiredForTier, token.current);
+  
+        // Remaining tokens required after inventory usage
+        const additionalTokensNeeded = Math.max(
+          0,
+          tokensRequiredForTier - tokensFromInventory
+        );
+  
+        // Deduct only for this tier
+        tokenInventory[tokenKey].current -= tokensFromInventory;
+  
+        // Aggregate results per tier
+        tierResults.tokenUsage.push({
+          token: tokenKey,
+          fromOwned: tokensFromInventory,
+          additionalRequired: additionalTokensNeeded,
+          totalNeeded: tokensRequiredForTier,
+        });
+  
+        // Aggregate totals for overall summary
+        if (!totalTokens[tokenKey]) {
+          totalTokens[tokenKey] = tokensRequiredForTier;
+        } else {
+          totalTokens[tokenKey] += tokensRequiredForTier;
+        }
+  
+        remainingReputation -= tokensRequiredForTier * token.points;
+      }
+  
+      results.push(tierResults);
+      currentReputation = nextTier.points - remainingReputation;
+    }
+  
+    // Generate results output
+    const resultsDiv = document.getElementById("resultsSporeggar");
+    resultsDiv.innerHTML = `
+      <h3>Reputation Progress</h3>
+      ${results
+        .map(
+          ({ tier, tokenUsage }) =>
+            `<details>
+               <summary>Tokens Required for ${tier.charAt(0).toUpperCase() + tier.slice(1)}</summary>
+               ${tokenUsage
+                 .map(
+                   ({ token, fromOwned, additionalRequired, totalNeeded }) =>
+                     `<p>${formatTokenNameSporeggar(token)}: 
+                        <strong>${totalNeeded}</strong> 
+                        (Owned: ${fromOwned}, Additional: ${additionalRequired})</p>`
+                 )
+                 .join("")}
+             </details>`
+        )
+        .join("")}
+      <h3>Total Tokens Required</h3>
+      <ul>
+        ${Object.entries(totalTokens)
+          .map(
+            ([tokenKey, total]) =>
+              `<li>${formatTokenNameSporeggar(tokenKey)}: <strong>${total}</strong></li>`
+          )
+          .join("")}
+      </ul>
+    `;
+  }
+  
+  function formatTokenNameSporeggar(tokenKey) {
+    const tokenNames = {
+      bogLordTendril: "Bog Lord Tendrils",
+      matureSporeSac: "Mature Spore Sacs",
+      fertileSpore: "Fertile Spores",
+      sanguineHibiscus: "Sanguine Hibiscus",
+      nowThatWereFriends: "Now That We're Friends...",
+    };
+    return tokenNames[tokenKey] || tokenKey;
   }
   

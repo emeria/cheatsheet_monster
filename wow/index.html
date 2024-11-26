@@ -81,7 +81,7 @@
         Click an Image to Focus (enlarge for some)</span
       >
       <br />
-      <a href="#tbc-scryer-aldor">Scryer/Aldor</a> | <a href="#cenarion">Cenarion Expedition</a> |
+      <a href="#tbc-scryer-aldor">Scryer/Aldor</a> | <a href="#cenarion">Cenarion Expedition</a> | <a href="#sporeggar">Sporeggar</a>
 
       <br/>  <br/>
       <details open>
@@ -175,8 +175,8 @@
             </select>
             <br /><br />
 
-            <label for="pointsInCurrentLevel">Points in Current Level:</label>
-            <input type="number" id="pointsInCurrentLevel" min="0" value="0" />
+            <label for="pointsInCurrentLevelAldorScryer">Points in Current Level:</label>
+            <input type="number" id="pointsInCurrentLevelAldorScryer" min="0" value="0" />
             <br /><br />
             <h3>How many tokens I have</h3>
             <table>
@@ -324,6 +324,142 @@
           <div id="cenarionResults"></div>
         </div>
       </details>
+
+      <br/><br/>
+      <!-- <details open>
+        <summary class="collapsible" id="tbc-sporeggar">Sporeggar Calculator</summary>
+      
+        <div class="container">
+          <h1>WoW TBC Sporeggar Reputation Calculator</h1>
+      
+          <h2>Reputation Tiers</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Reputation Level</th>
+                <th>Points Required to Reach</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Unfriendly</td>
+                <td>0-3,000</td>
+              </tr>
+              <tr>
+                <td>Neutral</td>
+                <td>3,000-6,000</td>
+              </tr>
+              <tr>
+                <td>Friendly</td>
+                <td>6,000-12,000</td>
+              </tr>
+              <tr>
+                <td>Honored</td>
+                <td>12,000-21,000</td>
+              </tr>
+              <tr>
+                <td>Revered</td>
+                <td>21,000-42,000</td>
+              </tr>
+            </tbody>
+          </table>
+      
+          <h2>Token/Turn-in Values</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Token/Turn-in</th>
+                <th>Reputation Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Bog Lord Tendrils</td>
+                <td>125 Reputation per 6</td>
+              </tr>
+              <tr>
+                <td>Mature Spore Sacs</td>
+                <td>125 Reputation per 10</td>
+              </tr>
+              <tr>
+                <td>Fertile Spores</td>
+                <td>125 Reputation per 6</td>
+              </tr>
+              <tr>
+                <td>Sanguine Hibiscus</td>
+                <td>125 Reputation per 5</td>
+              </tr>
+              <tr>
+                <td>Now That We're Friends...</td>
+                <td>750 Reputation per turn-in</td>
+              </tr>
+            </tbody>
+          </table>
+      
+          <h2>Reputation Calculator</h2>
+          <form id="sporeggarForm">
+            <label for="currentReputationLevelSporeggar">Current Reputation Level:</label>
+            <select id="currentReputationLevelSporeggar">
+              <option value="unfriendly">Unfriendly</option>
+              <option value="neutral">Neutral</option>
+              <option value="friendly">Friendly</option>
+              <option value="honored">Honored</option>
+              <option value="revered">Revered</option>
+            </select>
+            <br /><br />
+      
+            <label for="pointsInCurrentLevelSporeggar">Points in Current Level:</label>
+            <input type="number" id="pointsInCurrentLevelSporeggar" min="0" value="0" />
+            <br /><br />
+      
+            <h3>Available Tokens</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Token</th>
+                  <th>Current Tokens</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Bog Lord Tendrils</td>
+                  <td><input type="number" id="bogLordTendril" min="0" value="0" /></td>
+                </tr>
+                <tr>
+                  <td>Mature Spore Sac</td>
+                  <td><input type="number" id="matureSporeSac" min="0" value="0" /></td>
+                </tr>
+                <tr>
+                  <td>Fertile Spore</td>
+                  <td><input type="number" id="fertileSpore" min="0" value="0" /></td>
+                </tr>
+                <tr>
+                  <td>Sanguine Hibiscus</td>
+                  <td><input type="number" id="sanguineHibiscus" min="0" value="0" /></td>
+                </tr>
+                <tr>
+                  <td>Now That We're Friends...</td>
+                  <td><input type="number" id="nowThatWereFriends" min="0" value="0" /></td>
+                </tr>
+              </tbody>
+            </table>
+            <br />
+      
+            <label for="doubleMultiplierSporeggar">Double Reputation Multiplier:</label>
+            <input type="checkbox" id="doubleMultiplierSporeggar" />
+            <br />
+      
+            <button type="button" onclick="calculateSporeggarReputation()">Calculate</button>
+          </form>
+      
+          <h2>Results</h2>
+          <div id="resultsSporeggar"></div>
+        </div>
+      </details> -->
+      
+      
+      
+              
     </div>
 
     <br />
