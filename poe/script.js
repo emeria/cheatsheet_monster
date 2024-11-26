@@ -707,13 +707,13 @@ function updateLifetimeTotal() {
 
     checkboxes.forEach(checkbox => {
         if (checkbox.checked) {
-            total += parseFloat(checkbox.dataset.price); // Use the price stored in the `data-price` attribute
+            total += parseFloat(checkbox.dataset.price); // Use `pricePaid`
         }
     });
 
     const totalCostElement = document.getElementById("totalCost");
     if (totalCostElement) {
-        totalCostElement.textContent = total.toFixed(2); // Update the displayed total
+        totalCostElement.textContent = total.toFixed(2);
     }
 }
 
@@ -725,7 +725,15 @@ function renderSupporterPackTable(data) {
         return;
     }
 
-    // Build the table HTML
+    // Helper function to calculate price-paid based on the direct previous pack
+    function calculatePricePaid(seriesPacks) {
+        return seriesPacks.map((pack, index) => {
+            const previousPrice = index > 0 ? seriesPacks[index - 1].price : 0;
+            const pricePaid = pack.price - previousPrice;
+            return { ...pack, pricePaid }; // Add pricePaid to the pack object
+        });
+    }
+
     const tableHtml = `
     <table>
         <thead>
@@ -733,25 +741,67 @@ function renderSupporterPackTable(data) {
                 <th>Supporter Pack Series</th>
                 <th>Pack Name</th>
                 <th>Price (USD)</th>
+                <th>Price Paid (USD)</th>
                 <th>Select</th>
             </tr>
         </thead>
         <tbody>
-            ${data.map(series =>
-                series.packs.map(pack => `
-                    <tr>
+            ${data.map(series => {
+                const packsWithPricePaid = calculatePricePaid(series.packs); // Adjust prices
+                return packsWithPricePaid.map(pack => `
+                    <tr onclick="toggleRowSelection(this)">
                         <td>${series.series}</td>
                         <td>${pack.name}</td>
                         <td>$${pack.price.toFixed(2)}</td>
-                        <td><input type="checkbox" data-price="${pack.price}" onchange="updateLifetimeTotal()"></td>
+                        <td>$${pack.pricePaid.toFixed(2)}</td>
+                        <td><input type="checkbox" data-price="${pack.pricePaid}" onclick="event.stopPropagation()"></td>
                     </tr>
-                `).join('')
-            ).join('')}
+                `).join('');
+            }).join('')}
         </tbody>
     </table>
 `;
 
 
-    // Insert the table into the container
+
     tableContainer.innerHTML = tableHtml;
+}
+
+function toggleRowSelection(row) {
+    const checkbox = row.querySelector("input[type='checkbox']");
+    if (!checkbox) return;
+
+    const isChecked = !checkbox.checked; // Determine if the row is being selected
+    checkbox.checked = isChecked;
+
+    // Get the current series
+    const series = row.querySelector("td").textContent.trim(); // Assuming the series is in the first cell
+
+    // Get all rows in the table
+    const rows = Array.from(document.querySelectorAll(`#supporterPackTable tbody tr`));
+
+    // Filter rows belonging to the same series
+    const seriesRows = rows.filter(r => {
+        const currentSeries = r.querySelector("td").textContent.trim();
+        return currentSeries === series;
+    });
+
+    // Find the current row's index in the filtered rows
+    const currentIndex = seriesRows.indexOf(row);
+
+    // Select/Deselect this row and all rows before it in the series
+    for (let i = 0; i <= currentIndex; i++) {
+        const currentCheckbox = seriesRows[i].querySelector("input[type='checkbox']");
+        if (currentCheckbox) {
+            currentCheckbox.checked = isChecked; // Match the selection state
+            if (isChecked) {
+                seriesRows[i].classList.add("selected"); // Optional: Add selected styling
+            } else {
+                seriesRows[i].classList.remove("selected"); // Optional: Remove selected styling
+            }
+        }
+    }
+
+    // Update the total cost
+    updateLifetimeTotal();
 }

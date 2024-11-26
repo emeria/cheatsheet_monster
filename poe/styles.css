@@ -499,3 +499,6 @@ ol {
   font-weight: bold;
   margin-top: 20px;
 }
+tr.selected {
+  background-color: #d3f4ff; /* Light blue highlight */
+}
