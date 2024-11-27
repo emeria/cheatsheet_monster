@@ -693,6 +693,12 @@ const supporterPackData = [
         { "name": "Open Beta Supporter $250", "price": 250 },
         { "name": "Open Beta Supporter $1,000", "price": 1000 }
       ]
+    },
+    {
+        "series":"2012",
+        "packs":[
+            {"name":"Early Access","price":10},
+        ]
     }
   ];
 
