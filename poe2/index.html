@@ -91,9 +91,317 @@
         />
       </div>
       <br />
-      <a href="#leveling">Leveling</a> | <a href="#crafting-options">Crafting</a> | <a href="#crafting-endgame"> Endgame Crafting</a> | <a href="#item-anatomy">Item Anatomy</a> |
+      <a href="#leveling">Leveling</a> | <a href="#rewards">Campaign Rewards</a> | <a href="#crafting-options">Crafting</a> | <a href="#crafting-endgame"> Endgame Crafting</a> | <a href="#item-anatomy">Item Anatomy</a> |
+
+            <!-- Leveling -->
 
       <br />
+<details open>
+  <summary class="collapsible" id="rewards">Campaign Rewards</summary>
+  <figure>
+    <div style="font-family: Arial, sans-serif; line-height: 1.5; max-width: 1000px; margin: auto; padding: 20px;">
+    
+      <!-- Toggle Buttons -->
+      <div style="text-align: center; margin-bottom: 20px;">
+        <button onclick="showByAct()">By Act</button>
+        <button onclick="showByReward()">By Reward Type</button>
+      </div>
+    
+      <!-- Main Table -->
+      <table id="content-table" style="width: 100%; border-collapse: collapse; text-align: left;">
+        <thead>
+          <tr>
+            <th>Act</th>
+            <th>Location</th>
+            <th>Task</th>
+            <th>Reward</th>
+            <th>Tags</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Act 1 -->
+          <tr data-act="1" data-tags="Resistance">
+            <td>Act 1</td>
+            <td>Clearfell</td>
+            <td>Kill Beira Of The Rotten Pack</td>
+            <td>+10% Cold Resistance</td>
+            <td>Resistance</td>
+          </tr>
+          <tr data-act="1" data-tags="Passive Skills">
+            <td>Act 1</td>
+            <td>Hunting Grounds</td>
+            <td>Kill Crowbell</td>
+            <td>+2 Passive Skill Points</td>
+            <td>Passive Skills</td>
+          </tr>
+          <tr data-act="1" data-tags="Spirit Gem">
+            <td>Act 1</td>
+            <td>Freythorn</td>
+            <td>Kill The King In The Mist</td>
+            <td>+30 Spirit (Uncut Spirit Gem on 1st kill)</td>
+            <td>Spirit, Gem</td>
+          </tr>
+          <tr data-act="1" data-tags="Passive Skills">
+            <td>Act 1</td>
+            <td>Ogham Farmlands</td>
+            <td>Find Una's Lute and deliver it to Una</td>
+            <td>+2 Passive Skill Points</td>
+            <td>Passive Skills</td>
+          </tr>
+          <tr data-act="1" data-tags="Unique Reward">
+            <td>Act 1</td>
+            <td>Ogham Village</td>
+            <td>Find Smithing Tools for Renly</td>
+            <td>Salvaging Bench</td>
+            <td>Unique Reward</td>
+          </tr>
+          <tr data-act="1" data-tags="Unique Reward">
+            <td>Act 1</td>
+            <td>Oghman Manor</td>
+            <td>Kill Candlemass, The Living Rite</td>
+            <td>+20 Maximum Life</td>
+            <td>Unique Reward</td>
+          </tr>
+    
+          <!-- Act 2 -->
+          <tr data-act="2" data-tags="Passive Skills">
+            <td>Act 2</td>
+            <td>Keth</td>
+            <td>Kill Kabala, Constrictor Queen</td>
+            <td>+2 Passive Skill Points</td>
+            <td>Passive Skills</td>
+          </tr>
+          <tr data-act="2" data-tags="Unique Reward">
+            <td>Act 2</td>
+            <td>Valley Of The Titans</td>
+            <td>Deliver Kabala (random drop - Keth) and Sun Clan (random drop - Bone Pits) Relics to altar</td>
+            <td>30% increased Charm Charges gained.<br/>15% increased Mana Recovery from Flasks.</td>
+            <td>Unique Reward</td>
+          </tr>
+          <tr data-act="2" data-tags="Passive Skills">
+            <td>Act 2</td>
+            <td>Deshar</td>
+            <td>Find Final Letter on corpse</td>
+            <td>+2 Passive Skill Points</td>
+            <td>Passive Skills</td>
+          </tr>
+          <tr data-act="2" data-tags="Resistance">
+            <td>Act 2</td>
+            <td>The Spires of Deshar</td>
+            <td>Click Sisters of Garukhan Shrine</td>
+            <td>+10% Lightning Resistance</td>
+            <td>Resistance</td>
+          </tr>
+    
+          <!-- Act 3 -->
+          <tr data-act="3" data-tags="Unique Reward">
+            <td>Act 3</td>
+            <td>Sandswept Marsh</td>
+            <td>Find Basket at Orok Campfire</td>
+            <td>Lesser Jeweller's Orb</td>
+            <td>Unique Reward</td>
+          </tr>
+          <tr data-act="3" data-tags="Passive Skills">
+            <td>Act 3</td>
+            <td>Jungle Ruins</td>
+            <td>Kill Mighty Silverfist</td>
+            <td>+2 Passive Skill Points</td>
+            <td>Passive Skills</td>
+          </tr>
+          <tr data-act="3" data-tags="Spirit Gem">
+            <td>Act 3</td>
+            <td>The Azak Bog</td>
+            <td>Kill Ignagduk, The Bog Witch</td>
+            <td>+30 Spirit (Uncut Spirit Gem on 1st kill)</td>
+            <td>Spirit, Gem</td>
+          </tr>
+          <tr data-act="3" data-tags="Unique Reward">
+            <td>Act 3</td>
+            <td>The Venom Crypts</td>
+            <td>Find the Venom Vial</td>
+            <td>Choose from:<br/>25% increased Stun Threshold.<br/>
+              30% increased Elemental Ailment Threshold.<br/>
+              25% increased Mana Regeneration Rate.</td>
+            <td>Unique Reward</td>
+          </tr>
+          <tr data-act="3" data-tags="Resistance">
+            <td>Act 3</td>
+            <td>Jiquani's Machinarium</td>
+            <td>Kill Blackjaw, The Remnant</td>
+            <td>+10% Fire Resistance</td>
+            <td>Resistance</td>
+          </tr>
+          <tr data-act="3" data-tags="Unique Reward">
+            <td>Act 3</td>
+            <td>The Molten Vault</td>
+            <td>Kill Mektul, The Forgemaster</td>
+            <td>Reforging Bench</td>
+            <td>Unique Reward</td>
+          </tr>
+          <tr data-act="3" data-tags="Passive Skills">
+            <td>Act 3</td>
+            <td>Aggorat</td>
+            <td>Find and Sacrifice the Sacrificial Heart</td>
+            <td>+2 Passive Skill Points</td>
+            <td>Passive Skills</td>
+          </tr>
+          <!-- Act 4 (Act 1 - Cruel)  -->
+          <tr data-act="4" data-tags="Resistance">
+            <td>Act 4 (Act 1 - Cruel)</td>
+            <td>Clearfell</td>
+            <td>Kill Beira Of The Rotten Pack</td>
+            <td>+10% Cold Resistance</td>
+            <td>Resistance</td>
+          </tr>
+          <tr data-act="4" data-tags="Passive Skills">
+            <td>Act 4 (Act 1 - Cruel)</td>
+            <td>Hunting Grounds</td>
+            <td>Kill Crowbell</td>
+            <td>+2 Passive Skill Points</td>
+            <td>Passive Skills</td>
+          </tr>
+          <tr data-act="4" data-tags="Passive Skills">
+            <td>Act 4 (Act 1 - Cruel)</td>
+            <td>Ogham Farmlands</td>
+            <td>Find Una's Lute and deliver it to Una</td>
+            <td>+2 Passive Skill Points</td>
+            <td>Passive Skills</td>
+          </tr>
+          <tr data-act="4" data-tags="Unique Reward">
+            <td>Act 4 (Act 1 - Cruel)</td>
+            <td>Oghman Manor</td>
+            <td>Kill Candlemass, The Living Rite</td>
+            <td>+8% Increased Maximum Life</td>
+            <td>Unique Reward</td>
+          </tr>
+    
+          <!-- Act 5 (Act 2 Cruel) -->
+          <tr data-act="5" data-tags="Passive Skills">
+            <td>Act 5 (Act 2 Cruel)</td>
+            <td>Keth</td>
+            <td>Kill Kabala, Constrictor Queen</td>
+            <td>+2 Passive Skill Points</td>
+            <td>Passive Skills</td>
+          </tr>
+
+          <tr data-act="5" data-tags="Passive Skills">
+            <td>Act 5 (Act 2 Cruel)</td>
+            <td>Keth</td>
+            <td>Kill Kabala, Constrictor Queen</td>
+            <td>+2 Passive Skill Points</td>
+            <td>Passive Skills</td>
+          </tr>
+          <tr data-act="5" data-tags="Unique Reward">
+            <td>Act 5 (Act 2 Cruel)</td>
+            <td>Valley Of The Titans</td>
+            <td>Deliver Kabala (random drop - Keth) and Sun Clan (random drop - Bone Pits) Relics to altar</td>
+            <td>30% increased Charm Charges gained.<br/>15% increased Mana Recovery from Flasks.</td>
+            <td>Unique Reward</td>
+          </tr>
+          <tr data-act="5" data-tags="Passive Skills">
+            <td>Act 5 (Act 2 Cruel)</td>
+            <td>Deshar</td>
+            <td>Find Final Letter on corpse</td>
+            <td>+2 Passive Skill Points</td>
+            <td>Passive Skills</td>
+          </tr>
+          <tr data-act="5" data-tags="Resistance">
+            <td>Act 5 (Act 2 Cruel)</td>
+            <td>The Spires of Deshar</td>
+            <td>Click Sisters of Garukhan Shrine</td>
+            <td>+10% Lightning Resistance</td>
+            <td>Resistance</td>
+          </tr>
+    
+          <!-- Act 6 (Act 3 - Cruel) -->
+          <tr data-act="6"  data-tags="Unique Reward">
+            <td>Act 6 (Act 3 - Cruel)</td>
+            <td>Sandswept Marsh</td>
+            <td>Find Basket at Orok Campfire</td>
+            <td>Lesser Jeweller's Orb</td>
+            <td>Unique Reward</td>
+          </tr>
+          <tr data-act="6"  data-tags="Passive Skills">
+            <td>Act 6 (Act 3 - Cruel)</td>
+            <td>Jungle Ruins</td>
+            <td>Kill Mighty Silverfist</td>
+            <td>+2 Passive Skill Points</td>
+            <td>Passive Skills</td>
+          </tr>
+          <tr data-act="6"  data-tags="Spirit Gem">
+            <td>Act 6 (Act 3 - Cruel)</td>
+            <td>The Azak Bog</td>
+            <td>Kill Ignagduk, The Bog Witch</td>
+            <td>+40 Spirit (Uncut Spirit Gem on 1st kill)</td>
+            <td>Spirit, Gem</td>
+          </tr>
+          <tr data-act="6"  data-tags="Unique Reward">
+            <td>Act 6 (Act 3 - Cruel)</td>
+            <td>The Venom Crypts</td>
+            <td>Find the Venom Vial</td>
+            <td>Choose from:<br/>+10% to Chaos Resistance<br/>
+              +5 to All Attributes<br/>
+              15% reduced Slowing Potency of Debuffs on you</td>
+            <td>Unique Reward</td>
+          </tr>
+          <tr data-act="6"  data-tags="Resistance">
+            <td>Act 6 (Act 3 - Cruel)</td>
+            <td>Jiquani's Machinarium</td>
+            <td>Kill Blackjaw, The Remnant</td>
+            <td>+10% Fire Resistance</td>
+            <td>Resistance</td>
+          </tr>
+          <tr data-act="6" data-tags="Passive Skills">
+            <td>Act 6 (Act 3 - Cruel)</td>
+            <td>Aggorat</td>
+            <td>Find and Sacrifice the Sacrificial Heart</td>
+            <td>+2 Passive Skill Points</td>
+            <td>Passive Skills</td>
+          </tr>
+        </tbody>
+      </table>
+    
+      <script>
+        const rows = document.querySelectorAll("#content-table tbody tr");
+        const originalOrder = Array.from(rows);
+    
+        function showByAct() {
+          const tableBody = document.querySelector("#content-table tbody");
+          tableBody.innerHTML = "";
+          originalOrder.forEach(row => tableBody.appendChild(row));
+        }
+    
+        function showByReward() {
+          const rewards = {};
+          rows.forEach(row => {
+            const tags = row.dataset.tags.split(", ");
+            tags.forEach(tag => {
+              if (!rewards[tag]) rewards[tag] = [];
+              rewards[tag].push(row);
+            });
+          });
+    
+          // Clear current rows
+          const tableBody = document.querySelector("#content-table tbody");
+          tableBody.innerHTML = "";
+    
+          // Populate rows grouped by reward
+          Object.keys(rewards).forEach(tag => {
+            const headerRow = document.createElement("tr");
+            headerRow.innerHTML = `<td colspan="5" style="font-weight: bold; text-align: center;">${tag}</td>`;
+            tableBody.appendChild(headerRow);
+    
+            rewards[tag].forEach(row => tableBody.appendChild(row));
+          });
+        }
+      </script>
+    </div>
+    
+
+  </figure>
+  </details>
+
+      <br/>
             <!-- crafting options -->
             <details open>
               <summary class="collapsible" id="crafting-options">Crafting</summary>
