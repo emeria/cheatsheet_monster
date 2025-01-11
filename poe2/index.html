@@ -145,10 +145,16 @@
       <script>
           // Load CSV data
           async function loadCSV() {
-              const response = await fetch('rewards.csv');
-              const csvText = await response.text();
-              return csvText.split('\n').slice(1).map(row => row.split(','));
-          }
+    const response = await fetch('rewards.csv');
+    const csvText = await response.text();
+
+    // Use a regular expression to parse CSV correctly
+    return csvText.split('\n').slice(1).map(row => {
+        const matches = row.match(/(".*?"|[^,]+)(?=\s*,|\s*$)/g);
+        return matches ? matches.map(cell => cell.replace(/(^"|"$)/g, '')) : [];
+    });
+}
+
   
           async function renderTable() {
               const data = await loadCSV();
