@@ -716,7 +716,7 @@ Lightless Arbor,2,the dungeon boss drops additional Runes,"+15% increased Dama
 Lightless Arbor,2,the dungeon boss drops a Set Item,"+30% increased Damage, +30% increased Health",Drop Count: 1,3
 Lightless Arbor,2,the dungeon boss drops a Set Item,"+30% increased Damage, +30% increased Health",Drop Count: 1,4
 Lightless Arbor,2,the dungeon boss drops additional Idols,"+20% increased Damage, +20% increased Health",Drop Count: 3-4,5
-Lightless Arbor,1,N/A,"35% less Damage, 25% less Health",,1
+Lightless Arbor,1,"the dungeon boss drops a unique item","35% less Damage, 25% less Health",,1
 Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional axes,"+180% increased Damage, +180% increased Health",,1
 Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional belts,"+180% increased Damage, +180% increased Health",,2
 Soulfire Bastion,4,The Soul Gambler's inventory contains 4 additional body armours,"+180% increased Damage, +180% increased Health",,3
@@ -756,7 +756,7 @@ Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional sceptres,"
 Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional shields,"+50% increased Damage, +50% increased Health",,11
 Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional staves,"+50% increased Damage, +50% increased Health",,12
 Soulfire Bastion,2,The Soul Gambler's inventory contains 2 additional swords,"+50% increased Damage, +50% increased Health",,13
-Soulfire Bastion,1,N/A,"35% less Damage, 25% less Health",,1
+Soulfire Bastion,1,"the dungeon boss drops a unique item","35% less Damage, 25% less Health",,1
 Temporal Sanctum,4,the dungeon boss drops a horde of Exalted Jewelry,"+90% increased Damage, +120% increased Health",Drop Count: 6-7,1
 Temporal Sanctum,4,enemies drop substantially more exalted relics,"+90% increased Damage, +100% increased Health",Increased Chance: 7%,2
 Temporal Sanctum,4,the dungeon boss drops a horde of Exalted Weapons,"+120% increased Damage, +90% increased Health",Drop Count: 6-7,3
@@ -795,7 +795,7 @@ Temporal Sanctum,2,the dungeon boss drops a Set Item,"+30% increased Damage, 
 Temporal Sanctum,2,enemies drop slightly more exalted rings,"+20% increased Damage, +20% increased Health",Increased Chance: 3%,9
 Temporal Sanctum,2,enemies drop slightly more exalted weapons,"+10% increased Damage, +20% increased Health",Increased Chance: 3%,10
 Temporal Sanctum,2,enemies drop slightly more runes,+20% increased Health,Increased Chance: 3%,11
-Temporal Sanctum,1,N/A,"35% less Damage, 25% less Health",,Current Modifier
+Temporal Sanctum,1,"the dungeon boss drops a unique item","35% less Damage, 25% less Health",,Current Modifier
 `;
 
     displayDungeons(dungeonsRawData);
