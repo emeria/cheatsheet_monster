@@ -201,8 +201,8 @@ function buildTableForTLDR(data) {
         const actsNumberA = parseInt(a.act.match(/\d+/), 10);
         const actsNumberB = parseInt(b.act.match(/\d+/), 10);
 
-        if (actNumberA !== actNumberB) {
-            return actNumberA - actNumberB;
+        if (actsNumberA !== actsNumberB) {
+            return actsNumberA - actsNumberB;
         }
         return a.step - b.step;
     };
